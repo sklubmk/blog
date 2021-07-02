@@ -11239,6 +11239,7 @@ figure.highlight {
   position: relative;
   margin: 1em 0 1em !important;
   border-radius: 4px;
+  background: #47586d;
 }
 figure.highlight.folded .highlight-body {
   height: 0;
@@ -11270,10 +11271,26 @@ figure.highlight pre {
 figure.highlight pre .line,
 figure.highlight pre code .hljs {
   line-height: 1.5rem;
+  color: #d7d4f0;
+}
+figure.highlight pre .hljs-keyword,
+figure.highlight pre .hljs-number {
+  color: #c38fe5;
+}
+figure.highlight pre .hljs-title,
+figure.highlight pre .hljs-params {
+  color: #ffeb3b;
+}
+figure.highlight pre .hljs-built_in {
+  color: #fff;
+}
+figure.highlight pre .hljs-built_in {
+  color: #4caf50;
 }
 figure.highlight figcaption,
 figure.highlight .gutter {
-  background: rgba(200,200,200,0.15);
+  background: #47586d;
+  color: #fff;
 }
 figure.highlight figcaption {
   margin: 0 !important;
