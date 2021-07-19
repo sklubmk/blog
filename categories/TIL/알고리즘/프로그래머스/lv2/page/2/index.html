@@ -298,6 +298,75 @@
 <p>문제의 요구사항대로 재귀함수를 이용해 어려움없이 결과값을 도출했다.</p>
 <br>
 
+<br></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">5분안에 읽기 (약 794 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/dc762a2a5abe/">[프로그래머스] 구명 보트</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="구명보트"><a href="#구명보트" class="headerlink" title="구명보트"></a>구명보트</h1><p>JavaScript, Python</p>
+<blockquote>
+<h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>무인도에 갇힌 사람들을 구명보트를 이용하여 구출하려고 합니다. 구명보트는 작아서 한 번에 최대 2명씩 밖에 탈 수 없고, 무게 제한도 있습니다.</p>
+<p>예를 들어, 사람들의 몸무게가 [70kg, 50kg, 80kg, 50kg]이고 구명보트의 무게 제한이 100kg이라면 2번째 사람과 4번째 사람은 같이 탈 수 있지만 1번째 사람과 3번째 사람의 무게의 합은 150kg이므로 구명보트의 무게 제한을 초과하여 같이 탈 수 없습니다.</p>
+<p>구명보트를 최대한 적게 사용하여 모든 사람을 구출하려고 합니다.</p>
+<p>사람들의 몸무게를 담은 배열 people과 구명보트의 무게 제한 limit가 매개변수로 주어질 때, 모든 사람을 구출하기 위해 필요한 구명보트 개수의 최솟값을 return 하도록 solution 함수를 작성해주세요.</p>
+<h5 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h5><ul>
+<li>  무인도에 갇힌 사람은 1명 이상 50,000명 이하입니다.</li>
+<li>  각 사람의 몸무게는 40kg 이상 240kg 이하입니다.</li>
+<li>  구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.</li>
+<li>  구명보트의 무게 제한은 항상 사람들의 몸무게 중 최댓값보다 크게 주어지므로 사람들을 구출할 수 없는 경우는 없습니다.</li>
+</ul>
+<h5 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h5><table>
+<thead>
+<tr>
+<th>people</th>
+<th>limit</th>
+<th>return</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[70, 50, 80, 50]</td>
+<td>100</td>
+<td>3</td>
+</tr>
+<tr>
+<td>[70, 80, 50]</td>
+<td>100</td>
+<td>3</td>
+</tr>
+</tbody></table>
+</blockquote>
+<br>
+
+<h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br>
+
+<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">people, limit</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> s = <span class="number">0</span>,</span><br><span class="line">        e = people.length-<span class="number">1</span>;</span><br><span class="line">    people = people.sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a-b)</span><br><span class="line">    <span class="keyword">while</span>(s &lt; e)&#123;</span><br><span class="line">        <span class="keyword">if</span>(people[s] &gt; limit/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> answer + e - s + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(people[s] + people[e] &lt;= limit)&#123;</span><br><span class="line">            answer++;</span><br><span class="line">            s++;</span><br><span class="line">            e--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            answer++;</span><br><span class="line">            e--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s === e ? answer + <span class="number">1</span> : answer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">people, limit</span>):</span></span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    e = <span class="built_in">len</span>(people)-<span class="number">1</span></span><br><span class="line">    people.sort()</span><br><span class="line">    <span class="keyword">while</span> people[s] &lt;= limit/<span class="number">2</span> <span class="keyword">and</span> s &lt; e:</span><br><span class="line">        <span class="keyword">if</span> people[s] + people[e] &gt; limit:</span><br><span class="line">            e -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            e -= <span class="number">1</span></span><br><span class="line">            s += <span class="number">1</span></span><br><span class="line">        answer += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> answer + e - s + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br>
+
+<p>구명보트에는 최대 2명까지 탑승할 수 있다는 것이 가장 큰 힌트였다.<br>그렇지 않으면 적은 무게의 사람들이 3명 이상 탈 수 있는데, 이 경우 문제가 매우 복잡해진다.</p>
+<p>최대 2명이 탈 수 있다면, 몸무게가 큰 사람들과 작은 사람들을 함께 태우면 된다.<br>따라서 배열을 무게순으로 정렬하고, 인덱스 시작과 끝에 header와 tail에 해당하는 변수를 설정한다.</p>
+<p>그 뒤 현재 선택된 무거운 사람(변수 e)과 현재 선택된 가벼운 사람(변수 s)을 비교한다.</p>
+<p>이 때, s와 e에 해당하는 두 사람의 무게를 비교하여</p>
+<blockquote>
+<ul>
+<li>두 사람 무게의 합이 limit 무게를 안넘으면 둘을 모두 탑승시킨다.<ul>
+<li>그 뒤 s를 한칸 뒤로, e를 한칸 앞으로 땡긴다.</li>
+</ul>
+</li>
+<li>두 사람 무게의 합이 limit 무게를 넘으면 큰 사람만 탑승시킨다.<ul>
+<li>그 뒤 e를 한칸 앞으로 땡긴다.</li>
+</ul>
+</li>
+<li>만약 현재 탑승하지 않은 가장 가벼운 사람(s)의 무게가 limit/2 초과하면<ul>
+<li>남은 모든 사람을 각자 혼자 태운다.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>이 과정을 반복시키면 함께 탈 수 있는 2명 보트의 개수를 최적화 할 수 있다.</p>
+<br>
+
 <br></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">5분안에 읽기 (약 803 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/7f882ee07456/">[프로그래머스] 기능개발</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="기능개발"><a href="#기능개발" class="headerlink" title="기능개발"></a>기능개발</h1><p>JavaScript, Python</p>
 <blockquote>
 <h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>프로그래머스 팀에서는 기능 개선 작업을 수행 중입니다. 각 기능은 진도가 100%일 때 서비스에 반영할 수 있습니다.</p>
@@ -373,49 +442,6 @@
 <br>
 
 <p>해당 문제에선 Queue의 삭제 기능만을 사용하여 쉽게 구현할 수 있었다.</p>
-<br>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">4분안에 읽기 (약 577 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/786f5f60a9cd/">[프로그래머스] 멀쩡한 사각형</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="멀쩡한-사각형"><a href="#멀쩡한-사각형" class="headerlink" title="멀쩡한 사각형"></a>멀쩡한 사각형</h1><p>JavaScript, Python</p>
-<blockquote>
-<h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>가로 길이가 Wcm, 세로 길이가 Hcm인 직사각형 종이가 있습니다. 종이에는 가로, 세로 방향과 평행하게 격자 형태로 선이 그어져 있으며, 모든 격자칸은 1cm x 1cm 크기입니다. 이 종이를 격자 선을 따라 1cm × 1cm의 정사각형으로 잘라 사용할 예정이었는데, 누군가가 이 종이를 대각선 꼭지점 2개를 잇는 방향으로 잘라 놓았습니다. 그러므로 현재 직사각형 종이는 크기가 같은 직각삼각형 2개로 나누어진 상태입니다. 새로운 종이를 구할 수 없는 상태이기 때문에, 이 종이에서 원래 종이의 가로, 세로 방향과 평행하게 1cm × 1cm로 잘라 사용할 수 있는 만큼만 사용하기로 하였습니다.<br>가로의 길이 W와 세로의 길이 H가 주어질 때, 사용할 수 있는 정사각형의 개수를 구하는 solution 함수를 완성해 주세요.</p>
-<h5 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h5><ul>
-<li>  W, H : 1억 이하의 자연수</li>
-</ul>
-<h4 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h4><table>
-<thead>
-<tr>
-<th>W</th>
-<th>H</th>
-<th>result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>8</td>
-<td>12</td>
-<td>80</td>
-</tr>
-</tbody></table>
-<h5 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h5><p>입출력 예 #1<br>가로가 8, 세로가 12인 직사각형을 대각선 방향으로 자르면 총 16개 정사각형을 사용할 수 없게 됩니다. 원래 직사각형에서는 96개의 정사각형을 만들 수 있었으므로, 96 - 16 = 80 을 반환합니다.</p>
-<p><img src="https://grepp-programmers.s3.amazonaws.com/files/production/ee895b2cd9/567420db-20f4-4064-afc3-af54c4a46016.png" alt="572957326.92.png"></p>
-</blockquote>
-<br>
-
-<br>
-
-<h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br>
-
-<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">w, h</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (w === h) <span class="keyword">return</span> w * h - w;</span><br><span class="line">    <span class="keyword">if</span> (w === <span class="number">1</span> || h === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; w; i++)</span><br><span class="line">        answer += <span class="built_in">Math</span>.floor( h * i / w )</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> answer * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="python-최소공배수-풀이"><a href="#python-최소공배수-풀이" class="headerlink" title="python 최소공배수 풀이"></a>python 최소공배수 풀이</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> gcd</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">w,h</span>):</span></span><br><span class="line">    <span class="keyword">return</span> w * h - (w+h) + gcd(w, h)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br>
-
-<p>알고리즘 보단 창의력을 요하는 수학 문제에 가깝다.<br>문제의 인덱스마다 감소하는 진한 사각형의 개수를 구하는 식으로 풀었다. </p>
-<p>그런데 최대공약수를 이용한 풀이도 존재했다.</p>
-<p>w와 h 입장에서 선이 지나가서 못쓸만한 사각형들을 모두 빼고,<br>중복으로 제거된 칸의 개수(최대공약수) 만큼 더하면 된다.</p>
 <br>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">5분안에 읽기 (약 801 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/0fdb836c5994/">[프로그래머스] 다리를 지나는 트럭</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="다리를-지나는-트럭"><a href="#다리를-지나는-트럭" class="headerlink" title="다리를 지나는 트럭"></a>다리를 지나는 트럭</h1><p>JavaScript, Python</p>
 <blockquote>
@@ -533,7 +559,50 @@
 <p>앞으로도 문제에서 주어진 변수에만 집중하는 버릇을 경계해야겠다.</p>
 <br>
 
-<br></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">12분안에 읽기 (약 1763 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/6a4d69353cdc/">[프로그래머스] 메뉴 리뉴얼</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="메뉴-리뉴얼"><a href="#메뉴-리뉴얼" class="headerlink" title="메뉴 리뉴얼"></a>메뉴 리뉴얼</h1><p>JavaScript, Python</p>
+<br></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">4분안에 읽기 (약 577 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/786f5f60a9cd/">[프로그래머스] 멀쩡한 사각형</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="멀쩡한-사각형"><a href="#멀쩡한-사각형" class="headerlink" title="멀쩡한 사각형"></a>멀쩡한 사각형</h1><p>JavaScript, Python</p>
+<blockquote>
+<h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>가로 길이가 Wcm, 세로 길이가 Hcm인 직사각형 종이가 있습니다. 종이에는 가로, 세로 방향과 평행하게 격자 형태로 선이 그어져 있으며, 모든 격자칸은 1cm x 1cm 크기입니다. 이 종이를 격자 선을 따라 1cm × 1cm의 정사각형으로 잘라 사용할 예정이었는데, 누군가가 이 종이를 대각선 꼭지점 2개를 잇는 방향으로 잘라 놓았습니다. 그러므로 현재 직사각형 종이는 크기가 같은 직각삼각형 2개로 나누어진 상태입니다. 새로운 종이를 구할 수 없는 상태이기 때문에, 이 종이에서 원래 종이의 가로, 세로 방향과 평행하게 1cm × 1cm로 잘라 사용할 수 있는 만큼만 사용하기로 하였습니다.<br>가로의 길이 W와 세로의 길이 H가 주어질 때, 사용할 수 있는 정사각형의 개수를 구하는 solution 함수를 완성해 주세요.</p>
+<h5 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h5><ul>
+<li>  W, H : 1억 이하의 자연수</li>
+</ul>
+<h4 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h4><table>
+<thead>
+<tr>
+<th>W</th>
+<th>H</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8</td>
+<td>12</td>
+<td>80</td>
+</tr>
+</tbody></table>
+<h5 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h5><p>입출력 예 #1<br>가로가 8, 세로가 12인 직사각형을 대각선 방향으로 자르면 총 16개 정사각형을 사용할 수 없게 됩니다. 원래 직사각형에서는 96개의 정사각형을 만들 수 있었으므로, 96 - 16 = 80 을 반환합니다.</p>
+<p><img src="https://grepp-programmers.s3.amazonaws.com/files/production/ee895b2cd9/567420db-20f4-4064-afc3-af54c4a46016.png" alt="572957326.92.png"></p>
+</blockquote>
+<br>
+
+<br>
+
+<h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br>
+
+<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">w, h</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (w === h) <span class="keyword">return</span> w * h - w;</span><br><span class="line">    <span class="keyword">if</span> (w === <span class="number">1</span> || h === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; w; i++)</span><br><span class="line">        answer += <span class="built_in">Math</span>.floor( h * i / w )</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> answer * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="python-최소공배수-풀이"><a href="#python-최소공배수-풀이" class="headerlink" title="python 최소공배수 풀이"></a>python 최소공배수 풀이</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> gcd</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">w,h</span>):</span></span><br><span class="line">    <span class="keyword">return</span> w * h - (w+h) + gcd(w, h)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br>
+
+<p>알고리즘 보단 창의력을 요하는 수학 문제에 가깝다.<br>문제의 인덱스마다 감소하는 진한 사각형의 개수를 구하는 식으로 풀었다. </p>
+<p>그런데 최대공약수를 이용한 풀이도 존재했다.</p>
+<p>w와 h 입장에서 선이 지나가서 못쓸만한 사각형들을 모두 빼고,<br>중복으로 제거된 칸의 개수(최대공약수) 만큼 더하면 된다.</p>
+<br>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">12분안에 읽기 (약 1763 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/6a4d69353cdc/">[프로그래머스] 메뉴 리뉴얼</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="메뉴-리뉴얼"><a href="#메뉴-리뉴얼" class="headerlink" title="메뉴 리뉴얼"></a>메뉴 리뉴얼</h1><p>JavaScript, Python</p>
 <blockquote>
 <h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>레스토랑을 운영하던 <code>스카피</code>는 코로나19로 인한 불경기를 극복하고자 메뉴를 새로 구성하려고 고민하고 있습니다.<br>기존에는 단품으로만 제공하던 메뉴를 조합해서 코스요리 형태로 재구성해서 새로운 메뉴를 제공하기로 결정했습니다. 어떤 단품메뉴들을 조합해서 코스요리 메뉴로 구성하면 좋을 지 고민하던 “스카피”는 이전에 각 손님들이 주문할 때 가장 많이 함께 주문한 단품메뉴들을 코스요리 메뉴로 구성하기로 했습니다.<br>단, 코스요리 메뉴는 최소 2가지 이상의 단품메뉴로 구성하려고 합니다. 또한, 최소 2명 이상의 손님으로부터 주문된 단품메뉴 조합에 대해서만 코스요리 메뉴 후보에 포함하기로 했습니다.</p>
 <p>예를 들어, 손님 6명이 주문한 단품메뉴들의 조합이 다음과 같다면,<br>(각 손님은 단품메뉴를 2개 이상 주문해야 하며, 각 단품메뉴는 A ~ Z의 알파벳 대문자로 표기합니다.)</p>
@@ -668,75 +737,6 @@
 <p>사실 풀이는 크게 다르지 않다. 주어진 orders의 조합을 구해서 dictionary에 쌓은 뒤,<br>course 길이마다 요구하는 최대값들을 추려 결과 배열에 추가하는 코드다.</p>
 <p>실제로 카카오 2021 채용 코딩테스트에서 풀었던 문제인데, javascript만 알던 나는<br>난생 처음 짜보는 combination 함수에 많은 시간을 소진했다.</p>
 <p>이런 차별점 때문에 뒤늦게 Python 공부를 시작하긴 했지만 다소 아쉬움이 남는 부분이다.</p>
-<br>
-
-<br></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">5분안에 읽기 (약 794 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/dc762a2a5abe/">[프로그래머스] 구명 보트</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="구명보트"><a href="#구명보트" class="headerlink" title="구명보트"></a>구명보트</h1><p>JavaScript, Python</p>
-<blockquote>
-<h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>무인도에 갇힌 사람들을 구명보트를 이용하여 구출하려고 합니다. 구명보트는 작아서 한 번에 최대 2명씩 밖에 탈 수 없고, 무게 제한도 있습니다.</p>
-<p>예를 들어, 사람들의 몸무게가 [70kg, 50kg, 80kg, 50kg]이고 구명보트의 무게 제한이 100kg이라면 2번째 사람과 4번째 사람은 같이 탈 수 있지만 1번째 사람과 3번째 사람의 무게의 합은 150kg이므로 구명보트의 무게 제한을 초과하여 같이 탈 수 없습니다.</p>
-<p>구명보트를 최대한 적게 사용하여 모든 사람을 구출하려고 합니다.</p>
-<p>사람들의 몸무게를 담은 배열 people과 구명보트의 무게 제한 limit가 매개변수로 주어질 때, 모든 사람을 구출하기 위해 필요한 구명보트 개수의 최솟값을 return 하도록 solution 함수를 작성해주세요.</p>
-<h5 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h5><ul>
-<li>  무인도에 갇힌 사람은 1명 이상 50,000명 이하입니다.</li>
-<li>  각 사람의 몸무게는 40kg 이상 240kg 이하입니다.</li>
-<li>  구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.</li>
-<li>  구명보트의 무게 제한은 항상 사람들의 몸무게 중 최댓값보다 크게 주어지므로 사람들을 구출할 수 없는 경우는 없습니다.</li>
-</ul>
-<h5 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h5><table>
-<thead>
-<tr>
-<th>people</th>
-<th>limit</th>
-<th>return</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[70, 50, 80, 50]</td>
-<td>100</td>
-<td>3</td>
-</tr>
-<tr>
-<td>[70, 80, 50]</td>
-<td>100</td>
-<td>3</td>
-</tr>
-</tbody></table>
-</blockquote>
-<br>
-
-<h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br>
-
-<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">people, limit</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> s = <span class="number">0</span>,</span><br><span class="line">        e = people.length-<span class="number">1</span>;</span><br><span class="line">    people = people.sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a-b)</span><br><span class="line">    <span class="keyword">while</span>(s &lt; e)&#123;</span><br><span class="line">        <span class="keyword">if</span>(people[s] &gt; limit/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> answer + e - s + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(people[s] + people[e] &lt;= limit)&#123;</span><br><span class="line">            answer++;</span><br><span class="line">            s++;</span><br><span class="line">            e--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            answer++;</span><br><span class="line">            e--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s === e ? answer + <span class="number">1</span> : answer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">people, limit</span>):</span></span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    e = <span class="built_in">len</span>(people)-<span class="number">1</span></span><br><span class="line">    people.sort()</span><br><span class="line">    <span class="keyword">while</span> people[s] &lt;= limit/<span class="number">2</span> <span class="keyword">and</span> s &lt; e:</span><br><span class="line">        <span class="keyword">if</span> people[s] + people[e] &gt; limit:</span><br><span class="line">            e -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            e -= <span class="number">1</span></span><br><span class="line">            s += <span class="number">1</span></span><br><span class="line">        answer += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> answer + e - s + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br>
-
-<p>구명보트에는 최대 2명까지 탑승할 수 있다는 것이 가장 큰 힌트였다.<br>그렇지 않으면 적은 무게의 사람들이 3명 이상 탈 수 있는데, 이 경우 문제가 매우 복잡해진다.</p>
-<p>최대 2명이 탈 수 있다면, 몸무게가 큰 사람들과 작은 사람들을 함께 태우면 된다.<br>따라서 배열을 무게순으로 정렬하고, 인덱스 시작과 끝에 header와 tail에 해당하는 변수를 설정한다.</p>
-<p>그 뒤 현재 선택된 무거운 사람(변수 e)과 현재 선택된 가벼운 사람(변수 s)을 비교한다.</p>
-<p>이 때, s와 e에 해당하는 두 사람의 무게를 비교하여</p>
-<blockquote>
-<ul>
-<li>두 사람 무게의 합이 limit 무게를 안넘으면 둘을 모두 탑승시킨다.<ul>
-<li>그 뒤 s를 한칸 뒤로, e를 한칸 앞으로 땡긴다.</li>
-</ul>
-</li>
-<li>두 사람 무게의 합이 limit 무게를 넘으면 큰 사람만 탑승시킨다.<ul>
-<li>그 뒤 e를 한칸 앞으로 땡긴다.</li>
-</ul>
-</li>
-<li>만약 현재 탑승하지 않은 가장 가벼운 사람(s)의 무게가 limit/2 초과하면<ul>
-<li>남은 모든 사람을 각자 혼자 태운다.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p>이 과정을 반복시키면 함께 탈 수 있는 2명 보트의 개수를 최적화 할 수 있다.</p>
 <br>
 
 <br></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 6월 30일, 수요일 오전 2:00</span><span class="level-item"><a class="link-muted" href="/categories/TIL/">TIL</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">8분안에 읽기 (약 1132 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/30/ca45664bd4d5/">[프로그래머스] 문자열 압축</a></h1><img src="/img/programmers.png" width="80%" style="margin: 3.0em auto;display:block"><div class="content"><h1 id="문자열-압축"><a href="#문자열-압축" class="headerlink" title="문자열 압축"></a>문자열 압축</h1><p>JavaScript, Python</p>
