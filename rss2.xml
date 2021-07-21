@@ -9,8 +9,46 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sun, 18 Jul 2021 09:15:03 GMT</pubDate>
+    <pubDate>Wed, 21 Jul 2021 08:26:24 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[알고리즘] 탐욕법(Greedy)과 구현(Implementation)</title>
+      <link>https://sklubmk.github.io/2021/07/21/9fce915db622/</link>
+      <guid>https://sklubmk.github.io/2021/07/21/9fce915db622/</guid>
+      <pubDate>Wed, 21 Jul 2021 04:30:01 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;1-당장-좋은-것만-선택하는-그리디&quot;&gt;&lt;a href=&quot;#1-당장-좋은-것만-선택하는-그리디&quot; class=&quot;headerlink&quot; title=&quot;1. 당장 좋은 것만 선택하는 그리디&quot;&gt;&lt;/a&gt;1. 당장 좋은 것만 선택하는 그리디&lt;/h1&gt;&lt;hr</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="1-당장-좋은-것만-선택하는-그리디"><a href="#1-당장-좋은-것만-선택하는-그리디" class="headerlink" title="1. 당장 좋은 것만 선택하는 그리디"></a>1. 당장 좋은 것만 선택하는 그리디</h1><hr><p>그리디 알고리즘은 어떤 문제가 있을 때 단순하게 탐욕적으로 문제를 푸는 알고리즘이다.</p><p>나중을 고려하지 않고 현재 상황에서 <strong>지금 당장 좋은 것만 고르는 방법</strong>으로, <a href="https://namu.wiki/w/%EB%A7%88%EC%8B%9C%EB%A9%9C%EB%A1%9C%20%EC%8B%A4%ED%97%98">마시멜로 실험</a> 에 비유할 수 있다.</p><p>물론 이러한 점 때문에 별도의 조건이 없다면 최적해를 보장하지 않는다.</p><br/><br/><h2 id="1-1-동작-방식"><a href="#1-1-동작-방식" class="headerlink" title="1-1. 동작 방식"></a>1-1. 동작 방식</h2><hr><p>그리디에는 딱히 정형화된 동작 방식이 없다.</p><p>앞서 말한대로, 문제마다 매 순간 최적의 해만 찾아가는 방식이다.</p><p>예를들어 A,B,C 노드가 일렬로 이어진 길에서 A<del>C 까지의 최단 거리를 구하려면 A</del>B 까지의 최단거리와 B~C까지의 최단거리의 합을 구하면 된다. 그러나 이 때에도 A에서 C를 잇는 다른 최단거리가 존재해서는 안된다는 등의 제한사항이 존재해야 한다.</p><p>즉, 문제마다 적용방법이 다르고 동작 방식도 다르다.</p><br/><br/><h2 id="1-2-어떤-경우에-동작하는가"><a href="#1-2-어떤-경우에-동작하는가" class="headerlink" title="1-2. 어떤 경우에 동작하는가"></a>1-2. 어떤 경우에 동작하는가</h2><hr><p>그리디 알고리즘은</p><ul><li>탐욕 선택 속성(greedy choice property)</li><li>최적 부분 구조(optimal substructure)</li></ul><p>특성을 가지는 문제들을 해결하는데 강점이 있다. 매 선택이 다음 선택에 무관한 독립적인 값이어야 하며 매 순간의 최적해가 문제에 대한 최적해여야 한다는 의미이다.</p><br/><p>[<span style="color:orange">최적 부분 구조</span>]<br><strong>문제의 최적 해결 방법은 부분 문제에 대한 최적 해결 방법으로 구성되어야 한다는 뜻이다.</strong></p><br/><p>보통 창의력을 요하는 문제에서나, 순서에 대한 요구가 있을 때(정렬), 탐욕적으로 접근해도 정확한 답을 찾을 수 있다는 보장이 있을 때, 문제 풀이를 위한 최소한의 아이디어와 이가 정당한지 검토할 수 있을 때 사용 가능하다.</p><br/><br/><h2 id="1-3-근사-알고리즘"><a href="#1-3-근사-알고리즘" class="headerlink" title="1-3. 근사 알고리즘"></a>1-3. 근사 알고리즘</h2><hr><p>그리디는 최적해를 보장하지 않고 어느정도 적합한 수준의 해답을 알려준다. 따라서, “적당히 괜찮은 방법”을 찾을때에 사용할 수 있다. 그러나 “적당히” 괜찮기 위해선 정확한 증명이 수반되어야 한다. 또한, 해답을 찾아가는 과정에서 그리디로 구한 값을 비교값으로 설정할 수 있다.</p><br/><br/><h2 id="1-4-사용-예시"><a href="#1-4-사용-예시" class="headerlink" title="1-4. 사용 예시"></a>1-4. 사용 예시</h2><hr><ul><li>AI에 있어서 결정 트리 학습법(Decision Tree Learning)</li><li>활동 선택 문제(Activity selection problem)</li><li>거스름돈 문제</li><li>최소 신장 트리(Minimum spanning tree), 크러스컬 알고리즘</li><li>제약조건이 많은 대부분의 문제</li><li>다익스트라 최단거리 알고리즘</li><li>허프만 코드(데이터 압축)</li></ul><br/><br/><br/><br/><h1 id="2-아이디어를-코드로-바꾸는-구현"><a href="#2-아이디어를-코드로-바꾸는-구현" class="headerlink" title="2. 아이디어를 코드로 바꾸는 구현"></a>2. 아이디어를 코드로 바꾸는 구현</h1><hr><p>구현이란 ‘머릿속의 생각을 코드로 예외나 실수 없이 표현하는 것’이다.</p><p>여기엔 ‘피지컬’이라 불리우는 언어 문법 능숙도나 코드 작성 속도 등의 기본기가 어느정도 필요하다. </p><p>따라서 구현 문제는 피지컬을 요구하는 문제라고도 할 수 있다.</p><br/><br/><h2 id="2-1-필요-능력"><a href="#2-1-필요-능력" class="headerlink" title="2-1. 필요 능력"></a>2-1. 필요 능력</h2><hr><p>앞서 설명한 ‘피지컬’을 키우기 위해선, 아래와 같은 능력들이 요구된다.</p><ul><li>언어 패러다임 이해도</li><li>언어 문법 이해도</li><li>문제 파악 능력</li><li>라이브러리 숙련도</li><li>IDE 숙련도</li><li>타자속도</li></ul><p>이는 많은 알고리즘 문제를 접하면서 자연스럽게 증가하는 부분이지만, 단기간 빠르게 상승시키기 위해서는 지금 내게 부족한 능력이 무엇인지 파악하고 집중적으로 암기나 연습을 할 필요가 있다.</p><br/><br/><h2 id="2-2-구현-시-고려해야-할-점"><a href="#2-2-구현-시-고려해야-할-점" class="headerlink" title="2-2. 구현 시 고려해야 할 점"></a>2-2. 구현 시 고려해야 할 점</h2><hr><p>메모리 관리는 언어마다 차이를 보이는데, 직접 메모리를 관리해야하는 C나 C++에서는 훨씬 난이도가 높아진다. 그러나 이럴 필요가 없는 언어(대표적으로 파이썬)에서는 이 점에 대해선 크게 신경 쓸 필요는 없다.</p><p>단순 ‘코딩테스트’만을 위한 것이라면 사용 언어를 바꾸는 것이 꽤나 핵심적인 도약 방법이 된다. 특히 파이썬은 문법 작성이 매우 간결화 될 수 있으므로, ‘구현’에 최적화 되었다고 볼 수 있다.</p><p>문제의 제한 사항을 유심히 살펴 채점 환경을 고려하는 것도 중요하다. 파이썬 기준 기본적으로 10,000,000개 이상의 데이터를 가진 리스트는 메모리 오류가 날 가능성이 높다. 물론 이쯤되는 데이터를 사용하면 메모리 오류보다 시간제한에서 먼저 문제가 생긴다. 만약 사용 데이터가 크지 않아 제한 사항을 신경쓰지 않아도 된다면 구현 문제일 가능성이 높다. </p><p>문제의 길이가 매우 길고 복잡하면 지레 겁먹을 수 있는데, 이는 오히려 쉽게 구현으로 풀이되는 문제일 경우가 많다. </p><br/><br/><h2 id="2-3-인덱스-관리-능력"><a href="#2-3-인덱스-관리-능력" class="headerlink" title="2-3. 인덱스 관리 능력"></a>2-3. 인덱스 관리 능력</h2><hr><p>인덱스 관리 능력은 단순하지만 나름 피지컬 능력에 속한다.</p><p>보통 문제에서 주어지는 노드번호는 1로 시작하는 경우가 많다. 이를 배열 인덱스로 사용하려면 각 번호에 -1을 반드시 해줘야 하는데 여간 번거로운 작업이 아닐 수 없다. 코드가 길어지며 인덱스 사용 빈도가 높아진다면 더욱 실수할 가능성이 높아진다.</p><p>이를 쉽게 관리하는 방법에는 여러가지가 있고, 그 중 일부는 아래와 같다.</p><ol><li><p>arguments 로 제공된 데이터의 인덱싱</p><ul><li>문제 상단에서 -1을 선언하고 시작한다 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">a_index,b_index, ... </span>):</span></span><br><span class="line">   a_index -= <span class="number">1</span>; b_index -= <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li></ul></li><li><p>노드 번호로 제공된 데이터의 인덱싱</p><ul><li>이를 저장할 배열 크기에 +1을 한다<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n, bombs</span>):</span></span><br><span class="line">  <span class="comment"># bombs = [1,4,3,5], n = 5</span></span><br><span class="line">  isBomb = [<span class="literal">False</span>]*(n+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> bombs:</span><br><span class="line">    isBomb[i]=<span class="literal">True</span>;</span><br></pre></td></tr></table></figure></li></ul></li></ol><br/><p>이외에도 인덱스 관리 능력이 필요한 여러 경우들이 있다.</p><ol><li>행과 열이 정해진 2차원 배열의 관리<ul><li>관리 및 수정이 힘들 경우 1차원 배열에 지정하여 사용 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">row, column, rocks</span>):</span></span><br><span class="line">  <span class="comment"># row = 2, column = 3, rocks = [[0,0,1],[1,0,1]]</span></span><br><span class="line">  <span class="built_in">map</span> = [<span class="number">0</span>]*(row * column);</span><br><span class="line">  <span class="keyword">for</span> r <span class="keyword">in</span> row:</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> column:</span><br><span class="line">      <span class="built_in">map</span>[r*column + c] = rocks[r][c];</span><br></pre></td></tr></table></figure></li></ul></li><li>index가 포함된 반복문 문법 활용<ul><li>python <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">arr, arr2</span>):</span></span><br><span class="line">  multiple = [ arr2[i]*v <span class="keyword">for</span> i,v <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr)]</span><br></pre></td></tr></table></figure></li><li>javascript<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">arr, arr2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> multiple = arr.map(<span class="function">(<span class="params">v,i</span>)=&gt;</span>v*arr2[i]) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul></li></ol><br/><br/><h2 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h2><hr><p><a href="https://namu.wiki/w/%EA%B7%B8%EB%A6%AC%EB%94%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">그리디 - 나무위키</a><br><a href="http://www.yes24.com/Product/Goods/91433923">이것이 취업을 위한 코딩 테스트다 with 파이썬</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%83%90%EC%9A%95%EB%B2%95/">탐욕법</category>
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%83%90%EC%9A%95%EB%B2%95/%EA%B5%AC%ED%98%84/">구현</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%83%90%EC%9A%95%EB%B2%95/">탐욕법</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/07/21/9fce915db622/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] 전화번호 목록</title>
@@ -27,7 +65,7 @@
       
       
       
-      <content:encoded><![CDATA[<h1 id="전화번호-목록"><a href="#전화번호-목록" class="headerlink" title="전화번호 목록"></a>전화번호 목록</h1><p>Python3</p><blockquote><h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>전화번호부에 적힌 전화번호 중, 한 번호가 다른 번호의 접두어인 경우가 있는지 확인하려 합니다.<br>전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.</p><ul><li>  구조대 : 119</li><li>  박준영 : 97 674 223</li><li>  지영석 : 11 9552 4421</li></ul><p>전화번호부에 적힌 전화번호를 담은 배열 phone_book 이 solution 함수의 매개변수로 주어질 때, 어떤 번호가 다른 번호의 접두어인 경우가 있으면 false를 그렇지 않으면 true를 return 하도록 solution 함수를 작성해주세요.</p><h5 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h5><ul><li>phone_book의 길이는 1 이상 1,000,000 이하입니다.<ul><li>  각 전화번호의 길이는 1 이상 20 이하입니다.</li><li>  같은 전화번호가 중복해서 들어있지 않습니다.</li></ul></li></ul><h5 id="입출력-예제"><a href="#입출력-예제" class="headerlink" title="입출력 예제"></a>입출력 예제</h5><table><thead><tr><th>phone_book</th><th>return</th></tr></thead><tbody><tr><td>[“119”, “97674223”, “1195524421”]</td><td>false</td></tr><tr><td>[“123”,”456”,”789”]</td><td>true</td></tr><tr><td>[“12”,”123”,”1235”,”567”,”88”]</td><td>false</td></tr></tbody></table><h5 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h5><p>입출력 예 #1<br>앞에서 설명한 예와 같습니다.</p><p>입출력 예 #2<br>한 번호가 다른 번호의 접두사인 경우가 없으므로, 답은 true입니다.</p><p>입출력 예 #3<br>첫 번째 전화번호, “12”가 두 번째 전화번호 “123”의 접두사입니다. 따라서 답은 false입니다.</p><hr><p>알림</p><p>2021년 3월 4일, 테스트 케이스가 변경되었습니다. 이로 인해 이전에 통과하던 코드가 더 이상 통과하지 않을 수 있습니다.</p><p><a href="https://ncpc.idi.ntnu.no/ncpc2007/ncpc2007problems.pdf">출처</a></p></blockquote><br/><br/><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br/><h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">phone_book</span>):</span></span><br><span class="line">    phone_book.sort()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(phone_book)):</span><br><span class="line">        <span class="keyword">if</span> phone_book[i].find(phone_book[i-<span class="number">1</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure><br/><br/><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br/><p>해시 카테고리의 문제이나, 언뜻 생각할 수 있는 풀이 방법은 다양하다.</p><br/><p>그러나 문제의 제한사항에서 phone_book의 길이가 최대 100만이므로, $O(N^2)$ 이상은 효율성에서 실패할 것이다. 그러므로 최소 $O(NlogN)$의 효율성을 보이는 풀이가 필요하다.</p><br/><p>hash를 이용해서도 문제를 풀 수 있다.  한 번의 반복문으로 모든 번호를 hash에 넣고, 다시 한 번 배열을 돌며 각 번호의 부분집합이 dict에 포함되어있는지 비교하면 된다. 전화번호의 길이가 최대 20이므로, 총 계산은 $O(21N)$이 되는데, 이는 사실상 O(N)이므로 풀이에 쉽게 통과된다.</p><br/><p>그러나 가장 간단한 풀이는, 위 코드처럼 번호를 ‘문자’를 기준으로 정렬했을 때다. 이때 접두사가 포함된 문자는 반드시 접두사 문자 바로 뒤에 정렬되기 때문에 간단히 O(N) 비용으로 문제를 풀 수 있다.</p>]]></content:encoded>
+      <content:encoded><![CDATA[<h1 id="전화번호-목록"><a href="#전화번호-목록" class="headerlink" title="전화번호 목록"></a>전화번호 목록</h1><p>Python3</p><blockquote><h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>전화번호부에 적힌 전화번호 중, 한 번호가 다른 번호의 접두어인 경우가 있는지 확인하려 합니다.<br>전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.</p><ul><li>  구조대 : 119</li><li>  박준영 : 97 674 223</li><li>  지영석 : 11 9552 4421</li></ul><p>전화번호부에 적힌 전화번호를 담은 배열 phone_book 이 solution 함수의 매개변수로 주어질 때, 어떤 번호가 다른 번호의 접두어인 경우가 있으면 false를 그렇지 않으면 true를 return 하도록 solution 함수를 작성해주세요.</p><h5 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h5><ul><li>phone_book의 길이는 1 이상 1,000,000 이하입니다.<ul><li>  각 전화번호의 길이는 1 이상 20 이하입니다.</li><li>  같은 전화번호가 중복해서 들어있지 않습니다.</li></ul></li></ul><h5 id="입출력-예제"><a href="#입출력-예제" class="headerlink" title="입출력 예제"></a>입출력 예제</h5><table><thead><tr><th>phone_book</th><th>return</th></tr></thead><tbody><tr><td>[“119”, “97674223”, “1195524421”]</td><td>false</td></tr><tr><td>[“123”,”456”,”789”]</td><td>true</td></tr><tr><td>[“12”,”123”,”1235”,”567”,”88”]</td><td>false</td></tr></tbody></table><h5 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h5><p>입출력 예 #1<br>앞에서 설명한 예와 같습니다.</p><p>입출력 예 #2<br>한 번호가 다른 번호의 접두사인 경우가 없으므로, 답은 true입니다.</p><p>입출력 예 #3<br>첫 번째 전화번호, “12”가 두 번째 전화번호 “123”의 접두사입니다. 따라서 답은 false입니다.</p><hr><p>알림</p><p>2021년 3월 4일, 테스트 케이스가 변경되었습니다. 이로 인해 이전에 통과하던 코드가 더 이상 통과하지 않을 수 있습니다.</p><p><a href="https://ncpc.idi.ntnu.no/ncpc2007/ncpc2007problems.pdf">출처</a></p></blockquote><br/><br/><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br/><h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">phone_book</span>):</span></span><br><span class="line">    phone_book.sort()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(phone_book)):</span><br><span class="line">        <span class="keyword">if</span> phone_book[i].find(phone_book[i-<span class="number">1</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure><br/><br/><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br/><p>해시 카테고리의 문제이나, 언뜻 생각할 수 있는 풀이 방법은 다양하다.</p><br/><p>그러나 문제의 제한사항에서 phone_book의 길이가 최대 100만이므로, $O(N^2)$ 이상은 효율성에서 실패할 것이다. 그러므로 최소한 $O(NlogN)$ 이하의 효율성을 보이는 풀이가 필요하다.</p><br/><p>hash를 이용해서도 문제를 풀 수 있다.  한 번의 반복문으로 모든 번호를 hash에 넣고, 다시 한 번 배열을 돌며 각 번호의 부분집합이 dict에 포함되어있는지 비교하면 된다. 전화번호의 길이가 최대 20이므로, 총 계산은 $O(21N)$이 되어 아슬아슬하게 풀이에 통과된다.</p><br/><p>그러나 가장 간단한 풀이는, 위 코드처럼 번호를 ‘문자’를 기준으로 정렬했을 때다. 이때 접두사가 포함된 문자는 반드시 접두사 문자 바로 뒤에 정렬되기 때문에 간단히 O(N) 비용으로 문제를 풀 수 있다.</p>]]></content:encoded>
       
       
       <category domain="https://sklubmk.github.io/categories/TIL/">TIL</category>
@@ -93,11 +131,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%B9%B4%EC%B9%B4%EC%98%A4/">카카오</category>
       
+      <category domain="https://sklubmk.github.io/tags/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4/">카카오 인턴</category>
+      
       <category domain="https://sklubmk.github.io/tags/lv4/">lv4</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%B5%9C%EB%8B%A8%EA%B1%B0%EB%A6%AC/">최단거리</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%9D%B8%ED%84%B4/">카카오 인턴</category>
       
       
       <comments>https://sklubmk.github.io/2021/07/15/83cac01aa64b/#disqus_thread</comments>
@@ -137,9 +175,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
       
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
       
@@ -183,11 +221,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%B9%B4%EC%B9%B4%EC%98%A4/">카카오</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -229,11 +267,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%B9%B4%EC%B9%B4%EC%98%A4/">카카오</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       <category domain="https://sklubmk.github.io/tags/%EB%AC%B8%EC%9E%90%EC%97%B4/">문자열</category>
       
@@ -455,13 +493,13 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
       <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
       
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
-      <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
       
       <category domain="https://sklubmk.github.io/tags/N%EC%A7%84%EB%B2%95/">N진법</category>
       
@@ -503,9 +541,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      
+      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -549,15 +587,15 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
       <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       <category domain="https://sklubmk.github.io/tags/Date/">Date</category>
       
       <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
-      <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
       
       <comments>https://sklubmk.github.io/2021/07/07/ccb820ca24a9/#disqus_thread</comments>
@@ -597,9 +635,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      
+      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -771,9 +809,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -815,9 +853,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      
+      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -860,62 +898,16 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/DP/">DP</category>
       
-      
-      <comments>https://sklubmk.github.io/2021/06/30/25ebf566f834/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] 예상 대진표</title>
-      <link>https://sklubmk.github.io/2021/06/30/b37cff444ed0/</link>
-      <guid>https://sklubmk.github.io/2021/06/30/b37cff444ed0/</guid>
-      <pubDate>Tue, 29 Jun 2021 17:00:33 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;예상-대진표&quot;&gt;&lt;a href=&quot;#예상-대진표&quot; class=&quot;headerlink&quot; title=&quot;예상 대진표&quot;&gt;&lt;/a&gt;예상 대진표&lt;/h1&gt;&lt;p&gt;JavaScript, Python&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h6 id=&quot;문제-설명&quot;&gt;&lt;a </description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="예상-대진표"><a href="#예상-대진표" class="headerlink" title="예상 대진표"></a>예상 대진표</h1><p>JavaScript, Python</p><blockquote><h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>△△ 게임대회가 개최되었습니다. 이 대회는 N명이 참가하고, 토너먼트 형식으로 진행됩니다. N명의 참가자는 각각 1부터 N번을 차례대로 배정받습니다. 그리고, 1번↔2번, 3번↔4번, … , N-1번↔N번의 참가자끼리 게임을 진행합니다. 각 게임에서 이긴 사람은 다음 라운드에 진출할 수 있습니다. 이때, 다음 라운드에 진출할 참가자의 번호는 다시 1번부터 N/2번을 차례대로 배정받습니다. 만약 1번↔2번 끼리 겨루는 게임에서 2번이 승리했다면 다음 라운드에서 1번을 부여받고, 3번↔4번에서 겨루는 게임에서 3번이 승리했다면 다음 라운드에서 2번을 부여받게 됩니다. 게임은 최종 한 명이 남을 때까지 진행됩니다.</p><p>이때, 처음 라운드에서 A번을 가진 참가자는 경쟁자로 생각하는 B번 참가자와 몇 번째 라운드에서 만나는지 궁금해졌습니다. 게임 참가자 수 N, 참가자 번호 A, 경쟁자 번호 B가 함수 solution의 매개변수로 주어질 때, 처음 라운드에서 A번을 가진 참가자는 경쟁자로 생각하는 B번 참가자와 몇 번째 라운드에서 만나는지 return 하는 solution 함수를 완성해 주세요. 단, A번 참가자와 B번 참가자는 서로 붙게 되기 전까지 항상 이긴다고 가정합니다.</p><h5 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h5><ul><li>  N : 21 이상 220 이하인 자연수 (2의 지수 승으로 주어지므로 부전승은 발생하지 않습니다.)</li><li>  A, B : N 이하인 자연수 (단, A ≠ B 입니다.)</li></ul><hr><h5 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h5><table><thead><tr><th>N</th><th>A</th><th>B</th><th>answer</th></tr></thead><tbody><tr><td>8</td><td>4</td><td>7</td><td>3</td></tr></tbody></table><h5 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h5><p>입출력 예 #1<br>첫 번째 라운드에서 4번 참가자는 3번 참가자와 붙게 되고, 7번 참가자는 8번 참가자와 붙게 됩니다. 항상 이긴다고 가정했으므로 4번 참가자는 다음 라운드에서 2번이 되고, 7번 참가자는 4번이 됩니다. 두 번째 라운드에서 2번은 1번과 붙게 되고, 4번은 3번과 붙게 됩니다. 항상 이긴다고 가정했으므로 2번은 다음 라운드에서 1번이 되고, 4번은 2번이 됩니다. 세 번째 라운드에서 1번과 2번으로 두 참가자가 붙게 되므로 3을 return 하면 됩니다.</p></blockquote><br/><br/><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><br/><h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">n,a,b</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">let</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a !== b)&#123;</span><br><span class="line">        a = <span class="built_in">Math</span>.ceil(a/<span class="number">2</span>)</span><br><span class="line">        b = <span class="built_in">Math</span>.ceil(b/<span class="number">2</span>)</span><br><span class="line">        answer++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> answer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br/><h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n,a,b</span>):</span></span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> a != b:</span><br><span class="line">        answer += <span class="number">1</span></span><br><span class="line">        a, b = ((a+<span class="number">1</span>) // <span class="number">2</span>, (b+<span class="number">1</span>) // <span class="number">2</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure><br/><br/><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><br/><p>math의 ceil함수로 올림을 사용하면 더 편리하지만, 패키지의 사용을 최소화 하려 노력하고 있기 때문에 a 와 b에 1을 더해서 내부 내림 연산 (//)을 사용했다.</p><br/><br/><p>비트를 이용한 풀이도 존재한다.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n,a,b</span>):</span> </span><br><span class="line">    <span class="keyword">return</span> ((a-<span class="number">1</span>)^(b-<span class="number">1</span>)).bit_length()</span><br></pre></td></tr></table></figure><p>bit_length 함수는 정수를 2진법으로 표현할 때 필요한 비트 수를 반환한다.</p><p>즉, 두 정수 a-1,b-1이 xor 연산을 통해 서로의 최대 자리수 차이를 구하고 이 값의 표현에 필요한 비트 수를 통해 총 필요한 경기수를 알 수 있다.</p><br/><br/><p>가깝게 대진표가 잡힌다면 적은 경기 수를, 대진표가 서로 멀리 잡힌다면 비교적 많은 경기 수를 필요로 하게 된다.</p><br/><p>a = 1, b = 3 이라면<br>(a-1)^(b-1) = 00 ^ 10 = 10 이고,<br>이진법 10의 필요 비트 수는 2 이므로 2번의 경기를 통해 만날 수 있다.</p><p>a = 1, b = 8 이라면<br>(a-1)^(b-1) = 0000 ^ 1000 = 1000 이고,<br>이진법 1000의 필요 비트 수는 4 이므로 총 4번의 경기를 통해 만날 수 있다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
       <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
-      <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
-      <category domain="https://sklubmk.github.io/tags/bit/">bit</category>
       
-      
-      <comments>https://sklubmk.github.io/2021/06/30/b37cff444ed0/#disqus_thread</comments>
+      <comments>https://sklubmk.github.io/2021/06/30/25ebf566f834/#disqus_thread</comments>
       
     </item>
     
