@@ -76,9 +76,9 @@
       <category domain="https://sklubmk.github.io/categories/typescript/">typescript</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
       <category domain="https://sklubmk.github.io/tags/typescript/">typescript</category>
+      
+      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
       
       <category domain="https://sklubmk.github.io/tags/%EA%B9%80%EB%AF%BC%ED%83%9C%EC%9D%98-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8/">김민태의 프론트엔드 아카데미</category>
       
@@ -486,11 +486,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
       
       <category domain="https://sklubmk.github.io/tags/N%EC%A7%84%EB%B2%95/">N진법</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/07/07/8fc07391b329/#disqus_thread</comments>
@@ -580,9 +580,9 @@
       
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%A0%95%EB%A0%AC/">정렬</category>
       
@@ -674,9 +674,9 @@
       
       <category domain="https://sklubmk.github.io/tags/python/">python</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/07/07/1ade1b5bae61/#disqus_thread</comments>
@@ -813,6 +813,52 @@
     </item>
     
     <item>
+      <title>[프로그래머스] 큰 수 만들기</title>
+      <link>https://sklubmk.github.io/2021/06/30/66f0b093388e/</link>
+      <guid>https://sklubmk.github.io/2021/06/30/66f0b093388e/</guid>
+      <pubDate>Tue, 29 Jun 2021 17:00:33 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;큰-수-만들기&quot;&gt;&lt;a href=&quot;#큰-수-만들기&quot; class=&quot;headerlink&quot; title=&quot;큰 수 만들기&quot;&gt;&lt;/a&gt;큰 수 만들기&lt;/h1&gt;&lt;p&gt;JavaScript&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h6 id=&quot;문제-설명&quot;&gt;&lt;a href</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="큰-수-만들기"><a href="#큰-수-만들기" class="headerlink" title="큰 수 만들기"></a>큰 수 만들기</h1><p>JavaScript</p><blockquote><h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>어떤 숫자에서 k개의 수를 제거했을 때 얻을 수 있는 가장 큰 숫자를 구하려 합니다.</p><p>예를 들어, 숫자 1924에서 수 두 개를 제거하면 [19, 12, 14, 92, 94, 24] 를 만들 수 있습니다. 이 중 가장 큰 숫자는 94 입니다.</p><p>문자열 형식으로 숫자 number와 제거할 수의 개수 k가 solution 함수의 매개변수로 주어집니다. number에서 k 개의 수를 제거했을 때 만들 수 있는 수 중 가장 큰 숫자를 문자열 형태로 return 하도록 solution 함수를 완성하세요.</p><h5 id="제한-조건"><a href="#제한-조건" class="headerlink" title="제한 조건"></a>제한 조건</h5><ul><li>number는 1자리 이상, 1,000,000자리 이하인 숫자입니다.</li><li>k는 1 이상 <code>number의 자릿수</code> 미만인 자연수입니다.</li></ul><h5 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h5><div class="table-container"><table><thead><tr><th>number</th><th>k</th><th>return</th></tr></thead><tbody><tr><td>“1924”</td><td>2</td><td>“94”</td></tr><tr><td>“1231234”</td><td>3</td><td>“3234”</td></tr><tr><td>“4177252841”</td><td>4</td><td>“775841”</td></tr></tbody></table></div><p><a href="http://hsin.hr/coci/archive/2011_2012/contest4_tasks.pdf">출처</a></p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">number, k</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> nNumSize = number.length - k;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> arrRet = <span class="built_in">Array</span>.from(<span class="built_in">Array</span>(nNumSize),<span class="function">()=&gt;</span><span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">var</span> nPos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> idx = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(nNumSize &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> chMax = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = nPos; i &lt;= number.length - nNumSize; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(number[i] &gt; chMax)&#123;</span><br><span class="line">                chMax = number[i];</span><br><span class="line">                nPos = i;</span><br><span class="line">                <span class="keyword">if</span>(chMax === <span class="string">&quot;9&quot;</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ++nPos;</span><br><span class="line">        --nNumSize;</span><br><span class="line">        arrRet[idx++] = chMax;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arrRet.join(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">number, k</span>):</span></span><br><span class="line">    stack = []</span><br><span class="line">    n = <span class="built_in">len</span>(number)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">and</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> stack[-<span class="number">1</span>] &lt; number[i]:</span><br><span class="line">            stack.pop()</span><br><span class="line">            k -=<span class="number">1</span></span><br><span class="line">        stack.append(number[i])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(stack[:n-k])</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><p><br/></p><p>탐욕법이 사용 가능하며, 어느정도 구현 능력을 요구하는 문제다.</p><p><br/></p><p>언뜻 간단히 k * n의 풀이 시간이 필요한 것처럼 보이는데, 여기서 문자열을 다루는 함수를 사용시 <script type="math/tex">O(N)</script>이 추가되어 <script type="math/tex">O(N^2)</script>가 되버리고, 효율성 측면에서 풀이에 실패한다.</p><p><br/></p><p>스택 자료구조를 이용해 탐욕법으로 풀이를 한다면 <script type="math/tex">O(N)</script>의 풀이가 가능하다(python 풀이). 0부터 number의 길이까지 반복문을 돌며 현재 스택의 마지막 값보다 값이 크면 스택에서 pop()을 반복적으로 수행한다. 이를 통해 스택에는 큰수부터 작은수대로 나열된다. 수의 크기를 결정짓는 부분은 앞쪽이므로 앞 숫자들을 최대화 하는 알고리즘이다. </p><p><br/></p><p>스택이 아닌 인덱싱을 통해서도 <script type="math/tex">O(NlogN)</script> 풀이가 가능하다(javascript 풀이). 스택을 사용하지 않을 뿐, 값 비교와 인덱싱을 통해 결과를 저장하는 메커니즘은 동일하다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%83%90%EC%9A%95%EB%B2%95/">탐욕법</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/python/">python</category>
+      
+      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/06/30/66f0b093388e/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>[프로그래머스] 행렬 테두리 회전하기</title>
       <link>https://sklubmk.github.io/2021/06/30/80a8008d0aab/</link>
       <guid>https://sklubmk.github.io/2021/06/30/80a8008d0aab/</guid>
@@ -853,52 +899,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/06/30/80a8008d0aab/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] 가장 큰 수</title>
-      <link>https://sklubmk.github.io/2021/06/30/002aa360eaef/</link>
-      <guid>https://sklubmk.github.io/2021/06/30/002aa360eaef/</guid>
-      <pubDate>Tue, 29 Jun 2021 17:00:33 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;가장-큰-수&quot;&gt;&lt;a href=&quot;#가장-큰-수&quot; class=&quot;headerlink&quot; title=&quot;가장 큰 수&quot;&gt;&lt;/a&gt;가장 큰 수&lt;/h1&gt;&lt;p&gt;JavaScript, Python&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h6 id=&quot;문제-설명&quot;&gt;&lt;a </description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="가장-큰-수"><a href="#가장-큰-수" class="headerlink" title="가장 큰 수"></a>가장 큰 수</h1><p>JavaScript, Python</p><blockquote><h6 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h6><p>0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요.</p><p>예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다.</p><p>0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순서를 재배치하여 만들 수 있는 가장 큰 수를 문자열로 바꾸어 return 하도록 solution 함수를 작성해주세요.</p><h5 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h5><ul><li>numbers의 길이는 1 이상 100,000 이하입니다.</li><li>numbers의 원소는 0 이상 1,000 이하입니다.</li><li>정답이 너무 클 수 있으니 문자열로 바꾸어 return 합니다.</li></ul><h5 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h5><div class="table-container"><table><thead><tr><th>numbers</th><th>return</th></tr></thead><tbody><tr><td>[6, 10, 2]</td><td>“6210”</td></tr><tr><td>[3, 30, 34, 5, 9]</td><td>“9534330”</td></tr></tbody></table></div></blockquote><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><p><br/></p><h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> sortFunc = <span class="function">(<span class="params">a,b</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ((b+<span class="string">&#x27;&#x27;</span>) + (a+<span class="string">&#x27;&#x27;</span>))*<span class="number">1</span> - ((a+<span class="string">&#x27;&#x27;</span>)+(b+<span class="string">&#x27;&#x27;</span>))*<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> answer = numbers.sort(sortFunc).join(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> answer*<span class="number">1</span> ? answer : <span class="string">&quot;0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> cmp_to_key</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">numbers</span>):</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sort_func</span>(<span class="params">a,b</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(a+b) &gt; <span class="built_in">int</span>(b+a) :</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span> :</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">sorted</span>([<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> numbers],key=cmp_to_key(sort_func)))))</span><br></pre></td></tr></table></figure><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><p><br/></p><p>문자열 그대로 합친숫자(ex: 6+10 = 610)를 기준으로 정렬하여 풀었다.</p><p>자바스크립트에서는 정렬 기준 비교 함수를 직접 지정할 수 있지만, 파이썬에서는 기본함수에서 이를 제공하지 않는다.</p><p>따라서 <code>functools</code> 패키지의 <span style="color:#f46049">cpm_to_key</span>함수를 써야한다.</p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/TIL/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/python/">python</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/javascript/">javascript</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%A0%95%EB%A0%AC/">정렬</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/06/30/002aa360eaef/#disqus_thread</comments>
       
     </item>
     
