@@ -11237,6 +11237,19 @@ footer.footer .level-end .field {
     border-radius: 0;
   }
 }
+.clean {
+  margin: 2em 1em;
+}
+.clean figcaption {
+  display: none !important;
+}
+.clean table tbody tr td.gutter {
+  display: none !important;
+}
+.clean figure.hljs {
+  background-color: rgba(0,0,0,0) !important;
+  color: #4f4d5d;
+}
 figure.highlight {
   padding: 0;
   width: 100%;
