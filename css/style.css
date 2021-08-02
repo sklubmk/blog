@@ -10942,8 +10942,9 @@ a.article-nav-next span {
   word-wrap: break-word;
   white-space: normal;
 }
-ol > li {
-  margin-bottom: 1.5rem;
+ol > li > ul {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
 }
 .navbar-main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -11249,7 +11250,7 @@ footer.footer .level-end .field {
   }
 }
 .clean {
-  margin: 2em 1em;
+  margin: 1em;
 }
 .clean figcaption {
   display: none !important;

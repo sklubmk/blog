@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[자바스크립트] 함수 결합 - JK&#039;s Devlog</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#37485D"><meta name="application-name" content="JK&#039;s Devlog"><meta name="msapplication-TileImage" content="/img/favicon1.svg"><meta name="msapplication-TileColor" content="#37485D"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JK&#039;s Devlog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="💡 tl;dr  함수 결합(Function Composition)의 정의 예시 및 활용"><meta property="og:type" content="blog"><meta property="og:title" content="[자바스크립트] 함수 결합"><meta property="og:url" content="https://sklubmk.github.io/2021/08/02/c61ae76ac2af/"><meta property="og:site_name" content="JK&#039;s Devlog"><meta property="og:description" content="💡 tl;dr  함수 결합(Function Composition)의 정의 예시 및 활용"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://sklubmk.github.io/img/javascript.gif"><meta property="article:published_time" content="2021-08-02T06:25:43.000Z"><meta property="article:modified_time" content="2021-08-02T12:22:16.320Z"><meta property="article:author" content="Jinki Kim"><meta property="article:tag" content="자바스크립트"><meta property="article:tag" content="함수형 프로그래밍"><meta property="article:tag" content="함수 결합"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/javascript.gif"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://sklubmk.github.io/2021/08/02/c61ae76ac2af/"},"headline":"[자바스크립트] 함수 결합","image":["https://sklubmk.github.io/img/javascript.gif"],"datePublished":"2021-08-02T06:25:43.000Z","dateModified":"2021-08-02T12:22:16.320Z","author":{"@type":"Person","name":"Jinki Kim"},"publisher":{"@type":"Organization","name":"JK's Devlog","logo":{"@type":"ImageObject","url":{"light":"/img/logo.svg","dark":"/img/logo-dark.svg"}}},"description":"💡 tl;dr  함수 결합(Function Composition)의 정의 예시 및 활용"}</script><link rel="canonical" href="https://sklubmk.github.io/2021/08/02/c61ae76ac2af/"><link rel="icon" href="/img/favicon1.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-1JGK6ME831" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-1JGK6ME831');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="JK's Devlog" type="application/rss+xml">
+</head><body class="is-2-column"><script type="text/javascript" src="/js/night.js"></script><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/img/logo.svg" alt="JK&#039;s Devlog" height="28"><img class="logo-img-dark" src="/img/logo-dark.svg" alt="JK&#039;s Devlog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><span id="night-icon-color" style="color: #f0c420"><i class="fas fa-moon" id="night-icon"></i></span></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/javascript.gif" alt="[자바스크립트] 함수 결합"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 8월 2일, 월요일 오후 3:25</span><span class="level-item"><a class="link-muted" href="/categories/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</a></span><span class="level-item">6분안에 읽기 (약 903 단어)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>회 방문</span></div></div><h1 class="title is-3 is-size-4-mobile">[자바스크립트] 함수 결합</h1><div class="content pb-5"><h1 id="💡-tl-dr"><a href="#💡-tl-dr" class="headerlink" title="💡 tl;dr"></a>💡 tl;dr</h1><hr>
+<ul>
+<li>함수 결합(Function Composition)의 정의</li>
+<li>예시 및 활용</li>
+</ul>
+<span id="more"></span>
+<p><br></p>
+<p><br></p>
+<h1 id="함수-결합이란"><a href="#함수-결합이란" class="headerlink" title="함수 결합이란"></a>함수 결합이란</h1><hr>
+<ul>
+<li>두 개 이상의 함수를 결합하여 새 함수를 생성하는 프로세스</li>
+<li><u>함수를 결합하는 것</u>은 데이터가 흐르기 위해 파이프를 까는 것과 같음</li>
+</ul>
+<p>예를 들어, <script type="math/tex">fㆍg</script> 는 자바스크립트에서 <code>f(g(x))</code>와 같고, 이는 아래처럼 <strong>안에서 밖으로</strong> 순서대로 계산된다.</p>
+<ol>
+<li><script type="math/tex">x</script> &nbsp;</li>
+<li><script type="math/tex">g</script> &nbsp;</li>
+<li><script type="math/tex">f</script> &nbsp;</li>
+</ol>
+<p><br></p>
+<p><br></p>
+<h1 id="함수-결합의-활용"><a href="#함수-결합의-활용" class="headerlink" title="함수 결합의 활용"></a>함수 결합의 활용</h1><hr>
+<p>아래처럼 <code>chain</code>으로 구성된 간단한 코드가 있다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toSlug = <span class="function"><span class="params">input</span> =&gt;</span> <span class="built_in">encodeURIComponent</span>(</span><br><span class="line">    input.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        .map(<span class="function"><span class="params">str</span> =&gt;</span> str.toLowerCase())</span><br><span class="line">        .join(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p>이를 <code>함수 결합</code> 형태로 다음과 같이 바꿀 수 있다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toSlug = <span class="function"><span class="params">input</span> =&gt;</span> <span class="built_in">encodeURIComponent</span>(</span><br><span class="line">    join(<span class="string">&#x27;-&#x27;</span>)(</span><br><span class="line">        map(toLowerCase)(</span><br><span class="line">            split(<span class="string">&#x27; &#x27;</span>)(</span><br><span class="line">                input</span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(toSlug(<span class="string">&#x27;JS Cheerleader&#x27;</span>)); <span class="comment">// &#x27;js-cheerleader&#x27;</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>첫 함수보다 <strong>가독성</strong>이 떨어져 보이지만, 결합의 <strong>방향성</strong>은 확연히 보인다.</p>
+<p><br></p>
+<p><br></p>
+<h1 id="reduceRight"><a href="#reduceRight" class="headerlink" title=".reduceRight()"></a><code>.reduceRight()</code></h1><hr>
+<p><code>Javascript</code>에는 이를 개선할 수 있는 <code>Array</code> 메서드 <code>.reduce()</code>가 있다.</p>
+<p>그러나 <code>.reduce()</code>는 값의 전달 방향이 (<strong>왼쪽에서 오른쪽</strong>)으로, 예제 <code>toSlug</code>의 형태와는 정 반대의 방향성을 보인다. 이때 사용할 수 있는 함수가 <code>.reduceRight()</code>다. <code>.reduce()</code>와 마찬가지로 <code>reducer</code> 함수와 초기값 <code>x</code>를 사용하고, 배열 함수를 (오른쪽에서 왼쪽)으로 반복하며 누적된 값(<code>v</code>)에 차례로 적용한다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compose = <span class="function">(<span class="params">...fns</span>) =&gt;</span> <span class="function"><span class="params">x</span> =&gt;</span> fns.reduceRight(<span class="function">(<span class="params">v, f</span>) =&gt;</span> f(v), x);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p>이를 적용하면 중첩 없이 위 <code>함수 결합</code>을 다시 작성할 수 있다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toSlug = compose(</span><br><span class="line">    <span class="built_in">encodeURIComponent</span>,</span><br><span class="line">    join(<span class="string">&#x27;-&#x27;</span>),</span><br><span class="line">    map(toLowerCase),</span><br><span class="line">    split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(toSlug(<span class="string">&#x27;JS Cheerleader&#x27;</span>)); <span class="comment">// &#x27;js-cheerleader&#x27;</span></span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p><br></p>
+<h1 id="reduce"><a href="#reduce" class="headerlink" title=".reduce()"></a><code>.reduce()</code></h1><hr>
+<p>마찬가지로 <code>.reduce()</code>를 사용하면 (<strong>왼쪽에서 오른쪽</strong>)으로 순서대로 적용되는 함수의 흐름을 구현할 수 있다. 이를 <code>pipe</code>라고 표현한다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pipe = <span class="function">(<span class="params">...fns</span>) =&gt;</span> <span class="function"><span class="params">x</span> =&gt;</span> fns.reduce(<span class="function">(<span class="params">v, f</span>) =&gt;</span> f(v), x);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn1 = <span class="function"><span class="params">s</span> =&gt;</span> s.toLowerCase();</span><br><span class="line"><span class="keyword">const</span> fn2 = <span class="function"><span class="params">s</span> =&gt;</span> s.split(<span class="string">&#x27;&#x27;</span>).reverse().join(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fn3 = <span class="function"><span class="params">s</span> =&gt;</span> s + <span class="string">&#x27;!&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newFunc = pipe(fn1, fn2, fn3);</span><br><span class="line"><span class="keyword">const</span> result = newFunc(<span class="string">&#x27;Time&#x27;</span>); <span class="comment">// emit!</span></span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p>사용 방법 또한 앞선 <code>compose</code> 함수와 똑같다. 단지 방향성이 바뀌었을 뿐이다.</p>
+<p><br></p>
+<p>이를 적용하여 <code>toSlug</code>를 다음과 같이 수정할 수 있다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toSlug = pipe(</span><br><span class="line">    split(<span class="string">&#x27; &#x27;</span>),</span><br><span class="line">    map(toLowerCase),</span><br><span class="line">    join(<span class="string">&#x27;-&#x27;</span>),</span><br><span class="line">    <span class="built_in">encodeURIComponent</span></span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(toSlug(<span class="string">&#x27;JS Cheerleader&#x27;</span>)); <span class="comment">// &#x27;js-cheerleader&#x27;</span></span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p>함수의 진행 방향이 정확히 반대가 되었다.</p>
+<p><br></p>
+<p><br></p>
+<h1 id="trace"><a href="#trace" class="headerlink" title="trace"></a><code>trace</code></h1><hr>
+<p>데이터가 흐르는 파이프를 구현해놨다면, 이를 검증할 수 있는 <code>trace</code>를 사용할 수 있다.</p>
+<p><code>trace</code>란 파이프 사이사이에서 데이터의 흐름이 올바른지 확인할 수 있는 전략으로, 일반적으로 다음과 같이 구현한다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> trace = curry(<span class="function">(<span class="params">label, x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`== <span class="subst">$&#123; label &#125;</span>:  <span class="subst">$&#123; x &#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p>사용 방법은 다음과 같다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toSlug = pipe(</span><br><span class="line">    trace(<span class="string">&#x27;input&#x27;</span>),</span><br><span class="line">    split(<span class="string">&#x27; &#x27;</span>),</span><br><span class="line">    map(toLowerCase),</span><br><span class="line">    trace(<span class="string">&#x27;after map&#x27;</span>),</span><br><span class="line">    join(<span class="string">&#x27;-&#x27;</span>),</span><br><span class="line">    <span class="built_in">encodeURIComponent</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(toSlug(<span class="string">&#x27;JS Cheerleader&#x27;</span>));</span><br><span class="line"><span class="comment">// &#x27;== input:  JS Cheerleader&#x27;</span></span><br><span class="line"><span class="comment">// &#x27;== after map:  js,cheerleader&#x27;</span></span><br><span class="line"><span class="comment">// &#x27;js-cheerleader&#x27;</span></span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p><br></p>
+<h1 id="tap"><a href="#tap" class="headerlink" title="tap"></a><code>tap</code></h1><hr>
+<p><code>tap</code>이란 파이프를 통해 흐르는 데이터에 몇 가지 작업을 수행할 수 있도록하는 기법으로, <code>trace()</code>는 일반적인 <code>tap()</code>의 한 형태일 뿐이다. </p>
+<p>다음과 같이 <code>tap()</code>을 작성할 수 있다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tap = curry(<span class="function">(<span class="params">fn, x</span>) =&gt;</span> &#123;</span><br><span class="line">    fn(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p>이제 <code>tap</code>을 이용해 <code>trace</code>를 구현할 수 있다.</p>
+<div class="clean">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> trace = <span class="function"><span class="params">label</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> tap(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`== <span class="subst">$&#123; label &#125;</span>:  <span class="subst">$&#123; x &#125;</span>`</span>));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<p>이러한 예제들을 통해 <strong>함수형 프로그래밍</strong>이 무엇인지, 어떻게 <strong>함수 결합</strong>을 활용하여 더 적은 <code>boilerplate</code>로 더 읽기 쉬운 프로그램을 작성하는지 이해할 수 있다.</p>
+<p><br></p>
+<p><br></p>
+<h1 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h1><hr>
+<p>해당 글은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-function-composition-20dfb109a1a0">Master the JavaScript Interview: What is Function Composition?</a>을 번역 및 수정한 글입니다.</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>[자바스크립트] 함수 결합</p><p><a href="https://sklubmk.github.io/2021/08/02/c61ae76ac2af/">https://sklubmk.github.io/2021/08/02/c61ae76ac2af/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jinki Kim</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-08-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-08-02</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</a><a class="link-muted mr-2" rel="tag" href="/tags/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/">함수형 프로그래밍</a><a class="link-muted mr-2" rel="tag" href="/tags/%ED%95%A8%EC%88%98-%EA%B2%B0%ED%95%A9/">함수 결합</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=60dc5b12dcb6590019396715&amp;product=inline-share-buttons" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">이 글이 마음에 드시나요? 다음을 통해 후원하실 수 있습니다: </h3><div class="buttons is-centered"><a class="button donate" href="https://buymeacoffee.com/sklubmk" target="_blank" rel="external nofollow noopener noreferrer" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>커피 한 잔 사주기</span></a><a class="button donate" data-type="paypal" onclick="document.getElementById(&#039;paypal-donate-form&#039;).submit()"><span class="icon is-small"><i class="fab fa-paypal"></i></span><span>Paypal</span></a><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" id="paypal-donate-form"><input type="hidden" name="cmd" value="_donations"><input type="hidden" name="business" value="5YLLG2M9BXG74"><input type="hidden" name="currency_code" value="USD"></form></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/07/31/da11ddef331f/"><span class="level-item">[운영체제] 운영체제(Operating System)란 무엇인가</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "31354fd06e8ad8e5e79e08cbe61cf39b",
+            repo: "sklubmk.github.io",
+            owner: "sklubmk",
+            clientID: "56fa8045b5fb187b1f2b",
+            clientSecret: "a326dc2314c03944c52e1338f17014b1159a0f3c",
+            admin: ["sklubmk"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "ko",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#💡-tl-dr"><span class="level-left"><span class="level-item">1</span><span class="level-item">💡 tl;dr</span></span></a></li><li><a class="level is-mobile" href="#함수-결합이란"><span class="level-left"><span class="level-item">2</span><span class="level-item">함수 결합이란</span></span></a></li><li><a class="level is-mobile" href="#함수-결합의-활용"><span class="level-left"><span class="level-item">3</span><span class="level-item">함수 결합의 활용</span></span></a></li><li><a class="level is-mobile" href="#reduceRight"><span class="level-left"><span class="level-item">4</span><span class="level-item">.reduceRight()</span></span></a></li><li><a class="level is-mobile" href="#reduce"><span class="level-left"><span class="level-item">5</span><span class="level-item">.reduce()</span></span></a></li><li><a class="level is-mobile" href="#trace"><span class="level-left"><span class="level-item">6</span><span class="level-item">trace</span></span></a></li><li><a class="level is-mobile" href="#tap"><span class="level-left"><span class="level-item">7</span><span class="level-item">tap</span></span></a></li><li><a class="level is-mobile" href="#참고"><span class="level-left"><span class="level-item">8</span><span class="level-item">참고</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/HTML-CSS/"><span class="level-start"><span class="level-item">HTML/CSS</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%EB%94%94%EB%B2%84%EA%B9%85/"><span class="level-start"><span class="level-item">디버깅</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"><span class="level-start"><span class="level-item">알고리즘</span></span><span class="level-end"><span class="level-item tag">40</span></span></a><ul><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B0%9C%EB%85%90/"><span class="level-start"><span class="level-item">개념</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/"><span class="level-start"><span class="level-item">프로그래머스</span></span><span class="level-end"><span class="level-item tag">39</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/"><span class="level-start"><span class="level-item">운영체제</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%9D%BC%EC%83%81/"><span class="level-start"><span class="level-item">일상</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/"><span class="level-start"><span class="level-item">자바스크립트</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/"><span class="level-start"><span class="level-item">타입스크립트</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/08/02/c61ae76ac2af/"><img src="/img/thumbnail/thumb_js.png" alt="[자바스크립트] 함수 결합"></a></figure><div class="media-content"><p class="date"><time datetime="2021-08-02T06:25:43.000Z">2021-08-02</time></p><p class="title"><a href="/2021/08/02/c61ae76ac2af/">[자바스크립트] 함수 결합</a></p><p class="categories"><a href="/categories/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/31/da11ddef331f/"><img src="/img/thumbnail/thumb_os.png" alt="[운영체제] 운영체제(Operating System)란 무엇인가"></a></figure><div class="media-content"><p class="date"><time datetime="2021-07-31T05:14:24.000Z">2021-07-31</time></p><p class="title"><a href="/2021/07/31/da11ddef331f/">[운영체제] 운영체제(Operating System)란 무엇인가</a></p><p class="categories"><a href="/categories/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/">운영체제</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/28/d0fc2da48b98/"><img src="/img/thumbnail/thumb_algo.png" alt="[알고리즘] 서로소 집합 자료 구조 (Disjoint Set)"></a></figure><div class="media-content"><p class="date"><time datetime="2021-07-28T12:45:25.899Z">2021-07-28</time></p><p class="title"><a href="/2021/07/28/d0fc2da48b98/">[알고리즘] 서로소 집합 자료 구조 (Disjoint Set)</a></p><p class="categories"><a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a> / <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B0%9C%EB%85%90/">개념</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/22/63a696571dde/"><img src="/img/thumbnail/thumb_pg.png" alt="[프로그래머스] (LV1) 체육복"></a></figure><div class="media-content"><p class="date"><time datetime="2021-07-22T11:03:22.204Z">2021-07-22</time></p><p class="title"><a href="/2021/07/22/63a696571dde/">[프로그래머스] (LV1) 체육복</a></p><p class="categories"><a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a> / <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/22/05da08db9576/"><img src="/img/thumbnail/thumb_ts.png" alt="[타입스크립트] 타입스크립트 시작하기"></a></figure><div class="media-content"><p class="date"><time datetime="2021-07-22T07:14:58.000Z">2021-07-22</time></p><p class="title"><a href="/2021/07/22/05da08db9576/">[타입스크립트] 타입스크립트 시작하기</a></p><p class="categories"><a href="/categories/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">타입스크립트</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"> </a><p class="is-size-7"><span>&copy; 2021 Jinki Kim</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a><br><span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv">0</span>명의 사용자가 방문 함</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
