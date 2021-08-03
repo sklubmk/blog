@@ -10946,6 +10946,9 @@ ol > li > ul {
   margin-top: 0 !important;
   margin-bottom: 1rem !important;
 }
+ul > li> p {
+  margin-bottom: 0 !important;
+}
 .navbar-main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
