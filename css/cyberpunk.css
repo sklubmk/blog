@@ -11266,6 +11266,10 @@ footer.footer .level-end .field {
   background-color: rgba(0,0,0,0) !important;
   color: #4f4d5d;
 }
+.clean span.hljs-comment {
+  color: #a5a5a5;
+  font-style: normal !important;
+}
 figure.highlight {
   padding: 0;
   width: 100%;
