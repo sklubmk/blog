@@ -9,7 +9,7 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Wed, 11 Aug 2021 15:52:28 GMT</pubDate>
+    <pubDate>Wed, 11 Aug 2021 16:06:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -42,8 +42,6 @@
       <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84/">시간복잡도</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%A0%90%EA%B7%BC%EC%A0%81%ED%91%9C%EA%B8%B0%EB%B2%95/">점근적표기법</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/12/ddfce68ef73c/#disqus_thread</comments>
@@ -78,9 +76,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/12/b5f9f208b449/#disqus_thread</comments>
@@ -115,9 +113,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/11/539b25284767/#disqus_thread</comments>
@@ -152,9 +150,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/10/4ee95b87b24f/#disqus_thread</comments>
@@ -189,9 +187,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/bit/">bit</category>
       
@@ -298,9 +296,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a5a552938e29/#disqus_thread</comments>
@@ -335,9 +333,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/6c54e9ab7bc7/#disqus_thread</comments>
@@ -372,9 +370,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/5106f0ee5223/#disqus_thread</comments>
@@ -409,9 +407,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a35ac8d3f93b/#disqus_thread</comments>
@@ -446,9 +444,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a0c0c53fcfa3/#disqus_thread</comments>
@@ -483,9 +481,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/5dfc7194bace/#disqus_thread</comments>
@@ -520,9 +518,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/96c1090e6be6/#disqus_thread</comments>
@@ -555,9 +553,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/3228039715dd/#disqus_thread</comments>
@@ -594,9 +592,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/4546321b444a/#disqus_thread</comments>
@@ -631,9 +629,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/83f4e3b5ec17/#disqus_thread</comments>
@@ -668,9 +666,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/dd24d032d52b/#disqus_thread</comments>
@@ -740,9 +738,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/878e976003b6/#disqus_thread</comments>
