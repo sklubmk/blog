@@ -9,8 +9,47 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Thu, 12 Aug 2021 15:41:41 GMT</pubDate>
+    <pubDate>Fri, 13 Aug 2021 09:19:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 뉴스 클러스터링</title>
+      <link>https://sklubmk.github.io/2021/08/13/dec5e25d4d7a/</link>
+      <guid>https://sklubmk.github.io/2021/08/13/dec5e25d4d7a/</guid>
+      <pubDate>Fri, 13 Aug 2021 08:37:51 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;1차-뉴스-클러스터링&quot;&gt;&lt;a href=&quot;#1차-뉴스-클러스터링&quot; class=&quot;headerlink&quot; title=&quot;[1차] 뉴스 클러스터링&quot;&gt;&lt;/a&gt;[1차] 뉴스 클러스터링&lt;/h1&gt;&lt;p&gt;Python3&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="1차-뉴스-클러스터링"><a href="#1차-뉴스-클러스터링" class="headerlink" title="[1차] 뉴스 클러스터링"></a>[1차] 뉴스 클러스터링</h1><p>Python3</p><span id="more"></span><p><br/></p><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><blockquote><h2 id="뉴스-클러스터링"><a href="#뉴스-클러스터링" class="headerlink" title="뉴스 클러스터링"></a>뉴스 클러스터링</h2><p>여러 언론사에서 쏟아지는 뉴스, 특히 속보성 뉴스를 보면 비슷비슷한 제목의 기사가 많아 정작 필요한 기사를 찾기가 어렵다. Daum 뉴스의 개발 업무를 맡게 된 신입사원 튜브는 사용자들이 편리하게 다양한 뉴스를 찾아볼 수 있도록 문제점을 개선하는 업무를 맡게 되었다.</p><p>개발의 방향을 잡기 위해 튜브는 우선 최근 화제가 되고 있는 “카카오 신입 개발자 공채” 관련 기사를 검색해보았다.</p><ul><li>카카오 첫 공채..’블라인드’ 방식 채용</li><li>카카오, 합병 후 첫 공채.. 블라인드 전형으로 개발자 채용</li><li>카카오, 블라인드 전형으로 신입 개발자 공채</li><li>카카오 공채, 신입 개발자 코딩 능력만 본다</li><li>카카오, 신입 공채.. “코딩 실력만 본다”</li><li>카카오 “코딩 능력만으로 2018 신입 개발자 뽑는다”</li></ul><p>기사의 제목을 기준으로 “블라인드 전형”에 주목하는 기사와 “코딩 테스트”에 주목하는 기사로 나뉘는 걸 발견했다. 튜브는 이들을 각각 묶어서 보여주면 카카오 공채 관련 기사를 찾아보는 사용자에게 유용할 듯싶었다.</p><p>유사한 기사를 묶는 기준을 정하기 위해서 논문과 자료를 조사하던 튜브는 “자카드 유사도”라는 방법을 찾아냈다.</p><p>자카드 유사도는 집합 간의 유사도를 검사하는 여러 방법 중의 하나로 알려져 있다. 두 집합 <code>A</code>, <code>B</code> 사이의 자카드 유사도 <code>J(A, B)</code>는 두 집합의 교집합 크기를 두 집합의 합집합 크기로 나눈 값으로 정의된다.</p><p>예를 들어 집합 <code>A</code> = {1, 2, 3}, 집합 <code>B</code> = {2, 3, 4}라고 할 때, 교집합 <code>A ∩ B</code> = {2, 3}, 합집합 <code>A ∪ B</code> = {1, 2, 3, 4}이 되므로, 집합 <code>A</code>, <code>B</code> 사이의 자카드 유사도 <code>J(A, B)</code> = 2/4 = 0.5가 된다. 집합 A와 집합 B가 모두 공집합일 경우에는 나눗셈이 정의되지 않으니 따로 <code>J(A, B)</code> = 1로 정의한다.</p><p>자카드 유사도는 원소의 중복을 허용하는 다중집합에 대해서 확장할 수 있다. 다중집합 <code>A</code>는 원소 “1”을 3개 가지고 있고, 다중집합 <code>B</code>는 원소 “1”을 5개 가지고 있다고 하자. 이 다중집합의 교집합 <code>A ∩ B</code>는 원소 “1”을 min(3, 5)인 3개, 합집합 <code>A ∪ B</code>는 원소 “1”을 max(3, 5)인 5개 가지게 된다. 다중집합 <code>A</code> = {1, 1, 2, 2, 3}, 다중집합 <code>B</code> = {1, 2, 2, 4, 5}라고 하면, 교집합 <code>A ∩ B</code> = {1, 2, 2}, 합집합 <code>A ∪ B</code> = {1, 1, 2, 2, 3, 4, 5}가 되므로, 자카드 유사도 <code>J(A, B)</code> = 3/7, 약 0.42가 된다.</p><p>이를 이용하여 문자열 사이의 유사도를 계산하는데 이용할 수 있다. 문자열 “FRANCE”와 “FRENCH”가 주어졌을 때, 이를 두 글자씩 끊어서 다중집합을 만들 수 있다. 각각 {FR, RA, AN, NC, CE}, {FR, RE, EN, NC, CH}가 되며, 교집합은 {FR, NC}, 합집합은 {FR, RA, AN, NC, CE, RE, EN, CH}가 되므로, 두 문자열 사이의 자카드 유사도 <code>J(&quot;FRANCE&quot;, &quot;FRENCH&quot;)</code> = 2/8 = 0.25가 된다.</p><h2 id="입력-형식"><a href="#입력-형식" class="headerlink" title="입력 형식"></a>입력 형식</h2><ul><li>입력으로는 <code>str1</code>과 <code>str2</code>의 두 문자열이 들어온다. 각 문자열의 길이는 2 이상, 1,000 이하이다.</li><li>입력으로 들어온 문자열은 두 글자씩 끊어서 다중집합의 원소로 만든다. 이때 영문자로 된 글자 쌍만 유효하고, 기타 공백이나 숫자, 특수 문자가 들어있는 경우는 그 글자 쌍을 버린다. 예를 들어 “ab+”가 입력으로 들어오면, “ab”만 다중집합의 원소로 삼고, “b+”는 버린다.</li><li>다중집합 원소 사이를 비교할 때, 대문자와 소문자의 차이는 무시한다. “AB”와 “Ab”, “ab”는 같은 원소로 취급한다.</li></ul><h2 id="출력-형식"><a href="#출력-형식" class="headerlink" title="출력 형식"></a>출력 형식</h2><p>입력으로 들어온 두 문자열의 자카드 유사도를 출력한다. 유사도 값은 0에서 1 사이의 실수이므로, 이를 다루기 쉽도록 65536을 곱한 후에 소수점 아래를 버리고 정수부만 출력한다.</p><h2 id="예제-입출력"><a href="#예제-입출력" class="headerlink" title="예제 입출력"></a>예제 입출력</h2><div class="table-container"><table><thead><tr><th>str1</th><th>str2</th><th>answer</th></tr></thead><tbody><tr><td>FRANCE</td><td>french</td><td>16384</td></tr><tr><td>handshake</td><td>shake hands</td><td>65536</td></tr><tr><td>aa1+aa2</td><td>AAAA12</td><td>43690</td></tr><tr><td>E=M*C^2</td><td>e=m*c^2</td><td>65536</td></tr></tbody></table></div><p><a href="http://tech.kakao.com/2017/09/27/kakao-blind-recruitment-round-1/">해설 보러가기</a></p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">str1, str2</span>):</span></span><br><span class="line">    split = <span class="keyword">lambda</span> x:[x[i:i+<span class="number">2</span>].lower() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x)-<span class="number">1</span>) <span class="keyword">if</span> x[i:i+<span class="number">2</span>].isalpha()]</span><br><span class="line">    summary = <span class="keyword">lambda</span> arr: &#123;i:arr.count(i) <span class="keyword">for</span> i <span class="keyword">in</span> arr&#125;</span><br><span class="line">    a_sum, b_sum = summary(split(str1)), summary(split(str2))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(a_sum) + <span class="built_in">len</span>(b_sum) == <span class="number">0</span> : <span class="keyword">return</span> <span class="number">65536</span>;</span><br><span class="line">    </span><br><span class="line">    intersection = <span class="built_in">sum</span>([<span class="built_in">min</span>(a_sum[a],b_sum[a]) <span class="keyword">for</span> a <span class="keyword">in</span> a_sum <span class="keyword">if</span> a <span class="keyword">in</span> b_sum]);</span><br><span class="line">    union = <span class="built_in">sum</span>(a_sum.values()) + <span class="built_in">sum</span>(b_sum.values()) - intersection;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(intersection/union * <span class="number">65536</span>);</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><h2 id="풀이-전략"><a href="#풀이-전략" class="headerlink" title="풀이 전략"></a>풀이 전략</h2><p><br/></p><p>문제의 조건을 구현할 수 있는 피지컬을 요하는 <code>구현</code> 문제다.</p><p>문제는 크게 2가지 과정으로 풀이 된다.</p><ol><li>주어진 두 배열을 각각 2글자로 이루어진 원소의 집합으로 만들기</li><li>두 집합으로 교집합과 합집합 계산 및 결과 반환하기</li></ol><p><br/></p><h2 id="2글자-집합-만들기"><a href="#2글자-집합-만들기" class="headerlink" title="2글자 집합 만들기"></a>2글자 집합 만들기</h2><p><br/></p><p>문제의 조건대로 2글자씩 배열을 나눈 뒤, 이를 <code>알파벳</code>인지 검사한다. 이 때 python 내장함수 <code>isalpha()</code>를 사용한다. 만약 알파벳이 맞다면 <code>lower()</code> 함수를 이용해 소문자 단어로 변환하여 배열에 저장한다. 결과적으로 소문자 2개로 이루어진 원소들을 가지는 집합이 된다.</p><p>예시 : [<code>fr</code>, <code>ra</code>, <code>an</code>, <code>nc</code>, <code>ce</code>, <code>fr</code>, <code>re</code>, <code>en</code>, <code>nc</code>, <code>ch</code>]</p><p><br/></p><p>여기서 각 단어 개수를 카운팅하여 <code>dictionary</code>로 저장한다. 이때 <code>count</code> 함수를 활용한다.</p><p>예시 : {<code>fr</code>:<code>2</code>, <code>nc</code>:<code>2</code>, <code>ra</code>:<code>1</code>,<code>an</code>:<code>1</code> , …}</p><p><br/></p><h2 id="교집합-intersection"><a href="#교집합-intersection" class="headerlink" title="교집합 (intersection)"></a>교집합 (intersection)</h2><p><br/></p><div class="clean"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intersection = <span class="built_in">sum</span>([<span class="built_in">min</span>(a_sum[a],b_sum[a]) <span class="keyword">for</span> a <span class="keyword">in</span> a_sum <span class="keyword">if</span> a <span class="keyword">in</span> b_sum])</span><br></pre></td></tr></table></figure></div><p>두 집합에 동시에 속한 단어가 있다면 해당 단어 <code>counting</code>의 최소 값을 모아 합산 한다.</p><p><br/></p><h2 id="합집합-union"><a href="#합집합-union" class="headerlink" title="합집합 (union)"></a>합집합 (union)</h2><p><br/></p><div class="clean"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union = <span class="built_in">sum</span>(a_sum.values()) + <span class="built_in">sum</span>(b_sum.values()) - intersection</span><br></pre></td></tr></table></figure></div><p>합집합은 두 집합의 전체 값 - 교집합으로 계산할 수 있다. 따라서 각 집합 결과의 <code>sum</code>을 더해 앞서 계산한 교집합 값을 빼면 된다.</p><p>이후, 교집합 값과 합집합 값을 문제 조건대로 계산하여 반환하면 된다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B5%AC%ED%98%84/">구현</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/08/13/dec5e25d4d7a/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[알고리즘] 정렬 알고리즘</title>
@@ -115,9 +154,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/12/b5f9f208b449/#disqus_thread</comments>
@@ -152,9 +191,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/11/539b25284767/#disqus_thread</comments>
@@ -189,9 +228,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/10/4ee95b87b24f/#disqus_thread</comments>
@@ -226,9 +265,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/bit/">bit</category>
       
@@ -711,41 +750,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/08/04/dd24d032d52b/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 직사각형 별찍기</title>
-      <link>https://sklubmk.github.io/2021/08/04/7251c3110aa9/</link>
-      <guid>https://sklubmk.github.io/2021/08/04/7251c3110aa9/</guid>
-      <pubDate>Wed, 04 Aug 2021 06:02:36 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;직사각형-별찍기&quot;&gt;&lt;a href=&quot;#직사각형-별찍기&quot; class=&quot;headerlink&quot; title=&quot;직사각형 별찍기&quot;&gt;&lt;/a&gt;직사각형 별찍기&lt;/h1&gt;&lt;p&gt;JavaScript&lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="직사각형-별찍기"><a href="#직사각형-별찍기" class="headerlink" title="직사각형 별찍기"></a>직사각형 별찍기</h1><p>JavaScript</p><span id="more"></span><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>이 문제에는 표준 입력으로 두 개의 정수 n과 m이 주어집니다.\<br>별(*) 문자를 이용해 가로의 길이가 n, 세로의 길이가 m인 직사각형 형태를 출력해보세요.</p><hr><h2 id="제한-조건"><a href="#제한-조건" class="headerlink" title="제한 조건"></a>제한 조건</h2><ul><li>n과 m은 각각 1000 이하인 자연수입니다.</li></ul><hr><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>입력</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 3</span><br></pre></td></tr></table></figure><p>출력</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*****</span><br><span class="line">*****</span><br><span class="line">*****</span><br></pre></td></tr></table></figure></blockquote><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">process.stdin.setEncoding(<span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">process.stdin.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> n = data.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">    <span class="keyword">const</span> a = <span class="built_in">Number</span>(n[<span class="number">0</span>]), b = <span class="built_in">Number</span>(n[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">var</span> answer = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; b; i++)&#123;   </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; a; j++)</span><br><span class="line">            answer += <span class="string">&#x27;*&#x27;</span></span><br><span class="line">        answer += <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(answer)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p><br/></p><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a, b = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, b+<span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;*&#x27;</span>*a)</span><br></pre></td></tr></table></figure><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>입출력을 요구하는 문제.</p><p><code>python</code>의 간결한 풀이를 느낄 수 있다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/04/7251c3110aa9/#disqus_thread</comments>
       
     </item>
     
