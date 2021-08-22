@@ -9,8 +9,45 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Sat, 21 Aug 2021 13:59:17 GMT</pubDate>
+    <pubDate>Sun, 22 Aug 2021 08:01:44 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV3) 디스크 컨트롤러</title>
+      <link>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/</link>
+      <guid>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/</guid>
+      <pubDate>Sun, 22 Aug 2021 07:51:32 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>하드디스크는 한 번에 하나의 작업만 수행할 수 있습니다. 디스크 컨트롤러를 구현하는 방법은 여러 가지가 있습니다. 가장 일반적인 방법은 요청이 들어온 순서대로 처리하는 것입니다.</p><p>예를들어</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 0ms 시점에 3ms가 소요되는 A작업 요청</span><br><span class="line">- 1ms 시점에 9ms가 소요되는 B작업 요청</span><br><span class="line">- 2ms 시점에 6ms가 소요되는 C작업 요청</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>와 같은 요청이 들어왔습니다. 이를 그림으로 표현하면 아래와 같습니다.\<br><img src="https://grepp-programmers.s3.amazonaws.com/files/production/b68eb5cec6/38dc6a53-2d21-4c72-90ac-f059729c51d5.png" alt="Screen Shot 2018-09-13 at 6.34.58 PM.png"></p><p>한 번에 하나의 요청만을 수행할 수 있기 때문에 각각의 작업을 요청받은 순서대로 처리하면 다음과 같이 처리 됩니다.\<br><img src="https://grepp-programmers.s3.amazonaws.com/files/production/5e677b4646/90b91fde-cac4-42c1-98b8-8f8431c52dcf.png" alt="Screen Shot 2018-09-13 at 6.38.52 PM.png"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- A: 3ms 시점에 작업 완료 (요청에서 종료까지 : 3ms)</span><br><span class="line">- B: 1ms부터 대기하다가, 3ms 시점에 작업을 시작해서 12ms 시점에 작업 완료(요청에서 종료까지 : 11ms)</span><br><span class="line">- C: 2ms부터 대기하다가, 12ms 시점에 작업을 시작해서 18ms 시점에 작업 완료(요청에서 종료까지 : 16ms)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>이 때 각 작업의 요청부터 종료까지 걸린 시간의 평균은 10ms(= (3 + 11 + 16) / 3)가 됩니다.</p><p>하지만 A → C → B 순서대로 처리하면\<br><img src="https://grepp-programmers.s3.amazonaws.com/files/production/9eb7c5a6f1/a6cff04d-86bb-4b5b-98bf-6359158940ac.png" alt="Screen Shot 2018-09-13 at 6.41.42 PM.png"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- A: 3ms 시점에 작업 완료(요청에서 종료까지 : 3ms)</span><br><span class="line">- C: 2ms부터 대기하다가, 3ms 시점에 작업을 시작해서 9ms 시점에 작업 완료(요청에서 종료까지 : 7ms)</span><br><span class="line">- B: 1ms부터 대기하다가, 9ms 시점에 작업을 시작해서 18ms 시점에 작업 완료(요청에서 종료까지 : 17ms)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>이렇게 A → C → B의 순서로 처리하면 각 작업의 요청부터 종료까지 걸린 시간의 평균은 9ms(= (3 + 7 + 17) / 3)가 됩니다.</p><p>각 작업에 대해 [작업이 요청되는 시점, 작업의 소요시간]을 담은 2차원 배열 jobs가 매개변수로 주어질 때, 작업의 요청부터 종료까지 걸린 시간의 평균을 가장 줄이는 방법으로 처리하면 평균이 얼마가 되는지 return 하도록 solution 함수를 작성해주세요. (단, 소수점 이하의 수는 버립니다)</p><h2 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h2><ul><li>jobs의 길이는 1 이상 500 이하입니다.</li><li>jobs의 각 행은 하나의 작업에 대한 [작업이 요청되는 시점, 작업의 소요시간] 입니다.</li><li>각 작업에 대해 작업이 요청되는 시간은 0 이상 1,000 이하입니다.</li><li>각 작업에 대해 작업의 소요시간은 1 이상 1,000 이하입니다.</li><li>하드디스크가 작업을 수행하고 있지 않을 때에는 먼저 요청이 들어온 작업부터 처리합니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>jobs</th><th>return</th></tr></thead><tbody><tr><td>[[0, 3], [1, 9], [2, 6]]</td><td>9</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>문제에 주어진 예와 같습니다.</p><ul><li>0ms 시점에 3ms 걸리는 작업 요청이 들어옵니다.</li><li>1ms 시점에 9ms 걸리는 작업 요청이 들어옵니다.</li><li>2ms 시점에 6ms 걸리는 작업 요청이 들어옵니다.</li></ul></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq <span class="keyword">as</span> h</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">jobs</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(jobs)</span><br><span class="line">    jobs.sort(key=<span class="keyword">lambda</span> x:x[<span class="number">0</span>]);</span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    time = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> jobs:</span><br><span class="line">        hq = []</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(jobs) <span class="keyword">and</span> jobs[i][<span class="number">0</span>] &lt;= time:</span><br><span class="line">            h.heappush(hq,(jobs[i][<span class="number">1</span>],time-jobs[i][<span class="number">0</span>]+jobs[i][<span class="number">1</span>], i))</span><br><span class="line">            i+=<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(hq) == <span class="number">0</span>:</span><br><span class="line">            time = jobs[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            next_job = h.heappop(hq)</span><br><span class="line">            time += next_job[<span class="number">0</span>]</span><br><span class="line">            answer += next_job[<span class="number">1</span>]</span><br><span class="line">            jobs.pop(next_job[<span class="number">2</span>])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> answer//n</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>현재 시점 기준으로 요청된 작업들 중 가장 수행시간이 짧은 작업을 매번 선택하면 되고, 이는 <code>그리디</code> 처럼 작동한다.</p><p><br/></p><p><code>heap queue</code>를 활용하는 문제인데, 처음에 어떤 값을 넣어야 할지 혼동스러웠다. 결과 값으로 저장해야하는 값(처음 요청된 시간 ~ 요청 종료까지 시간)을 기준으로 <code>heap queue</code>에 담았는데, 이러다보니 작업시간이 짧지만 대기한 시간이 긴 작업들의 우선권이 뒤로 밀려버렸다.</p><p><br/></p><p>이내 수행시간을 기준으로 <code>heap queue</code>에 담아 문제를 푸니 정상적으로 풀이 되었다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV3) 순위</title>
@@ -149,11 +186,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/16/5a27c5948dfc/#disqus_thread</comments>
@@ -186,11 +223,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/16/ce5d6cfa269c/#disqus_thread</comments>
@@ -225,9 +262,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
       
@@ -339,9 +376,9 @@
       
       <category domain="https://sklubmk.github.io/tags/DP/">DP</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/12/b5f9f208b449/#disqus_thread</comments>
@@ -376,9 +413,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/11/539b25284767/#disqus_thread</comments>
@@ -413,9 +450,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/10/4ee95b87b24f/#disqus_thread</comments>
@@ -450,9 +487,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/bit/">bit</category>
       
@@ -559,9 +596,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a5a552938e29/#disqus_thread</comments>
@@ -596,9 +633,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/6c54e9ab7bc7/#disqus_thread</comments>
@@ -633,9 +670,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/5106f0ee5223/#disqus_thread</comments>
@@ -670,9 +707,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a35ac8d3f93b/#disqus_thread</comments>
@@ -707,49 +744,12 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a0c0c53fcfa3/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 평균 구하기</title>
-      <link>https://sklubmk.github.io/2021/08/04/5dfc7194bace/</link>
-      <guid>https://sklubmk.github.io/2021/08/04/5dfc7194bace/</guid>
-      <pubDate>Wed, 04 Aug 2021 06:04:32 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;평균-구하기&quot;&gt;&lt;a href=&quot;#평균-구하기&quot; class=&quot;headerlink&quot; title=&quot;평균 구하기&quot;&gt;&lt;/a&gt;평균 구하기&lt;/h1&gt;&lt;p&gt;JavaScript, Python&lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="평균-구하기"><a href="#평균-구하기" class="headerlink" title="평균 구하기"></a>평균 구하기</h1><p>JavaScript, Python</p><span id="more"></span><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>정수를 담고 있는 배열 arr의 평균값을 return하는 함수, solution을 완성해보세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>arr은 길이 1 이상, 100 이하인 배열입니다.</li><li>arr의 원소는 -10,000 이상 10,000 이하인 정수입니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>arr</th><th>return</th></tr></thead><tbody><tr><td>[1,2,3,4]</td><td>2.5</td></tr><tr><td>[5,5]</td><td>5</td></tr></tbody></table></div></blockquote><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a+b,<span class="number">0</span>) / arr.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><br/></p><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">arr</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(arr)/<span class="built_in">len</span>(arr)</span><br></pre></td></tr></table></figure><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>기본 문법 구현능력을 묻는 문제.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/04/5dfc7194bace/#disqus_thread</comments>
       
     </item>
     
