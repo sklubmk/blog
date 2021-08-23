@@ -9,8 +9,45 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Sun, 22 Aug 2021 08:01:44 GMT</pubDate>
+    <pubDate>Mon, 23 Aug 2021 10:44:38 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 직업군 추천하기</title>
+      <link>https://sklubmk.github.io/2021/08/23/f67283951ab9/</link>
+      <guid>https://sklubmk.github.io/2021/08/23/f67283951ab9/</guid>
+      <pubDate>Mon, 23 Aug 2021 10:31:01 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>개발자가 사용하는 언어와 <code>언어 선호도</code>를 입력하면 그에 맞는 직업군을 추천해주는 알고리즘을 개발하려고 합니다.</p><p>아래 표는 5개 직업군 별로 많이 사용하는 5개 언어에 <code>직업군 언어 점수</code>를 부여한 표입니다.</p><div class="table-container"><table><thead><tr><th>점수</th><th>SI</th><th>CONTENTS</th><th>HARDWARE</th><th>PORTAL</th><th>GAME</th></tr></thead><tbody><tr><td>5</td><td>JAVA</td><td>JAVASCRIPT</td><td>C</td><td>JAVA</td><td>C++</td></tr><tr><td>4</td><td>JAVASCRIPT</td><td>JAVA</td><td>C++</td><td>JAVASCRIPT</td><td>C#</td></tr><tr><td>3</td><td>SQL</td><td>PYTHON</td><td>PYTHON</td><td>PYTHON</td><td>JAVASCRIPT</td></tr><tr><td>2</td><td>PYTHON</td><td>SQL</td><td>JAVA</td><td>KOTLIN</td><td>C</td></tr><tr><td>1</td><td>C#</td><td>C++</td><td>JAVASCRIPT</td><td>PHP</td><td>JAVA</td></tr></tbody></table></div><p>예를 들면, SQL의 SI <code>직업군 언어 점수</code>는 3점이지만 CONTENTS <code>직업군 언어 점수</code>는 2점입니다. SQL의 HARDWARE, PORTAL, GAME <code>직업군 언어 점수</code>는 0점입니다.</p><p><code>직업군 언어 점수</code>를 정리한 문자열 배열 <code>table</code>, 개발자가 사용하는 언어를 담은 문자열 배열 <code>languages</code>, <code>언어 선호도</code>를 담은 정수 배열 <code>preference</code>가 매개변수로 주어집니다. 개발자가 사용하는 언어의 <code>언어 선호도</code> x <code>직업군 언어 점수</code>의 총합이 가장 높은 직업군을 return 하도록 solution 함수를 완성해주세요. 총합이 같은 직업군이 여러 개일 경우, 이름이 사전 순으로 가장 빠른 직업군을 return 해주세요.</p><hr><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li><code>table</code>의 길이 = 5<ul><li><code>table</code>의 원소는 <code>&quot;직업군 5점언어 4점언어 3점언어 2점언어 1점언어&quot;</code>형식의 문자열입니다. <code>직업군</code>, <code>5점언어</code>, <code>4언어</code>, <code>3점언어</code>, <code>2점언어</code>, <code>1점언어</code>는 하나의 공백으로 구분되어 있습니다.</li><li><code>table</code>은 모든 테스트케이스에서 동일합니다.</li></ul></li><li>1 ≤ <code>languages</code>의 길이 ≤ 9<ul><li><code>languages</code>의 원소는 <code>&quot;JAVA&quot;</code>, <code>&quot;JAVASCRIPT&quot;</code>, <code>&quot;C&quot;</code>, <code>&quot;C++&quot;</code> ,<code>&quot;C#&quot;</code> , <code>&quot;SQL&quot;</code>, <code>&quot;PYTHON&quot;</code>, <code>&quot;KOTLIN&quot;</code>, <code>&quot;PHP&quot;</code> 중 한 개 이상으로 이루어져 있습니다.</li><li><code>languages</code>의 원소는 중복되지 않습니다.</li></ul></li><li><code>preference</code>의 길이 = <code>languages</code>의 길이<ul><li>1 ≤ <code>preference</code>의 원소 ≤ 10</li></ul></li><li><code>preference</code>의 i번째 원소는 <code>languages</code>의 i번째 원소의 <code>언어 선호도</code>입니다.</li><li>return 할 문자열은 <code>&quot;SI&quot;</code>, <code>&quot;CONTENTS&quot;</code>, <code>&quot;HARDWARE&quot;</code>, <code>&quot;PORTAL&quot;</code>, <code>&quot;GAME&quot;</code> 중 하나입니다.</li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>table</th><th>languages</th><th>preference</th><th>result</th></tr></thead><tbody><tr><td><code>[&quot;SI JAVA JAVASCRIPT SQL PYTHON C#&quot;, &quot;CONTENTS JAVASCRIPT JAVA PYTHON SQL C++&quot;, &quot;HARDWARE C C++ PYTHON JAVA JAVASCRIPT&quot;, &quot;PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP&quot;, &quot;GAME C++ C# JAVASCRIPT C JAVA&quot;]</code></td><td><code>[&quot;PYTHON&quot;, &quot;C++&quot;, &quot;SQL&quot;]</code></td><td>[7, 5, 5]</td><td><code>&quot;HARDWARE&quot;</code></td></tr><tr><td><code>[&quot;SI JAVA JAVASCRIPT SQL PYTHON C#&quot;, &quot;CONTENTS JAVASCRIPT JAVA PYTHON SQL C++&quot;, &quot;HARDWARE C C++ PYTHON JAVA JAVASCRIPT&quot;, &quot;PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP&quot;, &quot;GAME C++ C# JAVASCRIPT C JAVA&quot;]</code></td><td><code>[&quot;JAVA&quot;, &quot;JAVASCRIPT&quot;]</code></td><td>[7, 5]</td><td><code>&quot;PORTAL&quot;</code></td></tr></tbody></table></div><hr><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1</p><p>각 직업군 별로 점수를 계산해보면 아래와 같습니다.</p><p>아래 사진은 <code>개발자 언어 선호도</code> 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/9a711ad6-4a8e-4028-b100-0280a4e3a7dd/tc1_preference.PNG" alt="tc1_preference.PNG"></p><p>아래 사진은 개발자가 선호하는 언어의 <code>직업군 언어 점수</code>를 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/1ef5a88a-8109-415d-b611-a6320410b1e1/tc1_score.PNG" alt="tc1_score.PNG"></p><p>따라서 점수 총합이 41로 가장 높은 <code>&quot;HARDWARE&quot;</code>를 return 해야 합니다.</p><p>입출력 예 #2</p><p>각 직업군 별로 점수를 계산해보면 아래와 같습니다.</p><p>아래 사진은 <code>개발자 언어 선호도</code> 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/e49d818b-938a-4cc3-8d2a-27783f2e1af5/tc2_preference.PNG" alt="tc2_preference.PNG"></p><p>아래 사진은 개발자가 선호하는 언어의 <code>직업군 언어 점수</code>를 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/0624156e-e1d3-4299-b554-470815322a79/tc2_score.PNG" alt="tc2_score.PNG">\<br>점수 총합이 55로 가장 높은 직업군은 “SI” 와 “PORTAL”입니다.\<br>따라서 사전 순으로 먼저 오는 <code>&quot;PORTAL&quot;</code>을 return 해야 합니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq <span class="keyword">as</span> h</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">table, languages, preference</span>):</span></span><br><span class="line">    answer = []</span><br><span class="line">    table_hash = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(table)):</span><br><span class="line">        t_s = table[i].split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        table_hash[t_s[<span class="number">0</span>]] = &#123;t:<span class="number">5</span>-i <span class="keyword">for</span> i,t <span class="keyword">in</span> <span class="built_in">enumerate</span>(t_s[<span class="number">1</span>:])&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> table_hash.items():</span><br><span class="line">        h.heappush(answer,(-<span class="built_in">sum</span>(t[<span class="number">1</span>][l]*preference[l_i] <span class="keyword">for</span> l_i, l <span class="keyword">in</span> <span class="built_in">enumerate</span>(languages) <span class="keyword">if</span> l <span class="keyword">in</span> t[<span class="number">1</span>]),t[<span class="number">0</span>]))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> h.heappop(answer)[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/08/23/f67283951ab9/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV3) 디스크 컨트롤러</title>
@@ -40,9 +77,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/#disqus_thread</comments>
@@ -151,9 +188,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/18/8c559b93b60c/#disqus_thread</comments>
@@ -186,11 +223,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/16/5a27c5948dfc/#disqus_thread</comments>
@@ -223,11 +260,11 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/16/ce5d6cfa269c/#disqus_thread</comments>
@@ -262,9 +299,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
       
@@ -299,9 +336,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%A0%95%EB%A0%AC/">정렬</category>
       
@@ -335,9 +372,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84/">시간복잡도</category>
       
@@ -366,8 +403,6 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
@@ -376,9 +411,11 @@
       
       <category domain="https://sklubmk.github.io/tags/DP/">DP</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/12/b5f9f208b449/#disqus_thread</comments>
@@ -405,17 +442,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/11/539b25284767/#disqus_thread</comments>
@@ -442,17 +479,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/10/4ee95b87b24f/#disqus_thread</comments>
@@ -479,17 +516,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/bit/">bit</category>
       
@@ -588,17 +625,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a5a552938e29/#disqus_thread</comments>
@@ -625,17 +662,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/6c54e9ab7bc7/#disqus_thread</comments>
@@ -662,17 +699,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/5106f0ee5223/#disqus_thread</comments>
@@ -699,57 +736,20 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a35ac8d3f93b/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 폰켓몬</title>
-      <link>https://sklubmk.github.io/2021/08/04/a0c0c53fcfa3/</link>
-      <guid>https://sklubmk.github.io/2021/08/04/a0c0c53fcfa3/</guid>
-      <pubDate>Wed, 04 Aug 2021 06:04:40 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;폰켓몬&quot;&gt;&lt;a href=&quot;#폰켓몬&quot; class=&quot;headerlink&quot; title=&quot;폰켓몬&quot;&gt;&lt;/a&gt;폰켓몬&lt;/h1&gt;&lt;p&gt;JavaScript, Python&lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="폰켓몬"><a href="#폰켓몬" class="headerlink" title="폰켓몬"></a>폰켓몬</h1><p>JavaScript, Python</p><span id="more"></span><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>당신은 폰켓몬을 잡기 위한 오랜 여행 끝에, 홍 박사님의 연구실에 도착했습니다. 홍 박사님은 당신에게 자신의 연구실에 있는 총 N 마리의 폰켓몬 중에서 N/2마리를 가져가도 좋다고 했습니다.\<br>홍 박사님 연구실의 폰켓몬은 종류에 따라 번호를 붙여 구분합니다. 따라서 같은 종류의 폰켓몬은 같은 번호를 가지고 있습니다. 예를 들어 연구실에 총 4마리의 폰켓몬이 있고, 각 폰켓몬의 종류 번호가 [3번, 1번, 2번, 3번]이라면 이는 3번 폰켓몬 두 마리, 1번 폰켓몬 한 마리, 2번 폰켓몬 한 마리가 있음을 나타냅니다. 이때, 4마리의 폰켓몬 중 2마리를 고르는 방법은 다음과 같이 6가지가 있습니다.</p><ol><li>첫 번째(3번), 두 번째(1번) 폰켓몬을 선택</li><li>첫 번째(3번), 세 번째(2번) 폰켓몬을 선택</li><li>첫 번째(3번), 네 번째(3번) 폰켓몬을 선택</li><li>두 번째(1번), 세 번째(2번) 폰켓몬을 선택</li><li>두 번째(1번), 네 번째(3번) 폰켓몬을 선택</li><li>세 번째(2번), 네 번째(3번) 폰켓몬을 선택</li></ol><p>이때, 첫 번째(3번) 폰켓몬과 네 번째(3번) 폰켓몬을 선택하는 방법은 한 종류(3번 폰켓몬 두 마리)의 폰켓몬만 가질 수 있지만, 다른 방법들은 모두 두 종류의 폰켓몬을 가질 수 있습니다. 따라서 위 예시에서 가질 수 있는 폰켓몬 종류 수의 최댓값은 2가 됩니다.\<br>당신은 최대한 다양한 종류의 폰켓몬을 가지길 원하기 때문에, 최대한 많은 종류의 폰켓몬을 포함해서 N/2마리를 선택하려 합니다. N마리 폰켓몬의 종류 번호가 담긴 배열 nums가 매개변수로 주어질 때, N/2마리의 폰켓몬을 선택하는 방법 중, 가장 많은 종류의 폰켓몬을 선택하는 방법을 찾아, 그때의 폰켓몬 종류 번호의 개수를 return 하도록 solution 함수를 완성해주세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>nums는 폰켓몬의 종류 번호가 담긴 1차원 배열입니다.</li><li>nums의 길이(N)는 1 이상 10,000 이하의 자연수이며, 항상 짝수로 주어집니다.</li><li>폰켓몬의 종류 번호는 1 이상 200,000 이하의 자연수로 나타냅니다.</li><li>가장 많은 종류의 폰켓몬을 선택하는 방법이 여러 가지인 경우에도, 선택할 수 있는 폰켓몬 종류 개수의 최댓값 하나만 return 하면 됩니다.</li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>nums</th><th>result</th></tr></thead><tbody><tr><td>[3,1,2,3]</td><td>2</td></tr><tr><td>[3,3,3,2,2,4]</td><td>3</td></tr><tr><td>[3,3,3,2,2,2]</td><td>2</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1\<br>문제의 예시와 같습니다.</p><p>입출력 예 #2\<br>6마리의 폰켓몬이 있으므로, 3마리의 폰켓몬을 골라야 합니다.\<br>가장 많은 종류의 폰켓몬을 고르기 위해서는 3번 폰켓몬 한 마리, 2번 폰켓몬 한 마리, 4번 폰켓몬 한 마리를 고르면 되며, 따라서 3을 return 합니다.</p><p>입출력 예 #3\<br>6마리의 폰켓몬이 있으므로, 3마리의 폰켓몬을 골라야 합니다.\<br>가장 많은 종류의 폰켓몬을 고르기 위해서는 3번 폰켓몬 한 마리와 2번 폰켓몬 두 마리를 고르거나, 혹은 3번 폰켓몬 두 마리와 3번 폰켓몬 한 마리를 고르면 됩니다. 따라서 최대 고를 수 있는 폰켓몬 종류의 수는 2입니다.</p></blockquote><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> dict = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    nums.forEach(<span class="function">(<span class="params">n</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!dict[n])&#123;</span><br><span class="line">            dict[n]=<span class="literal">true</span></span><br><span class="line">            answer++;   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.min(nums.length/<span class="number">2</span>,answer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><br/></p><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">nums</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">len</span>(<span class="built_in">set</span>(nums)), <span class="built_in">len</span>(nums)/<span class="number">2</span>)</span><br></pre></td></tr></table></figure><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>최대 종류 개수와 <code>nums</code>의 절반 중 최소 값을 반환하면 된다.</p><p>최대 종류 개수를 위해서는 <code>set</code> 자료구조를 이용한다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/04/a0c0c53fcfa3/#disqus_thread</comments>
       
     </item>
     
