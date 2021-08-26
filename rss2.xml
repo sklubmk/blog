@@ -9,7 +9,7 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Wed, 25 Aug 2021 11:16:10 GMT</pubDate>
+    <pubDate>Thu, 26 Aug 2021 14:56:22 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -22,7 +22,7 @@
       
       
       
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>초 단위로 기록된 주식가격이 담긴 배열 prices가 매개변수로 주어질 때, 가격이 떨어지지 않은 기간은 몇 초인지를 return 하도록 solution 함수를 완성하세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>prices의 각 가격은 1 이상 10,000 이하인 자연수입니다.</li><li>prices의 길이는 2 이상 100,000 이하입니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>prices</th><th>return</th></tr></thead><tbody><tr><td>[1, 2, 3, 2, 3]</td><td>[4, 3, 1, 1, 0]</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><ul><li>1초 시점의 ₩1은 끝까지 가격이 떨어지지 않았습니다.</li><li>2초 시점의 ₩2은 끝까지 가격이 떨어지지 않았습니다.</li><li>3초 시점의 ₩3은 1초뒤에 가격이 떨어집니다. 따라서 1초간 가격이 떨어지지 않은 것으로 봅니다.</li><li>4초 시점의 ₩2은 1초간 가격이 떨어지지 않았습니다.</li><li>5초 시점의 ₩3은 0초간 가격이 떨어지지 않았습니다.</li></ul><p>※ 공지 - 2019년 2월 28일 지문이 리뉴얼되었습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">prices</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(prices)</span><br><span class="line">    answer = [<span class="number">0</span>]*n</span><br><span class="line">    <span class="keyword">for</span> i, price <span class="keyword">in</span> <span class="built_in">enumerate</span>(prices):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, n):</span><br><span class="line">            answer[i] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> price &gt; prices[j]:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>초 단위로 기록된 주식가격이 담긴 배열 prices가 매개변수로 주어질 때, 가격이 떨어지지 않은 기간은 몇 초인지를 return 하도록 solution 함수를 완성하세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>prices의 각 가격은 1 이상 10,000 이하인 자연수입니다.</li><li>prices의 길이는 2 이상 100,000 이하입니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>prices</th><th>return</th></tr></thead><tbody><tr><td>[1, 2, 3, 2, 3]</td><td>[4, 3, 1, 1, 0]</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><ul><li>1초 시점의 ₩1은 끝까지 가격이 떨어지지 않았습니다.</li><li>2초 시점의 ₩2은 끝까지 가격이 떨어지지 않았습니다.</li><li>3초 시점의 ₩3은 1초뒤에 가격이 떨어집니다. 따라서 1초간 가격이 떨어지지 않은 것으로 봅니다.</li><li>4초 시점의 ₩2은 1초간 가격이 떨어지지 않았습니다.</li><li>5초 시점의 ₩3은 0초간 가격이 떨어지지 않았습니다.</li></ul><p>※ 공지 - 2019년 2월 28일 지문이 리뉴얼되었습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">prices</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(prices)</span><br><span class="line">    answer = [<span class="number">0</span>]*n</span><br><span class="line">    <span class="keyword">for</span> i, price <span class="keyword">in</span> <span class="built_in">enumerate</span>(prices):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, n):</span><br><span class="line">            answer[i] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> price &gt; prices[j]:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>문제 설명이 애매한 편이지만, 차분하게 풀면 <script type="math/tex">O(N^2)</script>의 효율성 만으로도 풀 수 있는 문제다.</p>]]></content:encoded>
       
       
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
@@ -371,9 +371,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%A0%95%EB%A0%AC/">정렬</category>
       
@@ -407,9 +407,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84/">시간복잡도</category>
       
@@ -438,8 +438,6 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
@@ -447,6 +445,8 @@
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
       <category domain="https://sklubmk.github.io/tags/DP/">DP</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -477,13 +477,13 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -514,13 +514,13 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -551,13 +551,13 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
@@ -660,13 +660,13 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
@@ -697,13 +697,13 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
@@ -734,13 +734,13 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
       <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
