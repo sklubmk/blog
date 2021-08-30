@@ -9,8 +9,45 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Sat, 28 Aug 2021 14:44:58 GMT</pubDate>
+    <pubDate>Mon, 30 Aug 2021 13:42:49 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV1) 모음 사전</title>
+      <link>https://sklubmk.github.io/2021/08/30/ef36d4eaefde/</link>
+      <guid>https://sklubmk.github.io/2021/08/30/ef36d4eaefde/</guid>
+      <pubDate>Mon, 30 Aug 2021 13:32:26 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>사전에 알파벳 모음 ‘A’, ‘E’, ‘I’, ‘O’, ‘U’만을 사용하여 만들 수 있는, 길이 5 이하의 모든 단어가 수록되어 있습니다. 사전에서 첫 번째 단어는 “A”이고, 그다음은 “AA”이며, 마지막 단어는 “UUUUU”입니다.</p><p>단어 하나 word가 매개변수로 주어질 때, 이 단어가 사전에서 몇 번째 단어인지 return 하도록 solution 함수를 완성해주세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>word의 길이는 1 이상 5 이하입니다.</li><li>word는 알파벳 대문자 ‘A’, ‘E’, ‘I’, ‘O’, ‘U’로만 이루어져 있습니다.</li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>word</th><th>result</th></tr></thead><tbody><tr><td><code>&quot;AAAAE&quot;</code></td><td>6</td></tr><tr><td><code>&quot;AAAE&quot;</code></td><td>10</td></tr><tr><td><code>&quot;I&quot;</code></td><td>1563</td></tr><tr><td><code>&quot;EIO&quot;</code></td><td>1189</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1</p><p>사전에서 첫 번째 단어는 “A”이고, 그다음은 “AA”, “AAA”, “AAAA”, “AAAAA”, “AAAAE”, … 와 같습니다. “AAAAE”는 사전에서 6번째 단어입니다.</p><p>입출력 예 #2</p><p>“AAAE”는 “A”, “AA”, “AAA”, “AAAA”, “AAAAA”, “AAAAE”, “AAAAI”, “AAAAO”, “AAAAU”의 다음인 10번째 단어입니다.</p><p>입출력 예 #3</p><p>“I”는 1563번째 단어입니다.</p><p>입출력 예 #4</p><p>“EIO”는 1189번째 단어입니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">word</span>):</span></span><br><span class="line">    </span><br><span class="line">    basic = <span class="built_in">list</span>(<span class="string">&#x27;AEIOU&#x27;</span>)</span><br><span class="line">    book = <span class="built_in">set</span>(basic)</span><br><span class="line">    temp = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        <span class="keyword">for</span> word_ <span class="keyword">in</span> book:</span><br><span class="line">            <span class="keyword">for</span> apb <span class="keyword">in</span> basic:</span><br><span class="line">                temp.append(word_+apb)</span><br><span class="line">        book.update(temp)</span><br><span class="line">        temp=[]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(<span class="built_in">list</span>(book)).index(word) + <span class="number">1</span></span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>복잡하게 생각하면 오히려 난이도가 높아지는 문제다. </p><p>나도 처음에는 단어가 배열되는 규칙을 찾아 값이 나오는 함수를 구현하려 했는데, 문득 수학 문제를 풀고있는 것이 아닌가란 생각이 들었다.</p><p>코딩 문제란 것을 잊지 않으면, 사전 자체를 만들어버리는 생각을 떠올리는 것은 간단하다.</p><p>사전 단어들은 기존 단어에 <code>A E I O U</code>의 모음 단어 하나씩 오른쪽에 더하는 과정을 4번 반복하면 된다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/08/30/ef36d4eaefde/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV2) 숫자의 표현</title>
@@ -332,9 +369,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/16/ce5d6cfa269c/#disqus_thread</comments>
@@ -709,43 +746,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/08/04/a5a552938e29/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 행렬의 덧셈</title>
-      <link>https://sklubmk.github.io/2021/08/04/6c54e9ab7bc7/</link>
-      <guid>https://sklubmk.github.io/2021/08/04/6c54e9ab7bc7/</guid>
-      <pubDate>Wed, 04 Aug 2021 06:05:55 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;행렬의-덧셈&quot;&gt;&lt;a href=&quot;#행렬의-덧셈&quot; class=&quot;headerlink&quot; title=&quot;행렬의 덧셈&quot;&gt;&lt;/a&gt;행렬의 덧셈&lt;/h1&gt;&lt;p&gt;JavaScript, Python&lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="행렬의-덧셈"><a href="#행렬의-덧셈" class="headerlink" title="행렬의 덧셈"></a>행렬의 덧셈</h1><p>JavaScript, Python</p><span id="more"></span><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.</p><h2 id="제한-조건"><a href="#제한-조건" class="headerlink" title="제한 조건"></a>제한 조건</h2><ul><li>행렬 arr1, arr2의 행과 열의 길이는 500을 넘지 않습니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>arr1</th><th>arr2</th><th>return</th></tr></thead><tbody><tr><td>[[1,2],[2,3]]</td><td>[[3,4],[5,6]]</td><td>[[4,6],[7,9]]</td></tr><tr><td>[[1],[2]]</td><td>[[3],[4]]</td><td>[[4],[6]]</td></tr></tbody></table></div></blockquote><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">solution</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr1.map(<span class="function">(<span class="params">a1,i</span>)=&gt;</span>a1.map(<span class="function">(<span class="params">a1_,i_</span>)=&gt;</span>a1_+arr2[i][i_]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><br/></p><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">arr1, arr2</span>):</span></span><br><span class="line">    <span class="keyword">return</span> [ [c+d <span class="keyword">for</span> c,d <span class="keyword">in</span> <span class="built_in">zip</span>(a,b)] <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(arr1,arr2)]</span><br></pre></td></tr></table></figure><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>두 배열의 연산 능력을 묻는 문제.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">자바스크립트</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/04/6c54e9ab7bc7/#disqus_thread</comments>
       
     </item>
     
