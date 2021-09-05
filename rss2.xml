@@ -9,8 +9,183 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Sat, 04 Sep 2021 07:36:15 GMT</pubDate>
+    <pubDate>Sun, 05 Sep 2021 08:15:10 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) DATETIME에서 DATE로 형 변환</title>
+      <link>https://sklubmk.github.io/2021/09/05/ef58ca870eac/</link>
+      <guid>https://sklubmk.github.io/2021/09/05/ef58ca870eac/</guid>
+      <pubDate>Sun, 05 Sep 2021 08:06:36 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p><code>ANIMAL_INS</code> 테이블에 등록된 모든 레코드에 대해, 각 동물의 아이디와 이름, 들어온 날짜<a href="https://programmers.co.kr/learn/courses/30/lessons/59414#fn1">1</a>를 조회하는 SQL문을 작성해주세요. 이때 결과는 아이디 순으로 조회해야 합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어, <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><p><code>ANIMAL_INS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A349996</td><td>Cat</td><td>2018-01-22 14:32:00</td><td>Normal</td><td>Sugar</td><td>Neutered Male</td></tr><tr><td>A350276</td><td>Cat</td><td>2017-08-13 13:50:00</td><td>Normal</td><td>Jewel</td><td>Spayed Female</td></tr><tr><td>A350375</td><td>Cat</td><td>2017-03-06 15:01:00</td><td>Normal</td><td>Meo</td><td>Neutered Male</td></tr><tr><td>A352555</td><td>Dog</td><td>2014-08-08 04:20:00</td><td>Normal</td><td>Harley</td><td>Spayed Female</td></tr><tr><td>A352713</td><td>Cat</td><td>2017-04-13 16:29:00</td><td>Normal</td><td>Gia</td><td>Spayed Female</td></tr></tbody></table></div><p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th><th>날짜</th></tr></thead><tbody><tr><td>A349996</td><td>Sugar</td><td>2018-01-22</td></tr><tr><td>A350276</td><td>Jewel</td><td>2017-08-13</td></tr><tr><td>A350375</td><td>Meo</td><td>2017-03-06</td></tr><tr><td>A352555</td><td>Harley</td><td>2014-08-08</td></tr><tr><td>A352713</td><td>Gia</td><td>2017-04-13</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p><hr><ol><li>시각(시-분-초)을 제외한 날짜(년-월-일)만 보여주세요. <a href="https://programmers.co.kr/learn/courses/30/lessons/59414#fnref1">↩</a></li></ol></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID, NAME, DATE_FORMAT(DATETIME, <span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_ID</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/05/ef58ca870eac/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV2) NULL 처리하기</title>
+      <link>https://sklubmk.github.io/2021/09/05/98e51e219f55/</link>
+      <guid>https://sklubmk.github.io/2021/09/05/98e51e219f55/</guid>
+      <pubDate>Sun, 05 Sep 2021 07:54:34 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>입양 게시판에 동물 정보를 게시하려 합니다. 동물의 생물 종, 이름, 성별 및 중성화 여부를 아이디 순으로 조회하는 SQL문을 작성해주세요. 이때 프로그래밍을 모르는 사람들은 NULL이라는 기호를 모르기 때문에, 이름이 없는 동물의 이름은 “No name”으로 표시해 주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A350276</td><td>Cat</td><td>2017-08-13 13:50:00</td><td>Normal</td><td>Jewel</td><td>Spayed Female</td></tr><tr><td>A350375</td><td>Cat</td><td>2017-03-06 15:01:00</td><td>Normal</td><td>Meo</td><td>Neutered Male</td></tr><tr><td>A368930</td><td>Dog</td><td>2014-06-08 13:20:00</td><td>Normal</td><td>NULL</td><td>Spayed Female</td></tr></tbody></table></div><p>마지막 줄의 개는 이름이 없기 때문에, 이 개의 이름은 “No name”으로 표시합니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_TYPE</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>Cat</td><td>Jewel</td><td>Spayed Female</td></tr><tr><td>Cat</td><td>Meo</td><td>Neutered Male</td></tr><tr><td>Dog</td><td>No name</td><td>Spayed Female</td></tr></tbody></table></div><p>※ 컬럼 이름은 일치하지 않아도 됩니다.</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    ANIMAL_TYPE, </span><br><span class="line">    IFNULL(NAME, &quot;No name&quot;) <span class="keyword">as</span> NAME,</span><br><span class="line">    SEX_UPON_INTAKE </span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/05/98e51e219f55/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 고양이와 개는 몇 마리 있을까</title>
+      <link>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/</link>
+      <guid>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/</guid>
+      <pubDate>Sun, 05 Sep 2021 07:54:23 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><blockquote><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 중 고양이와 개가 각각 몇 마리인지 조회하는 SQL문을 작성해주세요. 이때 고양이를 개보다 먼저 조회해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A373219</td><td>Cat</td><td>2014-07-29 11:43:00</td><td>Normal</td><td>Ella</td><td>Spayed Female</td></tr><tr><td>A377750</td><td>Dog</td><td>2017-10-25 17:17:00</td><td>Normal</td><td>Lucy</td><td>Spayed Female</td></tr><tr><td>A354540</td><td>Cat</td><td>2014-12-11 11:48:00</td><td>Normal</td><td>Tux</td><td>Neutered Male</td></tr></tbody></table></div><p>고양이는 2마리, 개는 1마리 들어왔습니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_TYPE</th><th>count</th></tr></thead><tbody><tr><td>Cat</td><td>2</td></tr><tr><td>Dog</td><td>1</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_TYPE, <span class="built_in">COUNT</span>(ANIMAL_TYPE)</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> ANIMAL_TYPE</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_TYPE</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 동명 동물 수 찾기</title>
+      <link>https://sklubmk.github.io/2021/09/05/20173998a6d6/</link>
+      <guid>https://sklubmk.github.io/2021/09/05/20173998a6d6/</guid>
+      <pubDate>Sun, 05 Sep 2021 07:54:13 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 이름 중 두 번 이상 쓰인 이름과 해당 이름이 쓰인 횟수를 조회하는 SQL문을 작성해주세요. 이때 결과는 이름이 없는 동물은 집계에서 제외하며, 결과는 이름 순으로 조회해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A396810</td><td>Dog</td><td>2016-08-22 16:13:00</td><td>Injured</td><td>Raven</td><td>Spayed Female</td></tr><tr><td>A377750</td><td>Dog</td><td>2017-10-25 17:17:00</td><td>Normal</td><td>Lucy</td><td>Spayed Female</td></tr><tr><td>A355688</td><td>Dog</td><td>2014-01-26 13:48:00</td><td>Normal</td><td>Shadow</td><td>Neutered Male</td></tr><tr><td>A399421</td><td>Dog</td><td>2015-08-25 14:08:00</td><td>Normal</td><td>Lucy</td><td>Spayed Female</td></tr><tr><td>A400680</td><td>Dog</td><td>2017-06-17 13:29:00</td><td>Normal</td><td>Lucy</td><td>Spayed Female</td></tr><tr><td>A410668</td><td>Cat</td><td>2015-11-19 13:41:00</td><td>Normal</td><td>Raven</td><td>Spayed Female</td></tr></tbody></table></div><ul><li>Raven 이름은 2번 쓰였습니다.</li><li>Lucy 이름은 3번 쓰였습니다</li><li>Shadow 이름은 1번 쓰였습니다.</li></ul><p>따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>COUNT</th></tr></thead><tbody><tr><td>Lucy</td><td>3</td></tr><tr><td>Raven</td><td>2</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> NAME, <span class="built_in">COUNT</span>(NAME) <span class="keyword">as</span> COUNT</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> NAME</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(NAME) <span class="operator">&gt;</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> NAME</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/05/20173998a6d6/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 동물 수 구하기</title>
+      <link>https://sklubmk.github.io/2021/09/05/732ba08259d5/</link>
+      <guid>https://sklubmk.github.io/2021/09/05/732ba08259d5/</guid>
+      <pubDate>Sun, 05 Sep 2021 07:53:29 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 동물이 몇 마리 들어왔는지 조회하는 SQL 문을 작성해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A399552</td><td>Dog</td><td>2013-10-14 15:38:00</td><td>Normal</td><td>Jack</td><td>Neutered Male</td></tr><tr><td>A379998</td><td>Dog</td><td>2013-10-23 11:42:00</td><td>Normal</td><td>Disciple</td><td>Intact Male</td></tr><tr><td>A370852</td><td>Dog</td><td>2013-11-03 15:04:00</td><td>Normal</td><td>Katie</td><td>Spayed Female</td></tr><tr><td>A403564</td><td>Dog</td><td>2013-11-18 17:03:00</td><td>Normal</td><td>Anna</td><td>Spayed Female</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물은 4마리입니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>count</th></tr></thead><tbody><tr><td>4</td></tr></tbody></table></div><p>※ 컬럼 이름(위 예제에서는 count)은 일치하지 않아도 됩니다.</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> count <span class="keyword">FROM</span> ANIMAL_INS;</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/05/732ba08259d5/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV1) 상위 n개 레코드</title>
@@ -32,15 +207,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/880464b8a492/#disqus_thread</comments>
@@ -67,15 +242,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/c726cbcb024b/#disqus_thread</comments>
@@ -102,15 +277,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/c03f569491ea/#disqus_thread</comments>
@@ -137,15 +312,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/9652b0ef8913/#disqus_thread</comments>
@@ -172,15 +347,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/f1af7908a04c/#disqus_thread</comments>
@@ -207,15 +382,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/90061badb708/#disqus_thread</comments>
@@ -242,15 +417,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/04e7bd44c871/#disqus_thread</comments>
@@ -277,15 +452,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/2fe5b8d549c0/#disqus_thread</comments>
@@ -312,15 +487,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/f72876f07d64/#disqus_thread</comments>
@@ -347,15 +522,15 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/7a01cb0d02b9/#disqus_thread</comments>
@@ -382,9 +557,9 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
@@ -419,9 +594,9 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv4/">lv4</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
@@ -456,9 +631,9 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
@@ -491,17 +666,17 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/30/ef36d4eaefde/#disqus_thread</comments>
@@ -528,201 +703,18 @@
       <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
       
       
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
       <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/08/27/fcb225688f00/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 주식가격</title>
-      <link>https://sklubmk.github.io/2021/08/25/752f5e69183a/</link>
-      <guid>https://sklubmk.github.io/2021/08/25/752f5e69183a/</guid>
-      <pubDate>Wed, 25 Aug 2021 11:14:10 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>초 단위로 기록된 주식가격이 담긴 배열 prices가 매개변수로 주어질 때, 가격이 떨어지지 않은 기간은 몇 초인지를 return 하도록 solution 함수를 완성하세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>prices의 각 가격은 1 이상 10,000 이하인 자연수입니다.</li><li>prices의 길이는 2 이상 100,000 이하입니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>prices</th><th>return</th></tr></thead><tbody><tr><td>[1, 2, 3, 2, 3]</td><td>[4, 3, 1, 1, 0]</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><ul><li>1초 시점의 ₩1은 끝까지 가격이 떨어지지 않았습니다.</li><li>2초 시점의 ₩2은 끝까지 가격이 떨어지지 않았습니다.</li><li>3초 시점의 ₩3은 1초뒤에 가격이 떨어집니다. 따라서 1초간 가격이 떨어지지 않은 것으로 봅니다.</li><li>4초 시점의 ₩2은 1초간 가격이 떨어지지 않았습니다.</li><li>5초 시점의 ₩3은 0초간 가격이 떨어지지 않았습니다.</li></ul><p>※ 공지 - 2019년 2월 28일 지문이 리뉴얼되었습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">prices</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(prices)</span><br><span class="line">    answer = [<span class="number">0</span>]*n</span><br><span class="line">    <span class="keyword">for</span> i, price <span class="keyword">in</span> <span class="built_in">enumerate</span>(prices):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, n):</span><br><span class="line">            answer[i] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> price &gt; prices[j]:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>문제 설명이 애매한 편이지만, 차분하게 풀면 <script type="math/tex">O(N^2)</script>의 효율성 만으로도 풀 수 있는 문제다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/25/752f5e69183a/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 직업군 추천하기</title>
-      <link>https://sklubmk.github.io/2021/08/23/f67283951ab9/</link>
-      <guid>https://sklubmk.github.io/2021/08/23/f67283951ab9/</guid>
-      <pubDate>Mon, 23 Aug 2021 10:31:01 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>개발자가 사용하는 언어와 <code>언어 선호도</code>를 입력하면 그에 맞는 직업군을 추천해주는 알고리즘을 개발하려고 합니다.</p><p>아래 표는 5개 직업군 별로 많이 사용하는 5개 언어에 <code>직업군 언어 점수</code>를 부여한 표입니다.</p><div class="table-container"><table><thead><tr><th>점수</th><th>SI</th><th>CONTENTS</th><th>HARDWARE</th><th>PORTAL</th><th>GAME</th></tr></thead><tbody><tr><td>5</td><td>JAVA</td><td>JAVASCRIPT</td><td>C</td><td>JAVA</td><td>C++</td></tr><tr><td>4</td><td>JAVASCRIPT</td><td>JAVA</td><td>C++</td><td>JAVASCRIPT</td><td>C#</td></tr><tr><td>3</td><td>SQL</td><td>PYTHON</td><td>PYTHON</td><td>PYTHON</td><td>JAVASCRIPT</td></tr><tr><td>2</td><td>PYTHON</td><td>SQL</td><td>JAVA</td><td>KOTLIN</td><td>C</td></tr><tr><td>1</td><td>C#</td><td>C++</td><td>JAVASCRIPT</td><td>PHP</td><td>JAVA</td></tr></tbody></table></div><p>예를 들면, SQL의 SI <code>직업군 언어 점수</code>는 3점이지만 CONTENTS <code>직업군 언어 점수</code>는 2점입니다. SQL의 HARDWARE, PORTAL, GAME <code>직업군 언어 점수</code>는 0점입니다.</p><p><code>직업군 언어 점수</code>를 정리한 문자열 배열 <code>table</code>, 개발자가 사용하는 언어를 담은 문자열 배열 <code>languages</code>, <code>언어 선호도</code>를 담은 정수 배열 <code>preference</code>가 매개변수로 주어집니다. 개발자가 사용하는 언어의 <code>언어 선호도</code> x <code>직업군 언어 점수</code>의 총합이 가장 높은 직업군을 return 하도록 solution 함수를 완성해주세요. 총합이 같은 직업군이 여러 개일 경우, 이름이 사전 순으로 가장 빠른 직업군을 return 해주세요.</p><hr><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li><code>table</code>의 길이 = 5<ul><li><code>table</code>의 원소는 <code>&quot;직업군 5점언어 4점언어 3점언어 2점언어 1점언어&quot;</code>형식의 문자열입니다. <code>직업군</code>, <code>5점언어</code>, <code>4언어</code>, <code>3점언어</code>, <code>2점언어</code>, <code>1점언어</code>는 하나의 공백으로 구분되어 있습니다.</li><li><code>table</code>은 모든 테스트케이스에서 동일합니다.</li></ul></li><li>1 ≤ <code>languages</code>의 길이 ≤ 9<ul><li><code>languages</code>의 원소는 <code>&quot;JAVA&quot;</code>, <code>&quot;JAVASCRIPT&quot;</code>, <code>&quot;C&quot;</code>, <code>&quot;C++&quot;</code> ,<code>&quot;C#&quot;</code> , <code>&quot;SQL&quot;</code>, <code>&quot;PYTHON&quot;</code>, <code>&quot;KOTLIN&quot;</code>, <code>&quot;PHP&quot;</code> 중 한 개 이상으로 이루어져 있습니다.</li><li><code>languages</code>의 원소는 중복되지 않습니다.</li></ul></li><li><code>preference</code>의 길이 = <code>languages</code>의 길이<ul><li>1 ≤ <code>preference</code>의 원소 ≤ 10</li></ul></li><li><code>preference</code>의 i번째 원소는 <code>languages</code>의 i번째 원소의 <code>언어 선호도</code>입니다.</li><li>return 할 문자열은 <code>&quot;SI&quot;</code>, <code>&quot;CONTENTS&quot;</code>, <code>&quot;HARDWARE&quot;</code>, <code>&quot;PORTAL&quot;</code>, <code>&quot;GAME&quot;</code> 중 하나입니다.</li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>table</th><th>languages</th><th>preference</th><th>result</th></tr></thead><tbody><tr><td><code>[&quot;SI JAVA JAVASCRIPT SQL PYTHON C#&quot;, &quot;CONTENTS JAVASCRIPT JAVA PYTHON SQL C++&quot;, &quot;HARDWARE C C++ PYTHON JAVA JAVASCRIPT&quot;, &quot;PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP&quot;, &quot;GAME C++ C# JAVASCRIPT C JAVA&quot;]</code></td><td><code>[&quot;PYTHON&quot;, &quot;C++&quot;, &quot;SQL&quot;]</code></td><td>[7, 5, 5]</td><td><code>&quot;HARDWARE&quot;</code></td></tr><tr><td><code>[&quot;SI JAVA JAVASCRIPT SQL PYTHON C#&quot;, &quot;CONTENTS JAVASCRIPT JAVA PYTHON SQL C++&quot;, &quot;HARDWARE C C++ PYTHON JAVA JAVASCRIPT&quot;, &quot;PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP&quot;, &quot;GAME C++ C# JAVASCRIPT C JAVA&quot;]</code></td><td><code>[&quot;JAVA&quot;, &quot;JAVASCRIPT&quot;]</code></td><td>[7, 5]</td><td><code>&quot;PORTAL&quot;</code></td></tr></tbody></table></div><hr><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1</p><p>각 직업군 별로 점수를 계산해보면 아래와 같습니다.</p><p>아래 사진은 <code>개발자 언어 선호도</code> 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/9a711ad6-4a8e-4028-b100-0280a4e3a7dd/tc1_preference.PNG" alt="tc1_preference.PNG"></p><p>아래 사진은 개발자가 선호하는 언어의 <code>직업군 언어 점수</code>를 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/1ef5a88a-8109-415d-b611-a6320410b1e1/tc1_score.PNG" alt="tc1_score.PNG"></p><p>따라서 점수 총합이 41로 가장 높은 <code>&quot;HARDWARE&quot;</code>를 return 해야 합니다.</p><p>입출력 예 #2</p><p>각 직업군 별로 점수를 계산해보면 아래와 같습니다.</p><p>아래 사진은 <code>개발자 언어 선호도</code> 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/e49d818b-938a-4cc3-8d2a-27783f2e1af5/tc2_preference.PNG" alt="tc2_preference.PNG"></p><p>아래 사진은 개발자가 선호하는 언어의 <code>직업군 언어 점수</code>를 나타낸 표입니다.</p><p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/0624156e-e1d3-4299-b554-470815322a79/tc2_score.PNG" alt="tc2_score.PNG">\<br>점수 총합이 55로 가장 높은 직업군은 “SI” 와 “PORTAL”입니다.\<br>따라서 사전 순으로 먼저 오는 <code>&quot;PORTAL&quot;</code>을 return 해야 합니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq <span class="keyword">as</span> h</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">table, languages, preference</span>):</span></span><br><span class="line">    answer = []</span><br><span class="line">    table_hash = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(table)):</span><br><span class="line">        t_s = table[i].split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        table_hash[t_s[<span class="number">0</span>]] = &#123;t:<span class="number">5</span>-i <span class="keyword">for</span> i,t <span class="keyword">in</span> <span class="built_in">enumerate</span>(t_s[<span class="number">1</span>:])&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> table_hash.items():</span><br><span class="line">        h.heappush(answer,(-<span class="built_in">sum</span>(t[<span class="number">1</span>][l]*preference[l_i] <span class="keyword">for</span> l_i, l <span class="keyword">in</span> <span class="built_in">enumerate</span>(languages) <span class="keyword">if</span> l <span class="keyword">in</span> t[<span class="number">1</span>]),t[<span class="number">0</span>]))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> h.heappop(answer)[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/23/f67283951ab9/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV3) 디스크 컨트롤러</title>
-      <link>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/</link>
-      <guid>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/</guid>
-      <pubDate>Sun, 22 Aug 2021 07:51:32 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>하드디스크는 한 번에 하나의 작업만 수행할 수 있습니다. 디스크 컨트롤러를 구현하는 방법은 여러 가지가 있습니다. 가장 일반적인 방법은 요청이 들어온 순서대로 처리하는 것입니다.</p><p>예를들어</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 0ms 시점에 3ms가 소요되는 A작업 요청</span><br><span class="line">- 1ms 시점에 9ms가 소요되는 B작업 요청</span><br><span class="line">- 2ms 시점에 6ms가 소요되는 C작업 요청</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>와 같은 요청이 들어왔습니다. 이를 그림으로 표현하면 아래와 같습니다.\<br><img src="https://grepp-programmers.s3.amazonaws.com/files/production/b68eb5cec6/38dc6a53-2d21-4c72-90ac-f059729c51d5.png" alt="Screen Shot 2018-09-13 at 6.34.58 PM.png"></p><p>한 번에 하나의 요청만을 수행할 수 있기 때문에 각각의 작업을 요청받은 순서대로 처리하면 다음과 같이 처리 됩니다.\<br><img src="https://grepp-programmers.s3.amazonaws.com/files/production/5e677b4646/90b91fde-cac4-42c1-98b8-8f8431c52dcf.png" alt="Screen Shot 2018-09-13 at 6.38.52 PM.png"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- A: 3ms 시점에 작업 완료 (요청에서 종료까지 : 3ms)</span><br><span class="line">- B: 1ms부터 대기하다가, 3ms 시점에 작업을 시작해서 12ms 시점에 작업 완료(요청에서 종료까지 : 11ms)</span><br><span class="line">- C: 2ms부터 대기하다가, 12ms 시점에 작업을 시작해서 18ms 시점에 작업 완료(요청에서 종료까지 : 16ms)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>이 때 각 작업의 요청부터 종료까지 걸린 시간의 평균은 10ms(= (3 + 11 + 16) / 3)가 됩니다.</p><p>하지만 A → C → B 순서대로 처리하면\<br><img src="https://grepp-programmers.s3.amazonaws.com/files/production/9eb7c5a6f1/a6cff04d-86bb-4b5b-98bf-6359158940ac.png" alt="Screen Shot 2018-09-13 at 6.41.42 PM.png"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- A: 3ms 시점에 작업 완료(요청에서 종료까지 : 3ms)</span><br><span class="line">- C: 2ms부터 대기하다가, 3ms 시점에 작업을 시작해서 9ms 시점에 작업 완료(요청에서 종료까지 : 7ms)</span><br><span class="line">- B: 1ms부터 대기하다가, 9ms 시점에 작업을 시작해서 18ms 시점에 작업 완료(요청에서 종료까지 : 17ms)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>이렇게 A → C → B의 순서로 처리하면 각 작업의 요청부터 종료까지 걸린 시간의 평균은 9ms(= (3 + 7 + 17) / 3)가 됩니다.</p><p>각 작업에 대해 [작업이 요청되는 시점, 작업의 소요시간]을 담은 2차원 배열 jobs가 매개변수로 주어질 때, 작업의 요청부터 종료까지 걸린 시간의 평균을 가장 줄이는 방법으로 처리하면 평균이 얼마가 되는지 return 하도록 solution 함수를 작성해주세요. (단, 소수점 이하의 수는 버립니다)</p><h2 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h2><ul><li>jobs의 길이는 1 이상 500 이하입니다.</li><li>jobs의 각 행은 하나의 작업에 대한 [작업이 요청되는 시점, 작업의 소요시간] 입니다.</li><li>각 작업에 대해 작업이 요청되는 시간은 0 이상 1,000 이하입니다.</li><li>각 작업에 대해 작업의 소요시간은 1 이상 1,000 이하입니다.</li><li>하드디스크가 작업을 수행하고 있지 않을 때에는 먼저 요청이 들어온 작업부터 처리합니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>jobs</th><th>return</th></tr></thead><tbody><tr><td>[[0, 3], [1, 9], [2, 6]]</td><td>9</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>문제에 주어진 예와 같습니다.</p><ul><li>0ms 시점에 3ms 걸리는 작업 요청이 들어옵니다.</li><li>1ms 시점에 9ms 걸리는 작업 요청이 들어옵니다.</li><li>2ms 시점에 6ms 걸리는 작업 요청이 들어옵니다.</li></ul></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq <span class="keyword">as</span> h</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">jobs</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(jobs)</span><br><span class="line">    jobs.sort(key=<span class="keyword">lambda</span> x:x[<span class="number">0</span>]);</span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    time = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> jobs:</span><br><span class="line">        hq = []</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(jobs) <span class="keyword">and</span> jobs[i][<span class="number">0</span>] &lt;= time:</span><br><span class="line">            h.heappush(hq,(jobs[i][<span class="number">1</span>],time-jobs[i][<span class="number">0</span>]+jobs[i][<span class="number">1</span>], i))</span><br><span class="line">            i+=<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(hq) == <span class="number">0</span>:</span><br><span class="line">            time = jobs[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            next_job = h.heappop(hq)</span><br><span class="line">            time += next_job[<span class="number">0</span>]</span><br><span class="line">            answer += next_job[<span class="number">1</span>]</span><br><span class="line">            jobs.pop(next_job[<span class="number">2</span>])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> answer//n</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>현재 시점 기준으로 요청된 작업들 중 가장 수행시간이 짧은 작업을 매번 선택하면 되고, 이는 <code>그리디</code> 처럼 작동한다.</p><p><br/></p><p><code>heap queue</code>를 활용하는 문제인데, 처음에 어떤 값을 넣어야 할지 혼동스러웠다. 결과 값으로 저장해야하는 값(처음 요청된 시간 ~ 요청 종료까지 시간)을 기준으로 <code>heap queue</code>에 담았는데, 이러다보니 작업시간이 짧지만 대기한 시간이 긴 작업들의 우선권이 뒤로 밀려버렸다.</p><p><br/></p><p>이내 수행시간을 기준으로 <code>heap queue</code>에 담아 문제를 푸니 정상적으로 풀이 되었다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/22/3f56f3c9af6f/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV3) 순위</title>
-      <link>https://sklubmk.github.io/2021/08/21/583bf6e35728/</link>
-      <guid>https://sklubmk.github.io/2021/08/21/583bf6e35728/</guid>
-      <pubDate>Sat, 21 Aug 2021 12:57:25 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>n명의 권투선수가 권투 대회에 참여했고 각각 1번부터 n번까지 번호를 받았습니다. 권투 경기는 1대1 방식으로 진행이 되고, 만약 A 선수가 B 선수보다 실력이 좋다면 A 선수는 B 선수를 항상 이깁니다. 심판은 주어진 경기 결과를 가지고 선수들의 순위를 매기려 합니다. 하지만 몇몇 경기 결과를 분실하여 정확하게 순위를 매길 수 없습니다.</p><p>선수의 수 n, 경기 결과를 담은 2차원 배열 results가 매개변수로 주어질 때 정확하게 순위를 매길 수 있는 선수의 수를 return 하도록 solution 함수를 작성해주세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>선수의 수는 1명 이상 100명 이하입니다.</li><li>경기 결과는 1개 이상 4,500개 이하입니다.</li><li>results 배열 각 행 [A, B]는 A 선수가 B 선수를 이겼다는 의미입니다.</li><li>모든 경기 결과에는 모순이 없습니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>n</th><th>results</th><th>return</th></tr></thead><tbody><tr><td>5</td><td>[[4, 3], [4, 2], [3, 2], [1, 2], [2, 5]]</td><td>2</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>2번 선수는 [1, 3, 4] 선수에게 패배했고 5번 선수에게 승리했기 때문에 4위입니다.\<br>5번 선수는 4위인 2번 선수에게 패배했기 때문에 5위입니다.</p><p><a href="http://contest.usaco.org/JAN08.htm">출처</a></p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n, results</span>):</span></span><br><span class="line">    answer = <span class="number">0</span></span><br><span class="line">    wins = [[<span class="number">0</span>]*(n+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> results:</span><br><span class="line">        winner, loser = r</span><br><span class="line">        wins[winner][loser] = <span class="number">1</span></span><br><span class="line">        wins[loser][winner] = -<span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> start <span class="keyword">in</span> <span class="built_in">range</span>(n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> visit <span class="keyword">in</span> <span class="built_in">range</span>(n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> end <span class="keyword">in</span> <span class="built_in">range</span>(n+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> wins[start][end] == <span class="number">0</span> <span class="keyword">and</span> wins[start][visit] == wins[visit][end]:</span><br><span class="line">                    wins[start][end] = wins[start][visit]</span><br><span class="line">                    wins[end][start] = -<span class="number">1</span>*wins[start][visit]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> wins[i].count(<span class="number">0</span>) == <span class="number">2</span>: </span><br><span class="line">            answer+=<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p> <code>1</code>. <code>A</code>가 <code>B</code>를 이겼다<br> <code>2</code>. <code>B</code>가 <code>C</code>를 이겼다<br> <code>3</code>. 따라서 <code>A</code>는 <code>C</code>를 이긴다</p><p>풀이를 위해선 <code>3</code>번의 간접적인 순위를 직접적인 순위관계로 변화시켜야한다.</p><p><br/></p><p>각 <strong>시작</strong>, <strong>방문</strong>, <strong>목적지</strong> 노드를 뜻하는 세 번의 반복문을 수행한다.</p><ol><li>시작 -&gt; 목적지 노드의 순위관계가 정해져 있지 않고,</li><li>시작 -&gt; 방문 노드의 순위 관계가 정해져있고,</li><li>방문 -&gt; 목적지 노드의 순위관계가 2번의 관계와 동일하다면, 이를 1번에 할당한다.</li></ol><p><br/></p><p>위 과정을 거치면 확실히 순위관계를 나타낼 수 있는 항목의 값들은 모두 값이 체워진다. 따라서 이러한 노드의 개수를 반환하면 된다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EA%B7%B8%EB%9E%98%ED%94%84/">그래프</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/21/583bf6e35728/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV3) 입국심사</title>
-      <link>https://sklubmk.github.io/2021/08/20/79376bb85650/</link>
-      <guid>https://sklubmk.github.io/2021/08/20/79376bb85650/</guid>
-      <pubDate>Fri, 20 Aug 2021 14:04:36 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>n명이 입국심사를 위해 줄을 서서 기다리고 있습니다. 각 입국심사대에 있는 심사관마다 심사하는데 걸리는 시간은 다릅니다.</p><p>처음에 모든 심사대는 비어있습니다. 한 심사대에서는 동시에 한 명만 심사를 할 수 있습니다. 가장 앞에 서 있는 사람은 비어 있는 심사대로 가서 심사를 받을 수 있습니다. 하지만 더 빨리 끝나는 심사대가 있으면 기다렸다가 그곳으로 가서 심사를 받을 수도 있습니다.</p><p>모든 사람이 심사를 받는데 걸리는 시간을 최소로 하고 싶습니다.</p><p>입국심사를 기다리는 사람 수 n, 각 심사관이 한 명을 심사하는데 걸리는 시간이 담긴 배열 times가 매개변수로 주어질 때, 모든 사람이 심사를 받는데 걸리는 시간의 최솟값을 return 하도록 solution 함수를 작성해주세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>입국심사를 기다리는 사람은 1명 이상 1,000,000,000명 이하입니다.</li><li>각 심사관이 한 명을 심사하는데 걸리는 시간은 1분 이상 1,000,000,000분 이하입니다.</li><li>심사관은 1명 이상 100,000명 이하입니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>n</th><th>times</th><th>return</th></tr></thead><tbody><tr><td>6</td><td>[7, 10]</td><td>28</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>가장 첫 두 사람은 바로 심사를 받으러 갑니다.</p><p>7분이 되었을 때, 첫 번째 심사대가 비고 3번째 사람이 심사를 받습니다.</p><p>10분이 되었을 때, 두 번째 심사대가 비고 4번째 사람이 심사를 받습니다.</p><p>14분이 되었을 때, 첫 번째 심사대가 비고 5번째 사람이 심사를 받습니다.</p><p>20분이 되었을 때, 두 번째 심사대가 비지만 6번째 사람이 그곳에서 심사를 받지 않고 1분을 더 기다린 후에 첫 번째 심사대에서 심사를 받으면 28분에 모든 사람의 심사가 끝납니다.</p><p><a href="http://hsin.hr/coci/archive/2012_2013/contest3_tasks.pdf">출처</a></p><p>※ 공지 - 2019년 9월 4일 문제에 새로운 테스트 케이스를 추가하였습니다. 도움을 주신 weaver9651 님께 감사드립니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n, times</span>):</span></span><br><span class="line">    answer = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">    left, right = <span class="number">1</span>, n*<span class="built_in">max</span>(times)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">        cur_times= <span class="built_in">sum</span>(mid//t <span class="keyword">for</span> t <span class="keyword">in</span> times)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> cur_times &gt;= n:</span><br><span class="line">            answer = <span class="built_in">min</span>(answer, mid)</span><br><span class="line">            right = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> cur_times &lt; n:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>결과 값은 반드시 <code>times</code>에 포함된 한 값의 <strong>공배수</strong>가 되므로, <code>times</code>내의 값들을 탐색하며 정답을 찾으면 된다. <code>left</code>는 문제 조건의 최소값인 1을, <code>right</code>는 주어진 <code>times</code>의 최대값 x n을 할당한다. 정답은 반드시 이 두 범위 안에 존재하므로, 이분탐색을 활용하여 정답을 구한다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9D%B4%EB%B6%84%ED%83%90%EC%83%89/">이분탐색</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/08/20/79376bb85650/#disqus_thread</comments>
       
     </item>
     
