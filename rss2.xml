@@ -9,8 +9,148 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Wed, 08 Sep 2021 07:26:12 GMT</pubDate>
+    <pubDate>Thu, 09 Sep 2021 13:47:58 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV3) 오랜 기간 보호한 동물(2)</title>
+      <link>https://sklubmk.github.io/2021/09/09/debf24ba53bc/</link>
+      <guid>https://sklubmk.github.io/2021/09/09/debf24ba53bc/</guid>
+      <pubDate>Thu, 09 Sep 2021 13:41:01 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code> 테이블은 동물 보호소에서 입양 보낸 동물의 정보를 담은 테이블입니다. <code>ANIMAL_OUTS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>NAME</code>, <code>SEX_UPON_OUTCOME</code>는 각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부를 나타냅니다. <code>ANIMAL_OUTS</code> 테이블의 <code>ANIMAL_ID</code>는 <code>ANIMAL_INS</code>의 <code>ANIMAL_ID</code>의 외래 키입니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_OUTCOME</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하는 SQL문을 작성해주세요. 이때 결과는 보호 기간이 긴 순으로 조회해야 합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어, <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_OUTS</code> 테이블이 다음과 같다면</p><p><code>ANIMAL_INS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A354597</td><td>Cat</td><td>2014-05-02 12:16:00</td><td>Normal</td><td>Ariel</td><td>Spayed Female</td></tr><tr><td>A362707</td><td>Dog</td><td>2016-01-27 12:27:00</td><td>Sick</td><td>Girly Girl</td><td>Spayed Female</td></tr><tr><td>A370507</td><td>Cat</td><td>2014-10-27 14:43:00</td><td>Normal</td><td>Emily</td><td>Spayed Female</td></tr><tr><td>A414513</td><td>Dog</td><td>2016-06-07 09:17:00</td><td>Normal</td><td>Rocky</td><td>Neutered Male</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>NAME</th><th>SEX_UPON_OUTCOME</th></tr></thead><tbody><tr><td>A354597</td><td>Cat</td><td>2014-06-03 12:30:00</td><td>Ariel</td><td>Spayed Female</td></tr><tr><td>A362707</td><td>Dog</td><td>2017-01-10 10:44:00</td><td>Girly Girl</td><td>Spayed Female</td></tr><tr><td>A370507</td><td>Cat</td><td>2015-08-15 09:24:00</td><td>Emily</td><td>Spayed Female</td></tr></tbody></table></div><p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A362707</td><td>Girly Girl</td></tr><tr><td>A370507</td><td>Emily</td></tr></tbody></table></div><p>※ 입양을 간 동물이 2마리 이상인 경우만 입력으로 주어집니다.</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> A.ANIMAL_ID, A.NAME</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS <span class="keyword">AS</span> A </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ANIMAL_OUTS <span class="keyword">AS</span> B</span><br><span class="line"><span class="keyword">ON</span> A.ANIMAL_ID <span class="operator">=</span> B.ANIMAL_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> DATEDIFF(B.DATETIME,A.DATETIME) <span class="keyword">DESC</span></span><br><span class="line">LIMIT <span class="number">2</span>;</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/09/debf24ba53bc/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV3) 헤비 유저가 소유한 장소</title>
+      <link>https://sklubmk.github.io/2021/09/09/937e1ccf150a/</link>
+      <guid>https://sklubmk.github.io/2021/09/09/937e1ccf150a/</guid>
+      <pubDate>Thu, 09 Sep 2021 13:40:40 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>PLACES</code> 테이블은 공간 임대 서비스에 등록된 공간의 정보를 담은 테이블입니다. <code>PLACES</code> 테이블의 구조는 다음과 같으며 <code>ID</code>, <code>NAME</code>, <code>HOST_ID</code>는 각각 공간의 아이디, 이름, 공간을 소유한 유저의 아이디를 나타냅니다. <code>ID</code>는 기본키입니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th></tr></thead><tbody><tr><td>ID</td><td>INT</td></tr><tr><td>NAME</td><td>VARCHAR</td></tr><tr><td>HOST_ID</td><td>INT</td></tr></tbody></table></div><h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>이 서비스에서는 공간을 둘 이상 등록한 사람을 “헤비 유저”라고 부릅니다. 헤비 유저가 등록한 공간의 정보를 아이디 순으로 조회하는 SQL문을 작성해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어, <code>PLACES</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ID</th><th>NAME</th><th>HOST_ID</th></tr></thead><tbody><tr><td>4431977</td><td>BOUTIQUE STAYS - Somerset Terrace, Pet Friendly</td><td>760849</td></tr><tr><td>5194998</td><td>BOUTIQUE STAYS - Elwood Beaches 3, Pet Friendly</td><td>760849</td></tr><tr><td>16045624</td><td>Urban Jungle in the Heart of Melbourne</td><td>30900122</td></tr><tr><td>17810814</td><td>Stylish Bayside Retreat with a Luscious Garden</td><td>760849</td></tr><tr><td>22740286</td><td>FREE PARKING - The Velvet Lux in Melbourne CBD</td><td>30900122</td></tr><tr><td>22868779</td><td>★ Fresh Fitzroy Pad with City Views! ★</td><td>21058208</td></tr></tbody></table></div><ul><li>760849번 유저는 공간을 3개 등록했으므로 이 유저는 헤비유저입니다.</li><li>30900122번 유저는 공간을 2개 등록했으므로 이 유저는 헤비유저입니다.</li><li>21058208번 유저는 공간을 1개 등록했으므로 이 유저는 헤비유저가 아닙니다.</li></ul><p>따라서 SQL 문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ID</th><th>NAME</th><th>HOST_ID</th></tr></thead><tbody><tr><td>4431977</td><td>BOUTIQUE STAYS - Somerset Terrace, Pet Friendly</td><td>760849</td></tr><tr><td>5194998</td><td>BOUTIQUE STAYS - Elwood Beaches 3, Pet Friendly</td><td>760849</td></tr><tr><td>16045624</td><td>Urban Jungle in the Heart of Melbourne</td><td>30900122</td></tr><tr><td>17810814</td><td>Stylish Bayside Retreat with a Luscious Garden</td><td>760849</td></tr><tr><td>22740286</td><td>FREE PARKING - The Velvet Lux in Melbourne CBD</td><td>30900122</td></tr></tbody></table></div></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ID, NAME, HOST_ID</span><br><span class="line"><span class="keyword">FROM</span> PLACES</span><br><span class="line"><span class="keyword">WHERE</span> HOST_ID <span class="keyword">IN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> HOST_ID</span><br><span class="line">    <span class="keyword">FROM</span> PLACES</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> HOST_ID</span><br><span class="line">    <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(HOST_ID) <span class="operator">&gt;</span> <span class="number">1</span></span><br><span class="line">    )</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ID</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/09/937e1ccf150a/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV3) 오랜 기간 보호한 동물(1)</title>
+      <link>https://sklubmk.github.io/2021/09/09/ab81954e9866/</link>
+      <guid>https://sklubmk.github.io/2021/09/09/ab81954e9866/</guid>
+      <pubDate>Thu, 09 Sep 2021 13:40:18 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code> 테이블은 동물 보호소에서 입양 보낸 동물의 정보를 담은 테이블입니다. <code>ANIMAL_OUTS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>NAME</code>, <code>SEX_UPON_OUTCOME</code>는 각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부를 나타냅니다. <code>ANIMAL_OUTS</code> 테이블의 <code>ANIMAL_ID</code>는 <code>ANIMAL_INS</code>의 <code>ANIMAL_ID</code>의 외래 키입니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_OUTCOME</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>아직 입양을 못 간 동물 중, 가장 오래 보호소에 있었던 동물 3마리의 이름과 보호 시작일을 조회하는 SQL문을 작성해주세요. 이때 결과는 보호 시작일 순으로 조회해야 합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어, <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_OUTS</code> 테이블이 다음과 같다면</p><p><code>ANIMAL_INS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A354597</td><td>Cat</td><td>2014-05-02 12:16:00</td><td>Normal</td><td>Ariel</td><td>Spayed Female</td></tr><tr><td>A373687</td><td>Dog</td><td>2014-03-20 12:31:00</td><td>Normal</td><td>Rosie</td><td>Spayed Female</td></tr><tr><td>A412697</td><td>Dog</td><td>2016-01-03 16:25:00</td><td>Normal</td><td>Jackie</td><td>Neutered Male</td></tr><tr><td>A413789</td><td>Dog</td><td>2016-04-19 13:28:00</td><td>Normal</td><td>Benji</td><td>Spayed Female</td></tr><tr><td>A414198</td><td>Dog</td><td>2015-01-29 15:01:00</td><td>Normal</td><td>Shelly</td><td>Spayed Female</td></tr><tr><td>A368930</td><td>Dog</td><td>2014-06-08 13:20:00</td><td>Normal</td><td></td><td>Spayed Female</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>NAME</th><th>SEX_UPON_OUTCOME</th></tr></thead><tbody><tr><td>A354597</td><td>Cat</td><td>2014-05-02 12:16:00</td><td>Ariel</td><td>Spayed Female</td></tr><tr><td>A373687</td><td>Dog</td><td>2014-03-20 12:31:00</td><td>Rosie</td><td>Spayed Female</td></tr><tr><td>A368930</td><td>Dog</td><td>2014-06-13 15:52:00</td><td></td><td>Spayed Female</td></tr></tbody></table></div><p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>DATETIME</th></tr></thead><tbody><tr><td>Shelly</td><td>2015-01-29 15:01:00</td></tr><tr><td>Jackie</td><td>2016-01-03 16:25:00</td></tr><tr><td>Benji</td><td>2016-04-19 13:28:00</td></tr></tbody></table></div><p>※ 입양을 가지 못한 동물이 3마리 이상인 경우만 입력으로 주어집니다.</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> NAME, DATETIME</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">WHERE</span> ANIMAL_ID <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> ANIMAL_ID <span class="keyword">FROM</span> ANIMAL_OUTS)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> DATETIME</span><br><span class="line">LIMIT <span class="number">3</span>;</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/09/ab81954e9866/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[프로그래머스] (LV3) 있었는데요 없었습니다</title>
+      <link>https://sklubmk.github.io/2021/09/09/3aa14c928f79/</link>
+      <guid>https://sklubmk.github.io/2021/09/09/3aa14c928f79/</guid>
+      <pubDate>Thu, 09 Sep 2021 13:33:56 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code> 테이블은 동물 보호소에서 입양 보낸 동물의 정보를 담은 테이블입니다. <code>ANIMAL_OUTS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>NAME</code>, <code>SEX_UPON_OUTCOME</code>는 각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부를 나타냅니다. <code>ANIMAL_OUTS</code> 테이블의 <code>ANIMAL_ID</code>는 <code>ANIMAL_INS</code>의 <code>ANIMAL_ID</code>의 외래 키입니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_OUTCOME</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>관리자의 실수로 일부 동물의 입양일이 잘못 입력되었습니다. 보호 시작일보다 입양일이 더 빠른 동물의 아이디와 이름을 조회하는 SQL문을 작성해주세요. 이때 결과는 보호 시작일이 빠른 순으로 조회해야합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어, <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_OUTS</code> 테이블이 다음과 같다면</p><p><code>ANIMAL_INS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A350276</td><td>Cat</td><td>2017-08-13 13:50:00</td><td>Normal</td><td>Jewel</td><td>Spayed Female</td></tr><tr><td>A381217</td><td>Dog</td><td>2017-07-08 09:41:00</td><td>Sick</td><td>Cherokee</td><td>Neutered Male</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>NAME</th><th>SEX_UPON_OUTCOME</th></tr></thead><tbody><tr><td>A350276</td><td>Cat</td><td>2018-01-28 17:51:00</td><td>Jewel</td><td>Spayed Female</td></tr><tr><td>A381217</td><td>Dog</td><td>2017-06-09 18:51:00</td><td>Cherokee</td><td>Neutered Male</td></tr></tbody></table></div><p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A381217</td><td>Cherokee</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> A.ANIMAL_ID, A.NAME</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS A, ANIMAL_OUTS B</span><br><span class="line"><span class="keyword">WHERE</span> A.ANIMAL_ID <span class="operator">=</span> B.ANIMAL_ID </span><br><span class="line"><span class="keyword">and</span> A.DATETIME <span class="operator">&gt;</span> B.DATETIME</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> A.DATETIME;</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/09/3aa14c928f79/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV3) 없어진 기록 찾기</title>
@@ -38,9 +178,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/08/60644356a94f/#disqus_thread</comments>
@@ -495,9 +635,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/880464b8a492/#disqus_thread</comments>
@@ -530,9 +670,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/c726cbcb024b/#disqus_thread</comments>
@@ -565,152 +705,12 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/04/c03f569491ea/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 어린 동물 찾기</title>
-      <link>https://sklubmk.github.io/2021/09/04/9652b0ef8913/</link>
-      <guid>https://sklubmk.github.io/2021/09/04/9652b0ef8913/</guid>
-      <pubDate>Sat, 04 Sep 2021 07:20:46 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 중 젊은 동물<a href="https://programmers.co.kr/learn/courses/30/lessons/59037#fn1">1</a>의 아이디와 이름을 조회하는 SQL 문을 작성해주세요. 이때 결과는 아이디 순으로 조회해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A365172</td><td>Dog</td><td>2014-08-26 12:53:00</td><td>Normal</td><td>Diablo</td><td>Neutered Male</td></tr><tr><td>A367012</td><td>Dog</td><td>2015-09-16 09:06:00</td><td>Sick</td><td>Miller</td><td>Neutered Male</td></tr><tr><td>A365302</td><td>Dog</td><td>2017-01-08 16:34:00</td><td>Aged</td><td>Minnie</td><td>Spayed Female</td></tr><tr><td>A381217</td><td>Dog</td><td>2017-07-08 09:41:00</td><td>Sick</td><td>Cherokee</td><td>Neutered Male</td></tr></tbody></table></div><p>이 중 젊은 동물은 Diablo, Miller, Cherokee입니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A365172</td><td>Diablo</td></tr><tr><td>A367012</td><td>Miller</td></tr><tr><td>A381217</td><td>Cherokee</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p><hr><ol><li><code>INTAKE_CONDITION</code>이 Aged가 아닌 경우를 뜻함 <a href="https://programmers.co.kr/learn/courses/30/lessons/59037#fnref1">↩</a></li></ol></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID, NAME <span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">WHERE</span> INTAKE_CONDITION <span class="operator">!=</span> <span class="string">&#x27;Aged&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_ID <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/04/9652b0ef8913/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 아픈 동물 찾기</title>
-      <link>https://sklubmk.github.io/2021/09/04/f1af7908a04c/</link>
-      <guid>https://sklubmk.github.io/2021/09/04/f1af7908a04c/</guid>
-      <pubDate>Sat, 04 Sep 2021 07:20:39 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 중 아픈 동물<a href="https://programmers.co.kr/learn/courses/30/lessons/59036#fn1">1</a>의 아이디와 이름을 조회하는 SQL 문을 작성해주세요. 이때 결과는 아이디 순으로 조회해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A365172</td><td>Dog</td><td>2014-08-26 12:53:00</td><td>Normal</td><td>Diablo</td><td>Neutered Male</td></tr><tr><td>A367012</td><td>Dog</td><td>2015-09-16 09:06:00</td><td>Sick</td><td>Miller</td><td>Neutered Male</td></tr><tr><td>A365302</td><td>Dog</td><td>2017-01-08 16:34:00</td><td>Aged</td><td>Minnie</td><td>Spayed Female</td></tr><tr><td>A381217</td><td>Dog</td><td>2017-07-08 09:41:00</td><td>Sick</td><td>Cherokee</td><td>Neutered Male</td></tr></tbody></table></div><p>이 중 아픈 동물은 Miller와 Cherokee입니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A367012</td><td>Miller</td></tr><tr><td>A381217</td><td>Cherokee</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p><hr><ol><li><code>INTAKE_CONDITION</code>이 Sick 인 경우를 뜻함 <a href="https://programmers.co.kr/learn/courses/30/lessons/59036#fnref1">↩</a></li></ol></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID, NAME </span><br><span class="line">    <span class="keyword">FROM</span> ANIMAL_INS </span><br><span class="line">    <span class="keyword">WHERE</span> INTAKE_CONDITION <span class="operator">=</span> <span class="string">&#x27;Sick&#x27;</span> </span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_ID <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/04/f1af7908a04c/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 이름이 있는 동물의 아이디</title>
-      <link>https://sklubmk.github.io/2021/09/04/90061badb708/</link>
-      <guid>https://sklubmk.github.io/2021/09/04/90061badb708/</guid>
-      <pubDate>Sat, 04 Sep 2021 07:20:31 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 중, 이름이 있는 동물의 ID를 조회하는 SQL 문을 작성해주세요. 단, ID는 오름차순 정렬되어야 합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A434523</td><td>Cat</td><td>2015-11-20 14:18:00</td><td>Normal</td><td>NULL</td><td>Spayed Female</td></tr><tr><td>A562649</td><td>Dog</td><td>2014-03-20 18:06:00</td><td>Sick</td><td>NULL</td><td>Spayed Female</td></tr><tr><td>A524634</td><td>Dog</td><td>2015-01-02 18:54:00</td><td>Normal</td><td>*Belle</td><td>Intact Female</td></tr><tr><td>A465637</td><td>Dog</td><td>2017-06-04 08:17:00</td><td>Injured</td><td>*Commander</td><td>Neutered Male</td></tr></tbody></table></div><p>이름이 있는 동물의 ID는 A524634와 A465637입니다. 따라서 SQL을 실행하면 다음과 같이 출력되어야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th></tr></thead><tbody><tr><td>A465637</td></tr><tr><td>A524634</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID <span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">WHERE</span> NAME <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/04/90061badb708/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 역순 정렬하기</title>
-      <link>https://sklubmk.github.io/2021/09/04/04e7bd44c871/</link>
-      <guid>https://sklubmk.github.io/2021/09/04/04e7bd44c871/</guid>
-      <pubDate>Sat, 04 Sep 2021 07:20:23 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 모든 동물의 이름과 보호 시작일을 조회하는 SQL문을 작성해주세요. 이때 결과는 ANIMAL_ID 역순으로 보여주세요. SQL을 실행하면 다음과 같이 출력되어야 합니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>DATETIME</th></tr></thead><tbody><tr><td>Rocky</td><td>2016-06-07 09:17:00</td></tr><tr><td>Shelly</td><td>2015-01-29 15:01:00</td></tr><tr><td>Benji</td><td>2016-04-19 13:28:00</td></tr><tr><td>Jackie</td><td>2016-01-03 16:25:00</td></tr><tr><td>*Sam</td><td>2016-03-13 11:17:00</td></tr></tbody></table></div><p>..이하 생략</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> NAME, DATETIME <span class="keyword">FROM</span> ANIMAL_INS <span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_ID <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/04/04e7bd44c871/#disqus_thread</comments>
       
     </item>
     
