@@ -9,8 +9,43 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Thu, 09 Sep 2021 13:47:58 GMT</pubDate>
+    <pubDate>Mon, 13 Sep 2021 09:25:15 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV4) 우유와 요거트가 담긴 장바구니</title>
+      <link>https://sklubmk.github.io/2021/09/13/d68b44c0f977/</link>
+      <guid>https://sklubmk.github.io/2021/09/13/d68b44c0f977/</guid>
+      <pubDate>Mon, 13 Sep 2021 09:23:24 GMT</pubDate>
+      
+      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p><code>CART_PRODUCTS</code> 테이블은 장바구니에 담긴 상품 정보를 담은 테이블입니다. <code>CART_PRODUCTS</code> 테이블의 구조는 다음과 같으며, <code>ID</code>, <code>CART_ID</code>, <code>NAME</code>, <code>PRICE</code>는 각각 테이블의 아이디, 장바구니의 아이디, 상품 종류, 가격을 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th></tr></thead><tbody><tr><td>ID</td><td>INT</td></tr><tr><td>CART_ID</td><td>INT</td></tr><tr><td>NAME</td><td>VARCHAR</td></tr><tr><td>PRICE</td><td>INT</td></tr></tbody></table></div><p>데이터 분석 팀에서는 우유(Milk)와 요거트(Yogurt)를 동시에 구입한 장바구니가 있는지 알아보려 합니다. 우유와 요거트를 동시에 구입한 장바구니의 아이디를 조회하는 SQL 문을 작성해주세요. 이때 결과는 장바구니의 아이디 순으로 나와야 합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>CART_PRODUCTS</code> 테이블이 다음과 같다면</p><p><code>CART_PRODUCTS</code> 테이블</p><div class="table-container"><table><thead><tr><th>ID</th><th>CART_ID</th><th>NAME</th><th>PRICE</th></tr></thead><tbody><tr><td>1630</td><td>83</td><td>Cereal</td><td>3980</td></tr><tr><td>1631</td><td>83</td><td>Multipurpose Supply</td><td>3900</td></tr><tr><td>5491</td><td>286</td><td>Yogurt</td><td>2980</td></tr><tr><td>5504</td><td>286</td><td>Milk</td><td>1880</td></tr><tr><td>8435</td><td>448</td><td>Milk</td><td>1880</td></tr><tr><td>8437</td><td>448</td><td>Yogurt</td><td>2980</td></tr><tr><td>8438</td><td>448</td><td>Tea</td><td>11000</td></tr><tr><td>20236</td><td>1034</td><td>Yogurt</td><td>2980</td></tr><tr><td>20237</td><td>1034</td><td>Butter</td><td>4890</td></tr></tbody></table></div><ul><li>83번 장바구니에는 Milk와 Yogurt가 모두 없습니다.</li><li>286번 장바구니에는 Milk와 Yogurt가 모두 있습니다.</li><li>448번 장바구니에는 Milk와 Yogurt가 모두 있습니다.</li><li>1034번 장바구니에는 Milk는 없고 Yogurt만 있습니다.</li></ul><p>따라서 SQL 문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>CART_ID</th></tr></thead><tbody><tr><td>286</td></tr><tr><td>448</td></tr></tbody></table></div></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CART_ID</span><br><span class="line"><span class="keyword">FROM</span> CART_PRODUCTS</span><br><span class="line"><span class="keyword">WHERE</span> NAME <span class="keyword">IN</span> (<span class="string">&#x27;Yogurt&#x27;</span>,<span class="string">&#x27;Milk&#x27;</span>)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> CART_ID</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> NAME) <span class="operator">&gt;=</span> <span class="number">2</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> CART_ID</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv4/">lv4</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv4/">lv4</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/13/d68b44c0f977/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV3) 오랜 기간 보호한 동물(2)</title>
@@ -676,41 +711,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/09/04/c726cbcb024b/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV1) 동물의 아이디와 이름</title>
-      <link>https://sklubmk.github.io/2021/09/04/c03f569491ea/</link>
-      <guid>https://sklubmk.github.io/2021/09/04/c03f569491ea/</guid>
-      <pubDate>Sat, 04 Sep 2021 07:20:53 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 모든 동물의 아이디와 이름을 ANIMAL_ID순으로 조회하는 SQL문을 작성해주세요. SQL을 실행하면 다음과 같이 출력되어야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A349996</td><td>Sugar</td></tr><tr><td>A350276</td><td>Jewel</td></tr><tr><td>A350375</td><td>Meo</td></tr><tr><td>A352555</td><td>Harley</td></tr><tr><td>A352713</td><td>Gia</td></tr><tr><td>A352872</td><td>Peanutbutter</td></tr><tr><td>A353259</td><td>Bj</td></tr></tbody></table></div><p>((이하 생략))</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID, NAME <span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_ID <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/">lv1</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv1/">lv1</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/04/c03f569491ea/#disqus_thread</comments>
       
     </item>
     
