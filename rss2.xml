@@ -9,8 +9,43 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Sun, 19 Sep 2021 08:53:38 GMT</pubDate>
+    <pubDate>Mon, 20 Sep 2021 08:23:25 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 행렬의 곱셈</title>
+      <link>https://sklubmk.github.io/2021/09/20/ea59c7a6fc4e/</link>
+      <guid>https://sklubmk.github.io/2021/09/20/ea59c7a6fc4e/</guid>
+      <pubDate>Mon, 20 Sep 2021 08:21:43 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>2차원 행렬 arr1과 arr2를 입력받아, arr1에 arr2를 곱한 결과를 반환하는 함수, solution을 완성해주세요.</p><h2 id="제한-조건"><a href="#제한-조건" class="headerlink" title="제한 조건"></a>제한 조건</h2><ul><li>행렬 arr1, arr2의 행과 열의 길이는 2 이상 100 이하입니다.</li><li>행렬 arr1, arr2의 원소는 -10 이상 20 이하인 자연수입니다.</li><li>곱할 수 있는 배열만 주어집니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>arr1</th><th>arr2</th><th>return</th></tr></thead><tbody><tr><td>[[1, 4], [3, 2], [4, 1]]</td><td>[[3, 3], [3, 3]]</td><td>[[15, 15], [15, 15], [15, 15]]</td></tr><tr><td>[[2, 3, 2], [4, 2, 4], [3, 1, 4]]</td><td>[[5, 4, 3], [2, 4, 1], [3, 1, 1]]</td><td>[[22, 22, 11], [36, 28, 18], [29, 20, 14]]</td></tr></tbody></table></div></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">arr1, arr2</span>):</span></span><br><span class="line">    answer = []</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> arr1:</span><br><span class="line">        arr_ = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr2[<span class="number">0</span>])):</span><br><span class="line">            cnt = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> b_i, b <span class="keyword">in</span> <span class="built_in">enumerate</span>(a):</span><br><span class="line">                cnt += b*arr2[b_i][c]</span><br><span class="line">            arr_.append(cnt)</span><br><span class="line">        answer.append(arr_)</span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/20/ea59c7a6fc4e/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV2) 최솟값 만들기</title>
@@ -38,9 +73,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/19/95369e2b9a26/#disqus_thread</comments>
@@ -73,9 +108,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
       
@@ -110,9 +145,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/17/7f954d7943aa/#disqus_thread</comments>
@@ -250,9 +285,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/09/debf24ba53bc/#disqus_thread</comments>
@@ -285,9 +320,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/09/937e1ccf150a/#disqus_thread</comments>
@@ -320,9 +355,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/09/ab81954e9866/#disqus_thread</comments>
@@ -355,9 +390,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/09/3aa14c928f79/#disqus_thread</comments>
@@ -390,9 +425,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/08/60644356a94f/#disqus_thread</comments>
@@ -425,9 +460,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
       
@@ -462,9 +497,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/ef58ca870eac/#disqus_thread</comments>
@@ -497,9 +532,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/82a19701f8a5/#disqus_thread</comments>
@@ -532,9 +567,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/877022a6b5f8/#disqus_thread</comments>
@@ -567,9 +602,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/98e51e219f55/#disqus_thread</comments>
@@ -602,9 +637,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/#disqus_thread</comments>
@@ -637,9 +672,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/20173998a6d6/#disqus_thread</comments>
@@ -672,47 +707,12 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/05/be545cde0359/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 중복 제거하기</title>
-      <link>https://sklubmk.github.io/2021/09/05/adacccc1e3c5/</link>
-      <guid>https://sklubmk.github.io/2021/09/05/adacccc1e3c5/</guid>
-      <pubDate>Sun, 05 Sep 2021 07:53:49 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물의 이름은 몇 개인지 조회하는 SQL 문을 작성해주세요. 이때 이름이 NULL인 경우는 집계하지 않으며 중복되는 이름은 하나로 칩니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A562649</td><td>Dog</td><td>2014-03-20 18:06:00</td><td>Sick</td><td>NULL</td><td>Spayed Female</td></tr><tr><td>A412626</td><td>Dog</td><td>2016-03-13 11:17:00</td><td>Normal</td><td>*Sam</td><td>Neutered Male</td></tr><tr><td>A563492</td><td>Dog</td><td>2014-10-24 14:45:00</td><td>Normal</td><td>*Sam</td><td>Neutered Male</td></tr><tr><td>A513956</td><td>Dog</td><td>2017-06-14 11:54:00</td><td>Normal</td><td>*Sweetie</td><td>Spayed Female</td></tr></tbody></table></div><p>보호소에 들어온 동물의 이름은 NULL(없음), <code>*Sam</code>, <code>*Sam</code>, <code>*Sweetie</code>입니다. 이 중 NULL과 중복되는 이름을 고려하면, 보호소에 들어온 동물 이름의 수는 2입니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>count</th></tr></thead><tbody><tr><td>2</td></tr></tbody></table></div><p>※ 컬럼 이름(위 예제에서는 count)은 일치하지 않아도 됩니다.</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> NAME) <span class="keyword">AS</span> count</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">WHERE</span> NAME <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/05/adacccc1e3c5/#disqus_thread</comments>
       
     </item>
     
