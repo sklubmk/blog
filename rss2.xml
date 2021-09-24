@@ -9,8 +9,45 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Wed, 22 Sep 2021 09:33:17 GMT</pubDate>
+    <pubDate>Fri, 24 Sep 2021 03:36:06 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV3) 이중우선순위큐</title>
+      <link>https://sklubmk.github.io/2021/09/24/a254528274a1/</link>
+      <guid>https://sklubmk.github.io/2021/09/24/a254528274a1/</guid>
+      <pubDate>Fri, 24 Sep 2021 03:32:24 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>이중 우선순위 큐는 다음 연산을 할 수 있는 자료구조를 말합니다.</p><div class="table-container"><table><thead><tr><th>명령어</th><th>수신 탑(높이)</th></tr></thead><tbody><tr><td>I 숫자</td><td>큐에 주어진 숫자를 삽입합니다.</td></tr><tr><td>D 1</td><td>큐에서 최댓값을 삭제합니다.</td></tr><tr><td>D -1</td><td>큐에서 최솟값을 삭제합니다.</td></tr></tbody></table></div><p>이중 우선순위 큐가 할 연산 operations가 매개변수로 주어질 때, 모든 연산을 처리한 후 큐가 비어있으면 [0,0] 비어있지 않으면 [최댓값, 최솟값]을 return 하도록 solution 함수를 구현해주세요.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>operations는 길이가 1 이상 1,000,000 이하인 문자열 배열입니다.</li><li>operations의 원소는 큐가 수행할 연산을 나타냅니다.<ul><li>원소는 “명령어 데이터” 형식으로 주어집니다.- 최댓값/최솟값을 삭제하는 연산에서 최댓값/최솟값이 둘 이상인 경우, 하나만 삭제합니다.</li></ul></li><li>빈 큐에 데이터를 삭제하라는 연산이 주어질 경우, 해당 연산은 무시합니다.</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>operations</th><th>return</th></tr></thead><tbody><tr><td>[“I 16”,”D 1”]</td><td>[0,0]</td></tr><tr><td>[“I 7”,”I 5”,”I -5”,”D -1”]</td><td>[7,5]</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>16을 삽입 후 최댓값을 삭제합니다. 비어있으므로 [0,0]을 반환합니다.\<br>7,5,-5를 삽입 후 최솟값을 삭제합니다. 최대값 7, 최소값 5를 반환합니다.</p><p><a href="http://icpckorea.org/problems/2013/onlineset.pdf">출처</a></p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq <span class="keyword">as</span> h</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">operations</span>):</span></span><br><span class="line">    heap_queue = []</span><br><span class="line">    <span class="keyword">for</span> oper <span class="keyword">in</span> operations:</span><br><span class="line">        order, value = oper.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> order == <span class="string">&#x27;D&#x27;</span> <span class="keyword">and</span> value == <span class="string">&#x27;-1&#x27;</span> <span class="keyword">and</span> <span class="built_in">len</span>(heap_queue) != <span class="number">0</span>:</span><br><span class="line">            h.heappop(heap_queue)</span><br><span class="line">        <span class="keyword">elif</span> order == <span class="string">&#x27;D&#x27;</span> <span class="keyword">and</span> value == <span class="string">&#x27;1&#x27;</span> <span class="keyword">and</span> <span class="built_in">len</span>(heap_queue) != <span class="number">0</span>:</span><br><span class="line">            heap_queue.pop(heap_queue.index(h.nlargest(<span class="number">1</span>,heap_queue)[<span class="number">0</span>]))</span><br><span class="line">        <span class="keyword">elif</span> order == <span class="string">&#x27;I&#x27;</span>:</span><br><span class="line">            h.heappush(heap_queue,<span class="built_in">int</span>(value))</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(heap_queue) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span>,<span class="number">0</span>] </span><br><span class="line">    <span class="keyword">else</span>: </span><br><span class="line">        <span class="keyword">return</span> [h.nlargest(<span class="number">1</span>,heap_queue)[<span class="number">0</span>],h.heappop(heap_queue)]</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><h2 id="풀이-TIPS"><a href="#풀이-TIPS" class="headerlink" title="풀이 TIPS"></a>풀이 TIPS</h2><ul><li>python <code>heapq</code> 라이브러리의 <code>nlargest</code> 함수는 queue 안의 가장 큰 <code>n</code>개의 숫자로 이루어진 배열을 반환한다. 이를 이용해 손쉽게 <code>heapq</code>의 <code>max</code> 값을 구할 수 있다.</li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/24/a254528274a1/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV2) 게임 맵 최단거리</title>
@@ -678,41 +715,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/09/05/98e51e219f55/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 고양이와 개는 몇 마리 있을까</title>
-      <link>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/</link>
-      <guid>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/</guid>
-      <pubDate>Sun, 05 Sep 2021 07:54:23 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><blockquote><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 중 고양이와 개가 각각 몇 마리인지 조회하는 SQL문을 작성해주세요. 이때 고양이를 개보다 먼저 조회해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A373219</td><td>Cat</td><td>2014-07-29 11:43:00</td><td>Normal</td><td>Ella</td><td>Spayed Female</td></tr><tr><td>A377750</td><td>Dog</td><td>2017-10-25 17:17:00</td><td>Normal</td><td>Lucy</td><td>Spayed Female</td></tr><tr><td>A354540</td><td>Cat</td><td>2014-12-11 11:48:00</td><td>Normal</td><td>Tux</td><td>Neutered Male</td></tr></tbody></table></div><p>고양이는 2마리, 개는 1마리 들어왔습니다. 따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_TYPE</th><th>count</th></tr></thead><tbody><tr><td>Cat</td><td>2</td></tr><tr><td>Dog</td><td>1</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_TYPE, <span class="built_in">COUNT</span>(ANIMAL_TYPE)</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> ANIMAL_TYPE</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_TYPE</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/05/f8ed377f4f47/#disqus_thread</comments>
       
     </item>
     
