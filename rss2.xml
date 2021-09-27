@@ -9,8 +9,45 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Sun, 26 Sep 2021 11:22:17 GMT</pubDate>
+    <pubDate>Mon, 27 Sep 2021 02:55:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 땅따먹기</title>
+      <link>https://sklubmk.github.io/2021/09/27/40cdd52ef911/</link>
+      <guid>https://sklubmk.github.io/2021/09/27/40cdd52ef911/</guid>
+      <pubDate>Mon, 27 Sep 2021 02:37:26 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>땅따먹기 게임을 하려고 합니다. 땅따먹기 게임의 땅(land)은 총 N행 4열로 이루어져 있고, 모든 칸에는 점수가 쓰여 있습니다. 1행부터 땅을 밟으며 한 행씩 내려올 때, 각 행의 4칸 중 한 칸만 밟으면서 내려와야 합니다. 단, 땅따먹기 게임에는 한 행씩 내려올 때, 같은 열을 연속해서 밟을 수 없는 특수 규칙이 있습니다.</p><p>예를 들면,</p><p>| 1 | 2 | 3 | 5 |</p><p>| 5 | 6 | 7 | 8 |</p><p>| 4 | 3 | 2 | 1 |</p><p>로 땅이 주어졌다면, 1행에서 네번째 칸 (5)를 밟았으면, 2행의 네번째 칸 (8)은 밟을 수 없습니다.</p><p>마지막 행까지 모두 내려왔을 때, 얻을 수 있는 점수의 최대값을 return하는 solution 함수를 완성해 주세요. 위 예의 경우, 1행의 네번째 칸 (5), 2행의 세번째 칸 (7), 3행의 첫번째 칸 (4) 땅을 밟아 16점이 최고점이 되므로 16을 return 하면 됩니다.</p><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>행의 개수 N : 100,000 이하의 자연수</li><li>열의 개수는 4개이고, 땅(land)은 2차원 배열로 주어집니다.</li><li>점수 : 100 이하의 자연수</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>land</th><th>answer</th></tr></thead><tbody><tr><td>[[1,2,3,5],[5,6,7,8],[4,3,2,1]]</td><td>16</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1\<br>문제의 예시와 같습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">land</span>):</span></span><br><span class="line">    dp = [[<span class="number">0</span>]*<span class="number">4</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(land))]</span><br><span class="line">    dp[<span class="number">0</span>] = land[<span class="number">0</span>][:]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(land)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">            dp[i][j] = <span class="built_in">max</span>(k <span class="keyword">for</span> k_i, k <span class="keyword">in</span> <span class="built_in">enumerate</span>(dp[i-<span class="number">1</span>]) <span class="keyword">if</span> k_i != j) + land[i][j]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(dp[-<span class="number">1</span>])</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><h2 id="풀이-TIPS"><a href="#풀이-TIPS" class="headerlink" title="풀이 TIPS"></a>풀이 TIPS</h2><ul><li><code>Brute Force</code> 방식의 풀이는 <script type="math/tex">O(4^N)</script>의 효율성, 즉 최대 <script type="math/tex">4^{1000000}</script>의 효율성을 보인다.</li><li><code>Dinamic Programming</code>을 적용하면 쉽게 풀이할 수 있다.</li><li>2차원 배열인 <code>DP[i][j]</code>는, <code>DP[i-1]</code> 중 가장 큰 값에 <code>land[i][j]</code> 값을 포함한 결과다.<ul><li>그러나 이때, 문제 조건대로 <code>DP[i-1]</code>의 가장 큰 값의 인덱스가 <code>j</code>와 같아서는 안된다. </li><li>따라서 정확히는 <code>DP[i-1]</code> 배열에서 <code>j</code>번째 값을 제외한 결과 중 가장 큰 값을 사용한다.</li></ul></li><li><code>DP</code> 풀이 방식을 통해 <script type="math/tex">O(N)</script>의 효율성으로 문제를 풀 수 있다.</li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/DP/">DP</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/27/40cdd52ef911/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV2) N개의 최소공배수</title>
@@ -680,41 +717,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/09/05/82a19701f8a5/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 루시와 엘라 찾기</title>
-      <link>https://sklubmk.github.io/2021/09/05/877022a6b5f8/</link>
-      <guid>https://sklubmk.github.io/2021/09/05/877022a6b5f8/</guid>
-      <pubDate>Sun, 05 Sep 2021 08:06:12 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>동물 보호소에 들어온 동물 중 이름이 Lucy, Ella, Pickle, Rogan, Sabrina, Mitty인 동물의 아이디와 이름, 성별 및 중성화 여부를 조회하는 SQL 문을 작성해주세요.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>이때 결과는 아이디 순으로 조회해주세요. 예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A373219</td><td>Cat</td><td>2014-07-29 11:43:00</td><td>Normal</td><td>Ella</td><td>Spayed Female</td></tr><tr><td>A377750</td><td>Dog</td><td>2017-10-25 17:17:00</td><td>Normal</td><td>Lucy</td><td>Spayed Female</td></tr><tr><td>A353259</td><td>Dog</td><td>2016-05-08 12:57:00</td><td>Injured</td><td>Bj</td><td>Neutered Male</td></tr><tr><td>A354540</td><td>Cat</td><td>2014-12-11 11:48:00</td><td>Normal</td><td>Tux</td><td>Neutered Male</td></tr><tr><td>A354597</td><td>Cat</td><td>2014-05-02 12:16:00</td><td>Normal</td><td>Ariel</td><td>Spayed Female</td></tr></tbody></table></div><p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A373219</td><td>Ella</td><td>Spayed Female</td></tr><tr><td>A377750</td><td>Lucy</td><td>Spayed Female</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID, NAME, SEX_UPON_INTAKE</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">WHERE</span> NAME <span class="keyword">IN</span> (<span class="string">&#x27;Lucy&#x27;</span>,<span class="string">&#x27;Ella&#x27;</span>,<span class="string">&#x27;Pickle&#x27;</span>,<span class="string">&#x27;Rogan&#x27;</span>,<span class="string">&#x27;Sabrina&#x27;</span>,<span class="string">&#x27;Mitty&#x27;</span>)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ANIMAL_ID</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/05/877022a6b5f8/#disqus_thread</comments>
       
     </item>
     
