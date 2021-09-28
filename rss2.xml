@@ -9,8 +9,45 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Mon, 27 Sep 2021 02:55:02 GMT</pubDate>
+    <pubDate>Tue, 28 Sep 2021 09:53:55 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 최소직사각형</title>
+      <link>https://sklubmk.github.io/2021/09/28/d939dfb298e6/</link>
+      <guid>https://sklubmk.github.io/2021/09/28/d939dfb298e6/</guid>
+      <pubDate>Tue, 28 Sep 2021 09:50:29 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>명함 지갑을 만드는 회사에서 지갑의 크기를 정하려고 합니다. 다양한 모양과 크기의 명함들을 모두 수납할 수 있으면서, 작아서 들고 다니기 편한 지갑을 만들어야 합니다. 이러한 요건을 만족하는 지갑을 만들기 위해 디자인팀은 모든 명함의 가로 길이와 세로 길이를 조사했습니다.</p><p>아래 표는 4가지 명함의 가로 길이와 세로 길이를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>명함 번호</th><th>가로 길이</th><th>세로 길이</th></tr></thead><tbody><tr><td>1</td><td>60</td><td>50</td></tr><tr><td>2</td><td>30</td><td>70</td></tr><tr><td>3</td><td>60</td><td>30</td></tr><tr><td>4</td><td>80</td><td>40</td></tr></tbody></table></div><p>가장 긴 가로 길이와 세로 길이가 각각 80, 70이기 때문에 80(가로) x 70(세로) 크기의 지갑을 만들면 모든 명함들을 수납할 수 있습니다. 하지만 2번 명함을 가로로 눕혀 수납한다면 80(가로) x 50(세로) 크기의 지갑으로 모든 명함들을 수납할 수 있습니다. 이때의 지갑 크기는 4000(=80 x 50)입니다.</p><p>모든 명함의 가로 길이와 세로 길이를 나타내는 2차원 배열 sizes가 매개변수로 주어집니다. 모든 명함을 수납할 수 있는 가장 작은 지갑을 만들 때, 지갑의 크기를 return 하도록 solution 함수를 완성해주세요.</p><hr><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>sizes의 길이는 1 이상 10,000 이하입니다.<ul><li>sizes의 원소는 [w, h] 형식입니다.</li><li>w는 명함의 가로 길이를 나타냅니다.</li><li>h는 명함의 세로 길이를 나타냅니다.</li><li>w와 h는 1 이상 1,000 이하인 자연수입니다.</li></ul></li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>sizes</th><th>result</th></tr></thead><tbody><tr><td>[[60, 50], [30, 70], [60, 30], [80, 40]]</td><td>4000</td></tr><tr><td>[[10, 7], [12, 3], [8, 15], [14, 7], [5, 15]]</td><td>120</td></tr><tr><td>[[14, 4], [19, 6], [6, 16], [18, 7], [7, 11]]</td><td>133</td></tr></tbody></table></div><hr><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1\<br>문제 예시와 같습니다.</p><p>입출력 예 #2\<br>명함들을 적절히 회전시켜 겹쳤을 때, 3번째 명함(가로: 8, 세로: 15)이 다른 모든 명함보다 크기가 큽니다. 따라서 지갑의 크기는 3번째 명함의 크기와 같으며, 120(=8 x 15)을 return 합니다.</p><p>입출력 예 #3\<br>명함들을 적절히 회전시켜 겹쳤을 때, 모든 명함을 포함하는 가장 작은 지갑의 크기는 133(=19 x 7)입니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">sizes</span>):</span></span><br><span class="line">    result = [<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> sizes:</span><br><span class="line">        result = [ <span class="built_in">max</span>(result[<span class="number">0</span>],<span class="built_in">min</span>(s)), <span class="built_in">max</span>(result[<span class="number">1</span>],<span class="built_in">max</span>(s)) ]</span><br><span class="line">    <span class="keyword">return</span> result[<span class="number">0</span>] * result[<span class="number">1</span>]</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/09/28/d939dfb298e6/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV2) 땅따먹기</title>
@@ -682,41 +719,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/09/05/ef58ca870eac/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 이름에 el이 들어가는 동물 찾기</title>
-      <link>https://sklubmk.github.io/2021/09/05/82a19701f8a5/</link>
-      <guid>https://sklubmk.github.io/2021/09/05/82a19701f8a5/</guid>
-      <pubDate>Sun, 05 Sep 2021 08:06:23 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>보호소에 돌아가신 할머니가 기르던 개를 찾는 사람이 찾아왔습니다. 이 사람이 말하길 할머니가 기르던 개는 이름에 ‘el’이 들어간다고 합니다. 동물 보호소에 들어온 동물 이름 중, 이름에 “EL”이 들어가는 개의 아이디와 이름을 조회하는 SQL문을 작성해주세요. 이때 결과는 이름 순으로 조회해주세요. 단, 이름의 대소문자는 구분하지 않습니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어 <code>ANIMAL_INS</code> 테이블이 다음과 같다면</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A355753</td><td>Dog</td><td>2015-09-10 13:14:00</td><td>Normal</td><td>Elijah</td><td>Neutered Male</td></tr><tr><td>A352872</td><td>Dog</td><td>2015-07-09 17:51:00</td><td>Aged</td><td>Peanutbutter</td><td>Neutered Male</td></tr><tr><td>A353259</td><td>Dog</td><td>2016-05-08 12:57:00</td><td>Injured</td><td>Bj</td><td>Neutered Male</td></tr><tr><td>A373219</td><td>Cat</td><td>2014-07-29 11:43:00</td><td>Normal</td><td>Ella</td><td>Spayed Female</td></tr><tr><td>A382192</td><td>Dog</td><td>2015-03-13 13:14:00</td><td>Normal</td><td>Maxwell 2</td><td>Intact Male</td></tr></tbody></table></div><ul><li>이름에 ‘el’이 들어가는 동물은 Elijah, Ella, Maxwell 2입니다.</li><li>이 중, 개는 Elijah, Maxwell 2입니다.</li></ul><p>따라서 SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A355753</td><td>Elijah</td></tr><tr><td>A382192</td><td>Maxwell 2</td></tr></tbody></table></div><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ANIMAL_ID, NAME</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS</span><br><span class="line"><span class="keyword">WHERE</span> NAME <span class="keyword">LIKE</span> <span class="string">&#x27;%el%&#x27;</span> <span class="keyword">and</span> ANIMAL_TYPE <span class="operator">=</span> <span class="string">&#x27;Dog&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> NAME</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/05/82a19701f8a5/#disqus_thread</comments>
       
     </item>
     
