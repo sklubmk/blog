@@ -9,8 +9,43 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Thu, 30 Sep 2021 14:15:18 GMT</pubDate>
+    <pubDate>Fri, 01 Oct 2021 09:54:24 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 다음 큰 숫자</title>
+      <link>https://sklubmk.github.io/2021/10/01/e8b7c05185e2/</link>
+      <guid>https://sklubmk.github.io/2021/10/01/e8b7c05185e2/</guid>
+      <pubDate>Fri, 01 Oct 2021 09:53:07 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>자연수 n이 주어졌을 때, n의 다음 큰 숫자는 다음과 같이 정의 합니다.</p><ul><li>조건 1. n의 다음 큰 숫자는 n보다 큰 자연수 입니다.</li><li>조건 2. n의 다음 큰 숫자와 n은 2진수로 변환했을 때 1의 갯수가 같습니다.</li><li>조건 3. n의 다음 큰 숫자는 조건 1, 2를 만족하는 수 중 가장 작은 수 입니다.</li></ul><p>예를 들어서 78(1001110)의 다음 큰 숫자는 83(1010011)입니다.</p><p>자연수 n이 매개변수로 주어질 때, n의 다음 큰 숫자를 return 하는 solution 함수를 완성해주세요.</p><h2 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h2><ul><li>n은 1,000,000 이하의 자연수 입니다.</li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>n</th><th>result</th></tr></thead><tbody><tr><td>78</td><td>83</td></tr><tr><td>15</td><td>23</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예#1\<br>문제 예시와 같습니다.\<br>입출력 예#2\<br>15(1111)의 다음 큰 숫자는 23(10111)입니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n</span>):</span></span><br><span class="line">    k = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">bin</span>(n)[<span class="number">2</span>:].count(<span class="string">&#x27;1&#x27;</span>) != <span class="built_in">bin</span>(k)[<span class="number">2</span>:].count(<span class="string">&#x27;1&#x27;</span>):</span><br><span class="line">        k +=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> k</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/10/01/e8b7c05185e2/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV2) 최댓값과 최솟값</title>
@@ -184,9 +219,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/24/a254528274a1/#disqus_thread</comments>
@@ -682,43 +717,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/09/08/60644356a94f/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 복서 정렬하기</title>
-      <link>https://sklubmk.github.io/2021/09/06/62bfc11a1271/</link>
-      <guid>https://sklubmk.github.io/2021/09/06/62bfc11a1271/</guid>
-      <pubDate>Mon, 06 Sep 2021 09:55:26 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>복서 선수들의 몸무게 weights와, 복서 선수들의 전적을 나타내는 head2head가 매개변수로 주어집니다. 복서 선수들의 번호를 다음과 같은 순서로 정렬한 후 return 하도록 solution 함수를 완성해주세요.</p><ol><li>전체 승률이 높은 복서의 번호가 앞쪽으로 갑니다. 아직 다른 복서랑 붙어본 적이 없는 복서의 승률은 0%로 취급합니다.</li><li>승률이 동일한 복서의 번호들 중에서는 자신보다 몸무게가 무거운 복서를 이긴 횟수가 많은 복서의 번호가 앞쪽으로 갑니다.</li><li>자신보다 무거운 복서를 이긴 횟수까지 동일한 복서의 번호들 중에서는 자기 몸무게가 무거운 복서의 번호가 앞쪽으로 갑니다.</li><li>자기 몸무게까지 동일한 복서의 번호들 중에서는 작은 번호가 앞쪽으로 갑니다.</li></ol><hr><h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul><li>weights의 길이는 2 이상 1,000 이하입니다.<ul><li>weights의 모든 값은 45 이상 150 이하의 정수입니다.</li><li><code>weights[i]</code> 는 i+1번 복서의 몸무게(kg)를 의미합니다.</li></ul></li><li>head2head의 길이는 weights의 길이와 같습니다.<ul><li>head2head의 모든 문자열은 길이가 weights의 길이와 동일하며, ‘N’, ‘W’, ‘L’로 이루어진 문자열입니다.</li><li><code>head2head[i]</code> 는 i+1번 복서의 전적을 의미하며, <code>head2head[i][j]</code>는 i+1번 복서와 j+1번 복서의 매치 결과를 의미합니다.<ul><li>‘N’ (None)은 두 복서가 아직 붙어본 적이 없음을 의미합니다.</li><li>‘W’ (Win)는 i+1번 복서가 j+1번 복서를 이겼음을 의미합니다.</li><li>‘L’ (Lose)는 i+1번 복사가 j+1번 복서에게 졌음을 의미합니다.</li></ul></li><li>임의의 i에 대해서 <code>head2head[i][i]</code> 는 항상 ‘N’입니다. 자기 자신과 싸울 수는 없기 때문입니다.</li><li>임의의 i, j에 대해서 <code>head2head[i][j]</code> = ‘W’ 이면, <code>head2head[j][i]</code> = ‘L’입니다.</li><li>임의의 i, j에 대해서 <code>head2head[i][j]</code> = ‘L’ 이면, <code>head2head[j][i]</code> = ‘W’입니다.</li><li>임의의 i, j에 대해서 <code>head2head[i][j]</code> = ‘N’ 이면, <code>head2head[j][i]</code> = ‘N’입니다.</li></ul></li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>weights</th><th>head2head</th><th>result</th></tr></thead><tbody><tr><td><code>[50,82,75,120]</code></td><td><code>[&quot;NLWL&quot;,&quot;WNLL&quot;,&quot;LWNW&quot;,&quot;WWLN&quot;]</code></td><td><code>[3,4,1,2]</code></td></tr><tr><td><code>[145,92,86]</code></td><td><code>[&quot;NLW&quot;,&quot;WNL&quot;,&quot;LWN&quot;]</code></td><td><code>[2,3,1]</code></td></tr><tr><td><code>[60,70,60]</code></td><td><code>[&quot;NNN&quot;,&quot;NNN&quot;,&quot;NNN&quot;]</code></td><td><code>[2,1,3]</code></td></tr></tbody></table></div><hr><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1</p><ul><li>다음은 선수들의 정보를 나타낸 표입니다.</li></ul><div class="table-container"><table><thead><tr><th>선수 번호</th><th>vs 1번</th><th>vs 2번</th><th>vs 3번</th><th>vs 4번</th><th>승률</th><th>자기보다 무거운 복서를 이긴 횟수</th><th>몸무게</th></tr></thead><tbody><tr><td>1번</td><td>-</td><td>패배</td><td>승리</td><td>패배</td><td>33.33%</td><td>1회</td><td>50kg</td></tr><tr><td>2번</td><td>승리</td><td>-</td><td>패배</td><td>패배</td><td>33.33%</td><td>0회</td><td>82kg</td></tr><tr><td>3번</td><td>패배</td><td>승리</td><td>-</td><td>승리</td><td>66.66%</td><td>2회</td><td>75kg</td></tr><tr><td>4번</td><td>승리</td><td>승리</td><td>패배</td><td>-</td><td>66.66%</td><td>0회</td><td>120kg</td></tr></tbody></table></div><ul><li>본문에 서술된 우선순위를 따라 <code>[3,4,1,2]</code> 를 return 합니다.</li></ul><p>입출력 예 #2</p><ul><li>다음은 선수들의 정보를 나타낸 표입니다.</li></ul><div class="table-container"><table><thead><tr><th>선수 번호</th><th>vs 1번</th><th>vs 2번</th><th>vs 3번</th><th>승률</th><th>자기보다 무거운 복서를 이긴 횟수</th><th>몸무게</th></tr></thead><tbody><tr><td>1번</td><td>-</td><td>패배</td><td>승리</td><td>50%</td><td>0회</td><td>145kg</td></tr><tr><td>2번</td><td>승리</td><td>-</td><td>패배</td><td>50%</td><td>1회</td><td>92kg</td></tr><tr><td>3번</td><td>패배</td><td>승리</td><td>-</td><td>50%</td><td>1회</td><td>86kg</td></tr></tbody></table></div><ul><li>본문에 서술된 우선순위를 따라 <code>[2,3,1]</code> 을 return 합니다.</li></ul><p>입출력 예 #3</p><ul><li>다음은 선수들의 정보를 나타낸 표입니다.</li></ul><div class="table-container"><table><thead><tr><th>선수 번호</th><th>vs 1번</th><th>vs 2번</th><th>vs 3번</th><th>승률</th><th>자기보다 무거운 복서를 이긴 횟수</th><th>몸무게</th></tr></thead><tbody><tr><td>1번</td><td>-</td><td>-</td><td>-</td><td>0% (무전적)</td><td>0회</td><td>60kg</td></tr><tr><td>2번</td><td>-</td><td>-</td><td>-</td><td>0% (무전적)</td><td>0회</td><td>70kg</td></tr><tr><td>3번</td><td>-</td><td>-</td><td>-</td><td>0% (무전적)</td><td>0회</td><td>60kg</td></tr></tbody></table></div><ul><li>본문에 서술된 우선순위를 따라 <code>[2,1,3]</code> 을 return 합니다.</li></ul></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">weights, head2head</span>):</span></span><br><span class="line">    answer = []</span><br><span class="line">    <span class="keyword">for</span> i,h <span class="keyword">in</span> <span class="built_in">enumerate</span>(head2head):</span><br><span class="line">        total = <span class="built_in">len</span>(h)</span><br><span class="line">        win = [<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(h)):</span><br><span class="line">            <span class="keyword">if</span> h[j] == <span class="string">&#x27;N&#x27;</span>: total-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> h[j] == <span class="string">&#x27;W&#x27;</span>: </span><br><span class="line">                win[<span class="number">0</span>]+=<span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> weights[i] &lt; weights[j]: win[<span class="number">1</span>]+=<span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        win_ratio = win[<span class="number">0</span>]/total <span class="keyword">if</span> total != <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        answer.append((win_ratio,win[<span class="number">1</span>],weights[i],-i))</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(weights)+<span class="number">1</span>),key=<span class="keyword">lambda</span> x:answer[x-<span class="number">1</span>],reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><ul><li><p>파이썬에서 튜플로 이루어진 리스트를 정렬하면, <strong>튜플</strong>의 첫 값부터 마지막 값까지 차례대로 비교해 나아가는 원리를 이용한다.</p></li><li><p>문제에서 요구한 비교 조건들을 차례대로 튜플에 담고 이를 거꾸로 정렬하여 인덱스 값을 반환한다.</p></li></ul>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/06/62bfc11a1271/#disqus_thread</comments>
       
     </item>
     
