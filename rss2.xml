@@ -9,8 +9,43 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Tue, 05 Oct 2021 14:01:10 GMT</pubDate>
+    <pubDate>Wed, 06 Oct 2021 13:23:28 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[프로그래머스] (LV2) 점프와 순간 이동</title>
+      <link>https://sklubmk.github.io/2021/10/06/10fe4cc0cf7c/</link>
+      <guid>https://sklubmk.github.io/2021/10/06/10fe4cc0cf7c/</guid>
+      <pubDate>Wed, 06 Oct 2021 12:43:12 GMT</pubDate>
+      
+      <description>&lt;p&gt;Python3&lt;br&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p>OO 연구소는 한 번에 K 칸을 앞으로 점프하거나, (현재까지 온 거리) x 2 에 해당하는 위치로 순간이동을 할 수 있는 특수한 기능을 가진 아이언 슈트를 개발하여 판매하고 있습니다. 이 아이언 슈트는 건전지로 작동되는데, 순간이동을 하면 건전지 사용량이 줄지 않지만, 앞으로 K 칸을 점프하면 K 만큼의 건전지 사용량이 듭니다. 그러므로 아이언 슈트를 착용하고 이동할 때는 순간 이동을 하는 것이 더 효율적입니다. 아이언 슈트 구매자는 아이언 슈트를 착용하고 거리가 N 만큼 떨어져 있는 장소로 가려고 합니다. 단, 건전지 사용량을 줄이기 위해 점프로 이동하는 것은 최소로 하려고 합니다. 아이언 슈트 구매자가 이동하려는 거리 N이 주어졌을 때, 사용해야 하는 건전지 사용량의 최솟값을 return하는 solution 함수를 만들어 주세요.</p><p>예를 들어 거리가 5만큼 떨어져 있는 장소로 가려고 합니다.\<br>아이언 슈트를 입고 거리가 5만큼 떨어져 있는 장소로 갈 수 있는 경우의 수는 여러 가지입니다.</p><ul><li>처음 위치 0 에서 5 칸을 앞으로 점프하면 바로 도착하지만, 건전지 사용량이 5 만큼 듭니다.</li><li>처음 위치 0 에서 2 칸을 앞으로 점프한 다음 순간이동 하면 (현재까지 온 거리 : 2) x 2에 해당하는 위치로 이동할 수 있으므로 위치 4로 이동합니다. 이때 1 칸을 앞으로 점프하면 도착하므로 건전지 사용량이 3 만큼 듭니다.</li><li>처음 위치 0 에서 1 칸을 앞으로 점프한 다음 순간이동 하면 (현재까지 온 거리 : 1) x 2에 해당하는 위치로 이동할 수 있으므로 위치 2로 이동됩니다. 이때 다시 순간이동 하면 (현재까지 온 거리 : 2) x 2 만큼 이동할 수 있으므로 위치 4로 이동합니다. 이때 1 칸을 앞으로 점프하면 도착하므로 건전지 사용량이 2 만큼 듭니다.</li></ul><p>위의 3가지 경우 거리가 5만큼 떨어져 있는 장소로 가기 위해서 3번째 경우가 건전지 사용량이 가장 적으므로 답은 2가 됩니다.</p><h2 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h2><ul><li>숫자 N: 1 이상 10억 이하의 자연수</li><li>숫자 K: 1 이상의 자연수</li></ul><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>N</th><th>result</th></tr></thead><tbody><tr><td>5</td><td>2</td></tr><tr><td>6</td><td>2</td></tr><tr><td>5000</td><td>5</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1\<br>위의 예시와 같습니다.</p><p>입출력 예 #2\<br>처음 위치 0 에서 1 칸을 앞으로 점프한 다음 순간이동 하면 (현재까지 온 거리 : 1) x 2에 해당하는 위치로 이동할 수 있으므로 위치 2로 이동합니다. 이때 1 칸을 앞으로 점프하면 위치3으로 이동합니다. 이때 다시 순간이동 하면 (현재까지 온 거리 : 3) x 2 이동할 수 있으므로 위치 6에 도착합니다. 이 경우가 건전지 사용량이 가장 적으므로 2를 반환해주면 됩니다.</p><p>입출력 예 #3\<br>위와 같은 방식으로 합니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bin</span>(n)[<span class="number">2</span>:].count(<span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p><h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr><p>처음 생각해낸 풀이 방법은 <code>n</code>에서 <code>0</code>까지 역으로 값을 줄여나가며 계산하는 방법이었다. 짝수가 되면 반으로 줄이고, 홀수가 되면 <code>1</code>씩 값을 줄이며 <code>count</code>를 늘려나갔다. 그러나 해당 방법은 10억이하의 데이터를 만났을 때 효율성이 좋지 않았다.</p><p>원리 자체는 <code>2</code>로 나눌 수 있을때 나누기, 나눌 수 없을때 값을 <code>1</code> 줄이고 계산에 더하기다. 즉, 풀이 자체가 <code>2</code>의 배수와 관련이 있다. 그리고 잠깐 생각해보면, 문제에서 언급하는 점프는 <code>bit</code>의 <code>shift</code>에 해당하는 개념인 것을 알 수 있다. 한 번의 점프 후, 다음 점프를 할 수 없는 상황일 때 <code>1</code>의 <code>bit</code>값을 남긴다.</p><p>이 과정을 반복하면 점프가 불가능한 상황에서만 <code>1</code>을 남긴 값은 <code>2</code>진법으로 표현한 <code>bit</code>값과 동일한 결과가 된다.</p><p>따라서 주어진 <code>n</code>의 <code>2진법</code> 값에서 <code>1</code>의 개수가 문제의 정답이 된다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/10/06/10fe4cc0cf7c/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[프로그래머스] (LV3) 전력망을 둘로 나누기</title>
@@ -40,9 +75,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</category>
       
       
       <comments>https://sklubmk.github.io/2021/10/05/f63928905c8e/#disqus_thread</comments>
@@ -360,9 +395,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
       
-      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
-      
       <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</category>
       
       
       <comments>https://sklubmk.github.io/2021/09/24/a254528274a1/#disqus_thread</comments>
@@ -683,41 +718,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/09/13/d68b44c0f977/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV3) 오랜 기간 보호한 동물(2)</title>
-      <link>https://sklubmk.github.io/2021/09/09/debf24ba53bc/</link>
-      <guid>https://sklubmk.github.io/2021/09/09/debf24ba53bc/</guid>
-      <pubDate>Thu, 09 Sep 2021 13:41:01 GMT</pubDate>
-      
-      <description>&lt;p&gt;MySQL&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>MySQL<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr><p><code>ANIMAL_INS</code> 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. <code>ANIMAL_INS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>INTAKE_CONDITION</code>, <code>NAME</code>, <code>SEX_UPON_INTAKE</code>는 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부를 나타냅니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>INTAKE_CONDITION</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_INTAKE</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code> 테이블은 동물 보호소에서 입양 보낸 동물의 정보를 담은 테이블입니다. <code>ANIMAL_OUTS</code> 테이블 구조는 다음과 같으며, <code>ANIMAL_ID</code>, <code>ANIMAL_TYPE</code>, <code>DATETIME</code>, <code>NAME</code>, <code>SEX_UPON_OUTCOME</code>는 각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부를 나타냅니다. <code>ANIMAL_OUTS</code> 테이블의 <code>ANIMAL_ID</code>는 <code>ANIMAL_INS</code>의 <code>ANIMAL_ID</code>의 외래 키입니다.</p><div class="table-container"><table><thead><tr><th>NAME</th><th>TYPE</th><th>NULLABLE</th></tr></thead><tbody><tr><td>ANIMAL_ID</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>ANIMAL_TYPE</td><td>VARCHAR(N)</td><td>FALSE</td></tr><tr><td>DATETIME</td><td>DATETIME</td><td>FALSE</td></tr><tr><td>NAME</td><td>VARCHAR(N)</td><td>TRUE</td></tr><tr><td>SEX_UPON_OUTCOME</td><td>VARCHAR(N)</td><td>FALSE</td></tr></tbody></table></div><p>입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하는 SQL문을 작성해주세요. 이때 결과는 보호 기간이 긴 순으로 조회해야 합니다.</p><h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><p>예를 들어, <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_OUTS</code> 테이블이 다음과 같다면</p><p><code>ANIMAL_INS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>INTAKE_CONDITION</th><th>NAME</th><th>SEX_UPON_INTAKE</th></tr></thead><tbody><tr><td>A354597</td><td>Cat</td><td>2014-05-02 12:16:00</td><td>Normal</td><td>Ariel</td><td>Spayed Female</td></tr><tr><td>A362707</td><td>Dog</td><td>2016-01-27 12:27:00</td><td>Sick</td><td>Girly Girl</td><td>Spayed Female</td></tr><tr><td>A370507</td><td>Cat</td><td>2014-10-27 14:43:00</td><td>Normal</td><td>Emily</td><td>Spayed Female</td></tr><tr><td>A414513</td><td>Dog</td><td>2016-06-07 09:17:00</td><td>Normal</td><td>Rocky</td><td>Neutered Male</td></tr></tbody></table></div><p><code>ANIMAL_OUTS</code></p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>ANIMAL_TYPE</th><th>DATETIME</th><th>NAME</th><th>SEX_UPON_OUTCOME</th></tr></thead><tbody><tr><td>A354597</td><td>Cat</td><td>2014-06-03 12:30:00</td><td>Ariel</td><td>Spayed Female</td></tr><tr><td>A362707</td><td>Dog</td><td>2017-01-10 10:44:00</td><td>Girly Girl</td><td>Spayed Female</td></tr><tr><td>A370507</td><td>Cat</td><td>2015-08-15 09:24:00</td><td>Emily</td><td>Spayed Female</td></tr></tbody></table></div><p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p><div class="table-container"><table><thead><tr><th>ANIMAL_ID</th><th>NAME</th></tr></thead><tbody><tr><td>A362707</td><td>Girly Girl</td></tr><tr><td>A370507</td><td>Emily</td></tr></tbody></table></div><p>※ 입양을 간 동물이 2마리 이상인 경우만 입력으로 주어집니다.</p><hr><p>본 문제는 <a href="https://www.kaggle.com/aaronschlegel/austin-animal-center-shelter-intakes-and-outcomes">Kaggle의 “Austin Animal Center Shelter Intakes and Outcomes”</a>에서 제공하는 데이터를 사용하였으며 <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL</a>의 적용을 받습니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> A.ANIMAL_ID, A.NAME</span><br><span class="line"><span class="keyword">FROM</span> ANIMAL_INS <span class="keyword">AS</span> A </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ANIMAL_OUTS <span class="keyword">AS</span> B</span><br><span class="line"><span class="keyword">ON</span> A.ANIMAL_ID <span class="operator">=</span> B.ANIMAL_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> DATEDIFF(B.DATETIME,A.DATETIME) <span class="keyword">DESC</span></span><br><span class="line">LIMIT <span class="number">2</span>;</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/">lv3</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/MySQL/">MySQL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv3/">lv3</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/09/09/debf24ba53bc/#disqus_thread</comments>
       
     </item>
     
