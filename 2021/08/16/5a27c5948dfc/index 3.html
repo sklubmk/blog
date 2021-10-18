@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[프로그래머스] (LV2) 상호 평가 - JK&#039;s Devlog</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#37485D"><meta name="application-name" content="JK&#039;s Devlog"><meta name="msapplication-TileImage" content="/img/favicon1.svg"><meta name="msapplication-TileColor" content="#37485D"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JK&#039;s Devlog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/favicon1.svg"><meta name="description" content="상호 평가Python3"><meta property="og:type" content="blog"><meta property="og:title" content="[프로그래머스] (LV2) 상호 평가"><meta property="og:url" content="https://sklubmk.github.io/2021/08/16/5a27c5948dfc/"><meta property="og:site_name" content="JK&#039;s Devlog"><meta property="og:description" content="상호 평가Python3"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://sklubmk.github.io/img/programmers.jpeg"><meta property="article:published_time" content="2021-08-15T16:19:45.000Z"><meta property="article:modified_time" content="2021-08-18T15:00:18.189Z"><meta property="article:author" content="Jinki Kim"><meta property="article:tag" content="알고리즘"><meta property="article:tag" content="TIL"><meta property="article:tag" content="프로그래머스"><meta property="article:tag" content="파이썬"><meta property="article:tag" content="위클리챌린지"><meta property="article:tag" content="lv2"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/programmers.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://sklubmk.github.io/2021/08/16/5a27c5948dfc/"},"headline":"[프로그래머스] (LV2) 상호 평가","image":[],"datePublished":"2021-08-15T16:19:45.000Z","dateModified":"2021-08-18T15:00:18.189Z","author":{"@type":"Person","name":"Jinki Kim"},"publisher":{"@type":"Organization","name":"JK's Devlog","logo":{"@type":"ImageObject","url":{"light":"/img/logo.svg","dark":"/img/logo-dark.svg"}}},"description":"상호 평가Python3"}</script><link rel="canonical" href="https://sklubmk.github.io/2021/08/16/5a27c5948dfc/"><link rel="icon" href="/img/favicon1.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-1JGK6ME831" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-1JGK6ME831');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="JK's Devlog" type="application/rss+xml">
+</head><body class="is-2-column"><script type="text/javascript" src="/js/night.js"></script><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/img/logo.svg" alt="JK&#039;s Devlog" height="28"><img class="logo-img-dark" src="/img/logo-dark.svg" alt="JK&#039;s Devlog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><span id="night-icon-color" style="color: #f0c420"><i class="fas fa-moon" id="night-icon"></i></span></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/programmers.jpeg" alt="[프로그래머스] (LV2) 상호 평가"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">2021, 8월 16일, 월요일 오전 1:19</span><span class="level-item"><a class="link-muted" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span> / </span><a class="link-muted" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><span> / </span><a class="link-muted" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</a></span><span class="level-item">8분안에 읽기 (약 1189 단어)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>회 방문</span></div></div><h1 class="title is-3 is-size-4-mobile">[프로그래머스] (LV2) 상호 평가</h1><div class="content pb-5"><h1 id="상호-평가"><a href="#상호-평가" class="headerlink" title="상호 평가"></a>상호 평가</h1><p>Python3</p>
+<span id="more"></span>
+<p><br></p>
+<blockquote>
+<h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><hr>
+<p>대학 교수인 당신은, 상호평가를 통하여 학생들이 제출한 과제물에 학점을 부여하려고 합니다. 아래는 0번부터 4번까지 번호가 매겨진 5명의 학생들이 자신과 다른 학생의 과제를 평가한 점수표입니다.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No.</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>0</td>
+<td><del>100</del></td>
+<td>90</td>
+<td>98</td>
+<td>88</td>
+<td>65</td>
+</tr>
+<tr>
+<td>1</td>
+<td>50</td>
+<td><del>45</del></td>
+<td>99</td>
+<td>85</td>
+<td>77</td>
+</tr>
+<tr>
+<td>2</td>
+<td>47</td>
+<td>88</td>
+<td>95</td>
+<td>80</td>
+<td>67</td>
+</tr>
+<tr>
+<td>3</td>
+<td>61</td>
+<td>57</td>
+<td>100</td>
+<td>80</td>
+<td>65</td>
+</tr>
+<tr>
+<td>4</td>
+<td>24</td>
+<td>90</td>
+<td>94</td>
+<td>75</td>
+<td>65</td>
+</tr>
+<tr>
+<td>평균</td>
+<td>45.5</td>
+<td>81.25</td>
+<td>97.2</td>
+<td>81.6</td>
+<td>67.8</td>
+</tr>
+<tr>
+<td>학점</td>
+<td>F</td>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>위의 점수표에서, i행 j열의 값은 i번 학생이 평가한 j번 학생의 과제 점수입니다.</p>
+<ul>
+<li>0번 학생이 평가한 점수는 0번 <code>행</code>에담긴 [100, 90, 98, 88, 65]입니다.<ul>
+<li>0번 학생은 자기 자신에게 100점, 1번 학생에게 90점, 2번 학생에게 98점, 3번 학생에게 88점, 4번 학생에게 65점을 부여했습니다.</li>
+</ul>
+</li>
+<li>2번 학생이 평가한 점수는 2번 <code>행</code>에담긴 [47, 88, 95, 80, 67]입니다.<ul>
+<li>2번 학생은 0번 학생에게 47점, 1번 학생에게 88점, 자기 자신에게 95점, 3번 학생에게 80점, 4번 학생에게 67점을 부여했습니다.</li>
+</ul>
+</li>
+</ul>
+<p>당신은 각 학생들이 받은 점수의 평균을 구하여, 기준에 따라 학점을 부여하려고 합니다.\<br>만약, 학생들이 자기 자신을 평가한 점수가 유일한 최고점 또는 유일한 최저점이라면 그 점수는 제외하고 평균을 구합니다.</p>
+<ul>
+<li>0번 학생이 받은 점수는 0번 <code>열</code>에 담긴 [<code>100</code>, 50, 47, 61, 24]입니다. 자기 자신을 평가한 100점은 자신이 받은 점수 중에서 유일한 최고점이므로, 평균을 구할 때 제외합니다.<ul>
+<li>0번 학생의 평균 점수는 (50+47+61+24) / 4 = 45.5입니다.</li>
+</ul>
+</li>
+<li>4번 학생이 받은 점수는 4번 <code>열</code>에 담긴 [65, 77, 67, 65, <code>65</code>]입니다. 자기 자신을 평가한 65점은 자신이 받은 점수 중에서 최저점이지만 같은 점수가 2개 더 있으므로, 유일한 최저점이 아닙니다. 따라서, 평균을 구할 때 제외하지 않습니다.<ul>
+<li>4번 학생의 평균 점수는 (65+77+67+65+65) / 5 = 67.8입니다.</li>
+</ul>
+</li>
+</ul>
+<p>제외할 점수는 제외하고 평균을 구한 후, 아래 기준에 따라 학점을 부여합니다.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>평균</th>
+<th>학점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>90점 이상</td>
+<td>A</td>
+</tr>
+<tr>
+<td>80점 이상 90점 미만</td>
+<td>B</td>
+</tr>
+<tr>
+<td>70점 이상 80점 미만</td>
+<td>C</td>
+</tr>
+<tr>
+<td>50점 이상 70점 미만</td>
+<td>D</td>
+</tr>
+<tr>
+<td>50점 미만</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>학생들의 점수가 담긴 정수형 2차원 배열 scores가 매개변수로 주어집니다. 이때, 학생들의 학점을 구하여 하나의 문자열로 만들어서 return 하도록 solution 함수를 완성해주세요.</p>
+<hr>
+<h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul>
+<li>2 ≤ <code>scores</code>의 행의 길이(학생 수) ≤ 10</li>
+<li><p><code>scores</code>의 열의 길이 = <code>scores</code>의 행의 길이</p>
+<ul>
+<li>즉, <code>scores</code>는 행과 열의 길이가 같은 2차원 배열입니다.</li>
+</ul>
+</li>
+<li><p>0 ≤ <code>scores</code>의 원소 ≤ 100</p>
+</li>
+<li>return 값 형식<ul>
+<li>0번 학생의 학점부터 차례대로 이어 붙인 하나의 문자열을 return 합니다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>scores</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[100,90,98,88,65],[50,45,99,85,77],[47,88,95,80,67],[61,57,100,80,65],[24,90,94,75,65]]</td>
+<td><code>&quot;FBABD&quot;</code></td>
+</tr>
+<tr>
+<td>[[50,90],[50,87]]</td>
+<td><code>&quot;DA&quot;</code></td>
+</tr>
+<tr>
+<td>[[70,49,90],[68,50,38],[73,31,100]]</td>
+<td><code>&quot;CFD&quot;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예 #1</p>
+<p>문제 예시와 같습니다.</p>
+<p>입출력 예 #2</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No.</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>50</td>
+<td>90</td>
+</tr>
+<tr>
+<td>1</td>
+<td>50</td>
+<td><del>87</del></td>
+</tr>
+<tr>
+<td>평균</td>
+<td>50</td>
+<td>90</td>
+</tr>
+<tr>
+<td>학점</td>
+<td>D</td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>1번 학생이 자기 자신을 평가한 87점은 [90, 87]에서 유일한 최저점이므로, 평균을 구할 때 제외합니다.</li>
+</ul>
+<p>입출력 예 #3</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No.</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0</td>
+<td>70</td>
+<td>49</td>
+<td>90</td>
+</tr>
+<tr>
+<td>1</td>
+<td>68</td>
+<td><del>50</del></td>
+<td>38</td>
+</tr>
+<tr>
+<td>2</td>
+<td>73</td>
+<td>31</td>
+<td><del>100</del></td>
+</tr>
+<tr>
+<td>평균</td>
+<td>70.33…</td>
+<td>40</td>
+<td>64</td>
+</tr>
+<tr>
+<td>학점</td>
+<td>C</td>
+<td>F</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>1번 학생이 자기 자신을 평가한 50점은 [49, 50, 31]에서 유일한 최고점이므로, 평균을 구할 때 제외합니다.</li>
+<li>2번 학생이 자기 자신을 평가한 100점은 [90, 38, 100]에서 유일한 최고점이므로, 평균을 구할 때 제외합니다.</li>
+</ul>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr>
+<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">scores</span>):</span></span><br><span class="line">    scores = [[score[r] <span class="keyword">for</span> score <span class="keyword">in</span> scores] <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(scores))]</span><br><span class="line">    grade = [(<span class="number">90</span>,<span class="string">&#x27;A&#x27;</span>),(<span class="number">80</span>,<span class="string">&#x27;B&#x27;</span>),(<span class="number">70</span>,<span class="string">&#x27;C&#x27;</span>),(<span class="number">50</span>,<span class="string">&#x27;D&#x27;</span>),(<span class="number">0</span>,<span class="string">&#x27;F&#x27;</span>)]</span><br><span class="line">    grading = <span class="keyword">lambda</span> x: <span class="built_in">next</span>(v[<span class="number">1</span>] <span class="keyword">for</span> i,v <span class="keyword">in</span> <span class="built_in">enumerate</span>(grade) <span class="keyword">if</span> x &gt;= v[<span class="number">0</span>])</span><br><span class="line">    answer = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> idx, score <span class="keyword">in</span> <span class="built_in">enumerate</span>(scores):</span><br><span class="line">        without_self = [s <span class="keyword">for</span> i,s <span class="keyword">in</span> <span class="built_in">enumerate</span>(score) <span class="keyword">if</span> i != idx]</span><br><span class="line">        <span class="keyword">if</span> score[idx] &gt; <span class="built_in">max</span>(without_self) <span class="keyword">or</span> score[idx] &lt; <span class="built_in">min</span>(without_self):</span><br><span class="line">            answer += grading(<span class="built_in">sum</span>(without_self) / <span class="built_in">len</span>(without_self))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            answer += grading(<span class="built_in">sum</span>(score) / <span class="built_in">len</span>(score))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<h1 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h1><hr>
+<p><br></p>
+<h2 id="풀이-과정"><a href="#풀이-과정" class="headerlink" title="풀이 과정"></a>풀이 과정</h2><ol>
+<li>행열 전환</li>
+<li>성적 산출 함수 구현</li>
+<li>결과 도출</li>
+</ol>
+<p><br></p>
+<h2 id="풀이-설명"><a href="#풀이-설명" class="headerlink" title="풀이 설명"></a>풀이 설명</h2><h3 id="행열-전환하기-행-lt-gt-열"><a href="#행열-전환하기-행-lt-gt-열" class="headerlink" title="[ 행열 전환하기 (행 &lt;-&gt; 열) ]"></a><code>[ 행열 전환하기 (행 &lt;-&gt; 열) ]</code></h3><div class="clean">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores = [[score[r] <span class="keyword">for</span> score <span class="keyword">in</span> scores] <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(scores))]</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<h3 id="성적-산출"><a href="#성적-산출" class="headerlink" title="[ 성적 산출 ]"></a><code>[ 성적 산출 ]</code></h3><div class="clean">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grade = [(<span class="number">90</span>,<span class="string">&#x27;A&#x27;</span>),(<span class="number">80</span>,<span class="string">&#x27;B&#x27;</span>),(<span class="number">70</span>,<span class="string">&#x27;C&#x27;</span>),(<span class="number">50</span>,<span class="string">&#x27;D&#x27;</span>),(<span class="number">0</span>,<span class="string">&#x27;F&#x27;</span>)]</span><br><span class="line">grading = <span class="keyword">lambda</span> x: <span class="built_in">next</span>(v[<span class="number">1</span>] <span class="keyword">for</span> i,v <span class="keyword">in</span> <span class="built_in">enumerate</span>(grade) <span class="keyword">if</span> x &gt;= v[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<ul>
+<li><code>python</code>의 <code>tuple</code>을 이용해 성적 산출을 리스트로 구현했다.</li>
+</ul>
+<p><br></p>
+<h3 id="결과-도출"><a href="#결과-도출" class="headerlink" title="[ 결과 도출 ]"></a><code>[ 결과 도출 ]</code></h3><div class="clean">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">answer = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> idx, score <span class="keyword">in</span> <span class="built_in">enumerate</span>(scores):</span><br><span class="line">    without_self = [s <span class="keyword">for</span> i,s <span class="keyword">in</span> <span class="built_in">enumerate</span>(score) <span class="keyword">if</span> i != idx]</span><br><span class="line">    <span class="keyword">if</span> score[idx] &gt; <span class="built_in">max</span>(without_self) <span class="keyword">or</span> score[idx] &lt; <span class="built_in">min</span>(without_self):</span><br><span class="line">        answer += grading(<span class="built_in">sum</span>(without_self) / <span class="built_in">len</span>(without_self))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        answer += grading(<span class="built_in">sum</span>(score) / <span class="built_in">len</span>(score))</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<p><br></p>
+<ul>
+<li>자신의 점수를 제외한 <code>without_self</code> 리스트를 만든다.</li>
+<li>현재 값이 <code>without_self</code>의 <strong>최대값</strong>보다 크거나 <strong>최소값</strong>보다 작으면 제외한다.<ul>
+<li>자신의 점수가 제외된 <code>without_self</code>로 평균 점수와 성적을 산출한다.</li>
+</ul>
+</li>
+<li>그게 아니면 전체 값으로 성적을 산출한다.</li>
+</ul>
+</div><p>출처: 프로그래머스 코딩 테스트 연습, <a target="_blank" rel="external nofollow noopener noreferrer" href="https://programmers.co.kr/learn/challenges">https://programmers.co.kr/learn/challenges</a></p><br><div class="article-licensing box"><div class="licensing-title"><p>[프로그래머스] (LV2) 상호 평가</p><p><a href="https://sklubmk.github.io/2021/08/16/5a27c5948dfc/">https://sklubmk.github.io/2021/08/16/5a27c5948dfc/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Jinki Kim</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-08-16</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-08-19</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><a class="link-muted mr-2" rel="tag" href="/tags/TIL/">TIL</a><a class="link-muted mr-2" rel="tag" href="/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a><a class="link-muted mr-2" rel="tag" href="/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</a><a class="link-muted mr-2" rel="tag" href="/tags/%EC%9C%84%ED%81%B4%EB%A6%AC%EC%B1%8C%EB%A6%B0%EC%A7%80/">위클리챌린지</a><a class="link-muted mr-2" rel="tag" href="/tags/lv2/">lv2</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=60dc5b12dcb6590019396715&amp;product=inline-share-buttons" defer></script></article></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/08/18/8c559b93b60c/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">[프로그래머스] (LV3) 퍼즐 조각 채우기</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/08/16/ce5d6cfa269c/"><span class="level-item">[프로그래머스] (LV1) 부족한 금액 계산하기</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "d9e1eec648f93a800a40eddeceda7657",
+            repo: "sklubmk.github.io",
+            owner: "sklubmk",
+            clientID: "56fa8045b5fb187b1f2b",
+            clientSecret: "a326dc2314c03944c52e1338f17014b1159a0f3c",
+            admin: ["sklubmk"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "ko",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#상호-평가"><span class="level-left"><span class="level-item">1</span><span class="level-item">상호 평가</span></span></a></li><li><a class="level is-mobile" href="#문제-설명"><span class="level-left"><span class="level-item">2</span><span class="level-item">문제 설명</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#제한사항"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">제한사항</span></span></a></li><li><a class="level is-mobile" href="#입출력-예"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">입출력 예</span></span></a></li><li><a class="level is-mobile" href="#입출력-예-설명"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">입출력 예 설명</span></span></a></li></ul></li><li><a class="level is-mobile" href="#풀이"><span class="level-left"><span class="level-item">3</span><span class="level-item">풀이</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#python"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">python</span></span></a></li></ul></li><li><a class="level is-mobile" href="#설명"><span class="level-left"><span class="level-item">4</span><span class="level-item">설명</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#풀이-과정"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">풀이 과정</span></span></a></li><li><a class="level is-mobile" href="#풀이-설명"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">풀이 설명</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#행열-전환하기-행-lt-gt-열"><span class="level-left"><span class="level-item">4.2.1</span><span class="level-item">[ 행열 전환하기 (행 &lt;-&gt; 열) ]</span></span></a></li><li><a class="level is-mobile" href="#성적-산출"><span class="level-left"><span class="level-item">4.2.2</span><span class="level-item">[ 성적 산출 ]</span></span></a></li><li><a class="level is-mobile" href="#결과-도출"><span class="level-left"><span class="level-item">4.2.3</span><span class="level-item">[ 결과 도출 ]</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/HTML-CSS/"><span class="level-start"><span class="level-item">HTML/CSS</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/etc/"><span class="level-start"><span class="level-item">etc</span></span><span class="level-end"><span class="level-item tag">10</span></span></a><ul><li><a class="level is-mobile" href="/categories/etc/NCS/"><span class="level-start"><span class="level-item">NCS</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/"><span class="level-start"><span class="level-item">네트워크</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%EB%94%94%EB%B2%84%EA%B9%85/"><span class="level-start"><span class="level-item">디버깅</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"><span class="level-start"><span class="level-item">알고리즘</span></span><span class="level-end"><span class="level-item tag">156</span></span></a><ul><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B0%9C%EB%85%90/"><span class="level-start"><span class="level-item">개념</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/"><span class="level-start"><span class="level-item">프로그래머스</span></span><span class="level-end"><span class="level-item tag">152</span></span></a><ul><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv1/"><span class="level-start"><span class="level-item">lv1</span></span><span class="level-end"><span class="level-item tag">63</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/"><span class="level-start"><span class="level-item">lv2</span></span><span class="level-end"><span class="level-item tag">65</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv3/"><span class="level-start"><span class="level-item">lv3</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv4/"><span class="level-start"><span class="level-item">lv4</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/"><span class="level-start"><span class="level-item">운영체제</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%9D%BC%EC%83%81/"><span class="level-start"><span class="level-item">일상</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/"><span class="level-start"><span class="level-item">자바스크립트</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/"><span class="level-start"><span class="level-item">타입스크립트</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><figure class="media-left"><a class="image" href="/2021/10/17/bbef9b5a3223/"><img src="/img/thumbnail/thumb_ncs.jpeg" alt="[NCS] 의사소통능력"></a></figure><div class="media-content"><p class="date"><time datetime="2021-10-16T16:37:00.000Z">2021-10-17</time></p><p class="title"><a href="/2021/10/17/bbef9b5a3223/">[NCS] 의사소통능력</a></p><p class="categories"><a href="/categories/etc/">etc</a> / <a href="/categories/etc/NCS/">NCS</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/17/760444d7e15f/"><img src="/img/thumbnail/thumb_ncs.jpeg" alt="[NCS] 수리능력"></a></figure><div class="media-content"><p class="date"><time datetime="2021-10-16T16:19:50.000Z">2021-10-17</time></p><p class="title"><a href="/2021/10/17/760444d7e15f/">[NCS] 수리능력</a></p><p class="categories"><a href="/categories/etc/">etc</a> / <a href="/categories/etc/NCS/">NCS</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/17/5d6f091221ff/"><img src="/img/thumbnail/thumb_ncs.jpeg" alt="[NCS] 문제해결능력"></a></figure><div class="media-content"><p class="date"><time datetime="2021-10-16T16:07:15.000Z">2021-10-17</time></p><p class="title"><a href="/2021/10/17/5d6f091221ff/">[NCS] 문제해결능력</a></p><p class="categories"><a href="/categories/etc/">etc</a> / <a href="/categories/etc/NCS/">NCS</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/17/6a527bc33a48/"><img src="/img/thumbnail/thumb_ncs.jpeg" alt="[NCS] 자기개발능력"></a></figure><div class="media-content"><p class="date"><time datetime="2021-10-16T15:35:24.000Z">2021-10-17</time></p><p class="title"><a href="/2021/10/17/6a527bc33a48/">[NCS] 자기개발능력</a></p><p class="categories"><a href="/categories/etc/">etc</a> / <a href="/categories/etc/NCS/">NCS</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/10/16/11909f780cd0/"><img src="/img/thumbnail/thumb_ncs.jpeg" alt="[NCS] 자원관리능력"></a></figure><div class="media-content"><p class="date"><time datetime="2021-10-16T14:48:01.000Z">2021-10-16</time></p><p class="title"><a href="/2021/10/16/11909f780cd0/">[NCS] 자원관리능력</a></p><p class="categories"><a href="/categories/etc/">etc</a> / <a href="/categories/etc/NCS/">NCS</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"> </a><p class="is-size-7"><span>&copy; 2021 Jinki Kim</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a><br><span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv">0</span>명의 사용자가 방문 함</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
