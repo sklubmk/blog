@@ -9,8 +9,37 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Mon, 18 Oct 2021 13:32:37 GMT</pubDate>
+    <pubDate>Wed, 20 Oct 2021 06:32:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[백준] 2048 (Easy)</title>
+      <link>https://sklubmk.github.io/2021/10/20/2b741c013e1d/</link>
+      <guid>https://sklubmk.github.io/2021/10/20/2b741c013e1d/</guid>
+      <pubDate>Tue, 19 Oct 2021 22:36:47 GMT</pubDate>
+      
+      <description>&lt;h3 id=&quot;https-www-acmicpc-net-problem-12100&quot;&gt;&lt;a href=&quot;#https-www-acmicpc-net-problem-12100&quot; class=&quot;headerlink&quot; title=&quot;https://www.acmicpc.net/problem/12100&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/12100&quot;&gt;https://www.acmicpc.net/problem/12100&lt;/a&gt;&lt;/h3&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="https-www-acmicpc-net-problem-12100"><a href="#https-www-acmicpc-net-problem-12100" class="headerlink" title="https://www.acmicpc.net/problem/12100"></a><a href="https://www.acmicpc.net/problem/12100">https://www.acmicpc.net/problem/12100</a></h3><span id="more"></span><p><br/></p><p><br/></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> heapq <span class="keyword">as</span> h</span><br><span class="line"></span><br><span class="line"><span class="built_in">input</span> = sys.stdin.readline</span><br><span class="line"></span><br><span class="line">N, M = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x: <span class="built_in">int</span>(x), <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>)))</span><br><span class="line">board = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">    board += <span class="built_in">input</span>()[:-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">move_marble</span>(<span class="params">board_temp</span>):</span></span><br><span class="line">    moved_list = []  <span class="comment"># 이동했지만 성공하지 못한 케이스들 넘기기</span></span><br><span class="line">    dxdy = (-<span class="number">1</span>, <span class="number">1</span>, -M, M)</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dxdy)):</span><br><span class="line">        board_ = board_temp[::]</span><br><span class="line">        RB = [board_.index(<span class="string">&#x27;R&#x27;</span>), board_.index(<span class="string">&#x27;B&#x27;</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">get_idx</span>(<span class="params">A</span>):</span></span><br><span class="line">            <span class="keyword">return</span> A % M <span class="keyword">if</span> d &lt; <span class="number">2</span> <span class="keyword">else</span> A // M</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 처음 움직일 구슬(좌우 이동시 왼쪽, 상하 이동시 위쪽 구슬)의 RB 변수 index (0 or 1)</span></span><br><span class="line">        move_i = ((<span class="number">0</span> <span class="keyword">if</span> get_idx(RB[<span class="number">0</span>]) &lt; get_idx(RB[<span class="number">1</span>]) <span class="keyword">else</span> <span class="number">1</span>) + d) % <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):  <span class="comment"># R과 B 두 구슬 이동</span></span><br><span class="line">            move_i = (move_i + k) % <span class="number">2</span>  <span class="comment"># 첫 째 구슬 이동시 다음 구슬 선택</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 다음 위치가 빈공간이면 현재 방향대로 구슬 이동</span></span><br><span class="line">            <span class="keyword">while</span> <span class="number">0</span> &lt;= get_idx(RB[move_i] + dxdy[d]) &lt; M <span class="keyword">and</span> board_[RB[move_i] + dxdy[d]] == <span class="string">&#x27;.&#x27;</span>:</span><br><span class="line">                board_[RB[move_i]], board_[RB[move_i] + dxdy[d]] = <span class="string">&#x27;.&#x27;</span>, board_[RB[move_i]]</span><br><span class="line">                RB[move_i] += dxdy[d]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 구멍에 도달했는지 체크</span></span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= get_idx(RB[move_i] + dxdy[d]) &lt; M <span class="keyword">and</span> board_[RB[move_i] + dxdy[d]] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                board_[RB[move_i]] = <span class="string">&#x27;.&#x27;</span></span><br><span class="line">                RB[move_i] = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> RB[<span class="number">0</span>] == -<span class="number">1</span> <span class="keyword">and</span> RB[<span class="number">1</span>] != -<span class="number">1</span>:  <span class="comment"># 성공</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">elif</span> RB[<span class="number">0</span>] != -<span class="number">1</span> <span class="keyword">and</span> RB[<span class="number">1</span>] != -<span class="number">1</span> <span class="keyword">and</span> <span class="string">&#x27;&#x27;</span>.join(board_temp) != <span class="string">&#x27;&#x27;</span>.join(board_):  <span class="comment"># 넘기기</span></span><br><span class="line">            moved_list.append(board_)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> moved_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bfs = [(<span class="number">1</span>, <span class="built_in">list</span>(board))]</span><br><span class="line">answer = -<span class="number">1</span>  <span class="comment"># 초기값, 실패 케이스</span></span><br><span class="line"><span class="keyword">while</span> bfs:  <span class="comment"># 힙 큐</span></span><br><span class="line">    count, next_board = h.heappop(bfs)</span><br><span class="line">    <span class="keyword">if</span> count &gt; <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    moved = move_marble(next_board)</span><br><span class="line">    <span class="keyword">if</span> moved <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># 성공 케이스</span></span><br><span class="line">        answer = count</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:  <span class="comment"># 넘어온 리스트로 다시 이동 반복</span></span><br><span class="line">        <span class="keyword">for</span> new_board <span class="keyword">in</span> moved:</span><br><span class="line">            h.heappush(bfs, (count + <span class="number">1</span>, new_board))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(answer)</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EB%B0%B1%EC%A4%80/">백준</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%EB%B0%B1%EC%A4%80/">백준</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/10/20/2b741c013e1d/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[백준] 구슬 탈출 2</title>
@@ -436,9 +465,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       <category domain="https://sklubmk.github.io/tags/bit/">bit</category>
       
@@ -514,9 +543,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/10/08/d5da90761b93/#disqus_thread</comments>
@@ -549,9 +578,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/10/06/10fe4cc0cf7c/#disqus_thread</comments>
@@ -655,9 +684,9 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/10/03/24cb0202714f/#disqus_thread</comments>
@@ -690,47 +719,12 @@
       
       <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
       
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
       <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
+      
+      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
       
       
       <comments>https://sklubmk.github.io/2021/10/02/a78879dd0eb0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[프로그래머스] (LV2) 다음 큰 숫자</title>
-      <link>https://sklubmk.github.io/2021/10/01/e8b7c05185e2/</link>
-      <guid>https://sklubmk.github.io/2021/10/01/e8b7c05185e2/</guid>
-      <pubDate>Fri, 01 Oct 2021 09:53:07 GMT</pubDate>
-      
-      <description>&lt;p&gt;Python3&lt;br&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<p>Python3<br><span id="more"></span></p><p><br/></p><blockquote><h1 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h1><p>자연수 n이 주어졌을 때, n의 다음 큰 숫자는 다음과 같이 정의 합니다.</p><ul><li>조건 1. n의 다음 큰 숫자는 n보다 큰 자연수 입니다.</li><li>조건 2. n의 다음 큰 숫자와 n은 2진수로 변환했을 때 1의 갯수가 같습니다.</li><li>조건 3. n의 다음 큰 숫자는 조건 1, 2를 만족하는 수 중 가장 작은 수 입니다.</li></ul><p>예를 들어서 78(1001110)의 다음 큰 숫자는 83(1010011)입니다.</p><p>자연수 n이 매개변수로 주어질 때, n의 다음 큰 숫자를 return 하는 solution 함수를 완성해주세요.</p><h2 id="제한-사항"><a href="#제한-사항" class="headerlink" title="제한 사항"></a>제한 사항</h2><ul><li>n은 1,000,000 이하의 자연수 입니다.</li></ul><hr><h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><div class="table-container"><table><thead><tr><th>n</th><th>result</th></tr></thead><tbody><tr><td>78</td><td>83</td></tr><tr><td>15</td><td>23</td></tr></tbody></table></div><h2 id="입출력-예-설명"><a href="#입출력-예-설명" class="headerlink" title="입출력 예 설명"></a>입출력 예 설명</h2><p>입출력 예#1\<br>문제 예시와 같습니다.\<br>입출력 예#2\<br>15(1111)의 다음 큰 숫자는 23(10111)입니다.</p></blockquote><p><br/></p><p><br/></p><h1 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h1><hr><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">n</span>):</span></span><br><span class="line">    k = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">bin</span>(n)[<span class="number">2</span>:].count(<span class="string">&#x27;1&#x27;</span>) != <span class="built_in">bin</span>(k)[<span class="number">2</span>:].count(<span class="string">&#x27;1&#x27;</span>):</span><br><span class="line">        k +=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> k</span><br></pre></td></tr></table></figure><p><br/></p><p><br/></p>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/lv2/">lv2</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</category>
-      
-      <category domain="https://sklubmk.github.io/tags/lv2/">lv2</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/10/01/e8b7c05185e2/#disqus_thread</comments>
       
     </item>
     
