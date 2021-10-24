@@ -9,8 +9,37 @@
     <atom:link href="https://sklubmk.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Jinki Kim&#39;s Front End Devlog</description>
-    <pubDate>Fri, 22 Oct 2021 15:00:01 GMT</pubDate>
+    <pubDate>Sun, 24 Oct 2021 16:22:58 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[SWEA] 프로세서 연결하기</title>
+      <link>https://sklubmk.github.io/2021/10/25/98bf9eee25c9/</link>
+      <guid>https://sklubmk.github.io/2021/10/25/98bf9eee25c9/</guid>
+      <pubDate>Sun, 24 Oct 2021 16:21:33 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;a href=&quot;https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV4suNtaXFEDFAUf&amp;amp;categoryId=AV4suNtaXFEDFAUf&amp;amp;categoryType=CODE&amp;amp;problemTitle=%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C&amp;amp;orderBy=FIRST_REG_DATETIME&amp;amp;selectCodeLang=ALL&amp;amp;select-1=&amp;amp;pageSize=10&amp;amp;pageIndex=1&quot;&gt;[SW Test 샘플문제] 프로세서 연결하기&lt;/a&gt;&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p><a href="https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV4suNtaXFEDFAUf&amp;categoryId=AV4suNtaXFEDFAUf&amp;categoryType=CODE&amp;problemTitle=%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C&amp;orderBy=FIRST_REG_DATETIME&amp;selectCodeLang=ALL&amp;select-1=&amp;pageSize=10&amp;pageIndex=1">[SW Test 샘플문제] 프로세서 연결하기</a></p><span id="more"></span><p><br/></p><p><br/></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="built_in">input</span> = sys.stdin.readline</span><br><span class="line"></span><br><span class="line">N, board, answer, max_core_cnt, core, bfs = [<span class="literal">None</span>] * <span class="number">6</span></span><br><span class="line">dxdy = [(<span class="number">0</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, -<span class="number">1</span>), (-<span class="number">1</span>, <span class="number">0</span>), (<span class="number">1</span>, <span class="number">0</span>)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span>():</span></span><br><span class="line">    <span class="keyword">global</span> N, board, answer, max_core_cnt, core, bfs</span><br><span class="line">    N = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    board = []</span><br><span class="line">    answer = N ** <span class="number">2</span></span><br><span class="line">    max_core_cnt = <span class="number">0</span></span><br><span class="line">    core = []</span><br><span class="line">    bfs = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        board.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(board):</span><br><span class="line">        <span class="keyword">for</span> j, col <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> &lt; i &lt; N - <span class="number">1</span>) <span class="keyword">and</span> (<span class="number">0</span> &lt; j &lt; N - <span class="number">1</span>) <span class="keyword">and</span> col == <span class="number">1</span>:</span><br><span class="line">                core.append((i, j))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">list_to_str</span>(<span class="params">list_</span>):</span></span><br><span class="line">    str_ = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> list_:</span><br><span class="line">        str_ += <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, r))</span><br><span class="line">    <span class="keyword">return</span> str_</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_to_list</span>(<span class="params">s</span>):</span></span><br><span class="line">    result_l = []</span><br><span class="line">    temp_l = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">list</span>(s)))</span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        result_l.append(temp_l[index * N:(index + <span class="number">1</span>) * N])</span><br><span class="line">    <span class="keyword">return</span> result_l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_core</span>(<span class="params">temp_core, direct, temp_board</span>):</span></span><br><span class="line">    temp_board = str_to_list(temp_board)</span><br><span class="line">    dist_cnt = <span class="number">0</span></span><br><span class="line">    x, y = temp_core</span><br><span class="line">    dx, dy = dxdy[direct]</span><br><span class="line">    <span class="keyword">while</span> <span class="number">0</span> &lt;= x + dx &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= y + dy &lt; N:</span><br><span class="line">        <span class="keyword">if</span> temp_board[x + dx][y + dy] != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        temp_board[x + dx][y + dy] = <span class="number">2</span></span><br><span class="line">        dist_cnt += <span class="number">1</span></span><br><span class="line">        x += dx</span><br><span class="line">        y += dy</span><br><span class="line">    <span class="keyword">return</span> dist_cnt, list_to_str(temp_board)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    <span class="keyword">global</span> N, board, answer, max_core_cnt, core, bfs, dxdy</span><br><span class="line">    bfs = [(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, list_to_str(board))]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> bfs:</span><br><span class="line">        core_cnt, core_idx, dist, board_s = bfs.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(core) - core_idx + core_cnt &lt; max_core_cnt:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> core_idx == <span class="built_in">len</span>(core):</span><br><span class="line">            <span class="keyword">if</span> max_core_cnt &lt; core_cnt:</span><br><span class="line">                answer = dist</span><br><span class="line">                max_core_cnt = core_cnt</span><br><span class="line">            <span class="keyword">elif</span> max_core_cnt == core_cnt:</span><br><span class="line">                answer = <span class="built_in">min</span>(answer, dist)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        cur_core = core[core_idx]</span><br><span class="line">        <span class="keyword">for</span> dir_ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            <span class="keyword">if</span> dir_ == <span class="number">0</span>:</span><br><span class="line">                bfs.append((core_cnt, core_idx + <span class="number">1</span>, dist, board_s))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                result = connect_core(cur_core, dir_, board_s)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> result:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                next_dist, next_board = result</span><br><span class="line">                bfs.append((core_cnt + <span class="number">1</span>, core_idx + <span class="number">1</span>, dist + next_dist, next_board))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    T = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="keyword">for</span> test_case <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, T + <span class="number">1</span>):</span><br><span class="line">        init()</span><br><span class="line">        solve()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;#<span class="subst">&#123;test_case&#125;</span> <span class="subst">&#123;answer&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/SWEA/">SWEA</category>
+      
+      
+      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
+      
+      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
+      
+      <category domain="https://sklubmk.github.io/tags/SWEA/">SWEA</category>
+      
+      
+      <comments>https://sklubmk.github.io/2021/10/25/98bf9eee25c9/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[백준] 주사위 굴리기</title>
@@ -560,15 +589,15 @@
       
       <category domain="https://sklubmk.github.io/tags/%EC%9D%BC%EC%83%81/">일상</category>
       
-      <category domain="https://sklubmk.github.io/tags/%ED%9B%84%EA%B8%B0/">후기</category>
-      
-      <category domain="https://sklubmk.github.io/tags/tech/">tech</category>
-      
       <category domain="https://sklubmk.github.io/tags/apple/">apple</category>
       
       <category domain="https://sklubmk.github.io/tags/M1/">M1</category>
       
       <category domain="https://sklubmk.github.io/tags/ipad/">ipad</category>
+      
+      <category domain="https://sklubmk.github.io/tags/%ED%9B%84%EA%B8%B0/">후기</category>
+      
+      <category domain="https://sklubmk.github.io/tags/tech/">tech</category>
       
       
       <comments>https://sklubmk.github.io/2021/10/09/e521a2981100/#disqus_thread</comments>
@@ -679,40 +708,6 @@
       
       
       <comments>https://sklubmk.github.io/2021/10/05/f63928905c8e/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[알고리즘] 페이지 교체 알고리즘</title>
-      <link>https://sklubmk.github.io/2021/10/03/f293fd2c0858/</link>
-      <guid>https://sklubmk.github.io/2021/10/03/f293fd2c0858/</guid>
-      <pubDate>Sun, 03 Oct 2021 11:29:00 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;💡-tl-dr&quot;&gt;&lt;a href=&quot;#💡-tl-dr&quot; class=&quot;headerlink&quot; title=&quot;💡 tl;dr&quot;&gt;&lt;/a&gt;💡 tl;dr&lt;/h1&gt;&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;FIFO &lt;code&gt;(First In First Out)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;LFU &lt;code&gt;(Least Recently Used)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;LRU &lt;code&gt;(Least Recently Used)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="💡-tl-dr"><a href="#💡-tl-dr" class="headerlink" title="💡 tl;dr"></a>💡 tl;dr</h1><hr><ul><li>FIFO <code>(First In First Out)</code></li><li>LFU <code>(Least Recently Used)</code></li><li>LRU <code>(Least Recently Used)</code></li></ul><span id="more"></span><p><br/></p><p><br/></p><h1 id="FIFO-First-In-First-Out"><a href="#FIFO-First-In-First-Out" class="headerlink" title="FIFO (First In First Out)"></a>FIFO <code>(First In First Out)</code></h1><hr><ul><li>페이지가 주기억장치에 적재된 시간을 기준으로 교체될 페이지를 선정하는 기법</li><li>단점<ul><li>중요한 페이지가 오래 있었다는 이유만으로 교체되는 불합리</li><li>가장 오래 있었던 페이지는 앞으로 계속 사용될 가능성</li></ul></li></ul><p><br/></p><p><br/></p><h1 id="LFU-Least-Frequently-Used"><a href="#LFU-Least-Frequently-Used" class="headerlink" title="LFU (Least Frequently Used)"></a>LFU <code>(Least Frequently Used)</code></h1><hr><p><img src="https://xuri.me/wp-content/uploads/2016/08/lru-algorithm.png" alt="LFU"></p><ul><li>가장 적은 횟수를 참조하는 페이지를 교체</li><li>단점<ul><li>(참조될 가능성이 많음에도 불구하고) 최근에 사용된 프로그램을 교체시킬 가능성</li><li>해당 횟수를 증가시키므로 오버헤드 발생</li></ul></li></ul><p><br/></p><p><br/></p><h1 id="LRU-Least-Recently-Used"><a href="#LRU-Least-Recently-Used" class="headerlink" title="LRU (Least Recently Used)"></a>LRU <code>(Least Recently Used)</code></h1><hr><p><img src="https://xuri.me/wp-content/uploads/2016/08/lfu-algorithm.png" alt="LFU"></p><ul><li>가장 오랫동안 참조되지 않은 페이지를 교체</li><li>단점 : 프로세스가 주기억장치에 접근할 때마다 참조된 페이지에 대한 시간을 기록해야함. 큰 오버헤드가 발생</li></ul><p><br/></p><h1 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h1><hr><ul><li><a href="https://j2wooooo.tistory.com/121">LRU 알고리즘</a></li></ul>]]></content:encoded>
-      
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B0%9C%EB%85%90/">개념</category>
-      
-      
-      <category domain="https://sklubmk.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</category>
-      
-      <category domain="https://sklubmk.github.io/tags/TIL/">TIL</category>
-      
-      <category domain="https://sklubmk.github.io/tags/%EA%B0%9C%EB%85%90/">개념</category>
-      
-      
-      <comments>https://sklubmk.github.io/2021/10/03/f293fd2c0858/#disqus_thread</comments>
       
     </item>
     
